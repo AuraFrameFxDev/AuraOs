@@ -1,22 +1,22 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") version libs.versions.ksp.get()
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "dev.aurakai.auraframefx.oracledrive"
-    compileSdk = 36
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 33
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -25,12 +25,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_24
-        targetCompatibility = JavaVersion.VERSION_24
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "24"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -43,34 +43,30 @@ android {
 }
 
 dependencies {
-    // Project dependencies
-    implementation(project(":app"))
-
     // Core AndroidX
-    implementation("androidx.core:core-ktx:${libs.versions.androidx.core.ktx.get()}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${libs.versions.androidx.lifecycle.get()}")
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
 
     // Compose
-    val composeBom = platform("androidx.compose:compose-bom:${libs.versions.compose.bom.get()}")
-    implementation(composeBom)
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.material3)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:${libs.versions.hilt.get()}")
-    ksp("com.google.dagger:hilt-android-compiler:${libs.versions.hilt.get()}")
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.versions.kotlinx.coroutines.get()}")
+    implementation(libs.kotlinx.coroutines.android)
 
     // Testing
-    testImplementation("junit:junit:${libs.versions.junit.get()}")
-    androidTestImplementation("androidx.test.ext:junit:${libs.versions.androidx.test.ext.get()}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${libs.versions.androidx.test.espresso.get()}")
-    androidTestImplementation(composeBom)
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.compose.ui.test.manifest)
 }
