@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # Kotlin (Gradle)
+  - package-ecosystem: "gradle"
+    directory: "/" # adjust if your build.gradle is in a subdirectory
+    schedule:
+      interval: "weekly"
+
+  # Python
+  - package-ecosystem: "pip"
+    directory: "/" # adjust if your requirements.txt is in a subdirectory
+    schedule:
+      interval: "weekly"
+
+  # TypeScript (npm)
+  - package-ecosystem: "npm"
+    directory: "/" # adjust if your package.json is in a subdirectory
+    schedule:
+      interval: "weekly"
+
+  # C++ (GitHub Actions for CMake dependencies)
+  - package-ecosystem: "github-actions"
+    directory: "/" # for workflow dependencies
+    schedule:
+      interval: "weekly"
