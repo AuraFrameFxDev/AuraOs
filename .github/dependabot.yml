@@ -13,7 +13,7 @@ updates:
       interval: "weekly"
 
   # TypeScript (npm)
-  - package-ecosystem: "npm"
+  //- package-ecosystem: "npm"
     directory: "/" # adjust if your package.json is in a subdirectory
     schedule:
       interval: "weekly"
