@@ -2,16 +2,13 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
+    id("auraframefx.android-hilt-conventions")
 }
 
 android {
     namespace = "dev.aurakai.auraframefx.sandbox.ui"
-    compileSdk = 36
 
     defaultConfig {
-        minSdk = 33
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -60,11 +57,6 @@ dependencies {
 
     // Navigation
     implementation(libs.navigation.compose)
-
-    // Hilt
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
-    implementation(libs.hilt.navigation.compose)
 
     // Debug tools
     debugImplementation(libs.compose.ui.tooling)
