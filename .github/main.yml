@@ -1,0 +1,50 @@
+name: Full Auto Build & Assemble (Java/Gradle/Plugins/TOML)
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      actions: read
+      checks: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK (auto-detects Gradle/Java)
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17' # Change if your project requires a different version
+
+    - name: Cache Gradle dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/*.toml') }}
+
+    - name: Grant execute permission for Gradle wrapper
+      run: chmod +x ./gradlew
+
+    - name: Assemble project
+      run: ./gradlew assemble
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          **/build/libs/*.jar
+          **/build/outputs/**/*.apk
+          **/build/outputs/**/*.aar
