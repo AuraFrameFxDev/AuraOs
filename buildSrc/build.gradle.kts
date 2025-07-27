@@ -52,6 +52,10 @@ dependencies {
 // Configure Gradle plugin publishing
 gradlePlugin {
     plugins {
+        register("androidHiltConvention") {
+            id = "auraframefx.android-hilt-conventions"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
         register("auraBaseConvention") {
             id = "auraframefx.base.convention"
             implementationClass = "plugins.AuraBaseConventionPlugin"

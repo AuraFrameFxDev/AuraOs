@@ -1,16 +1,15 @@
 [versions]
 # Build Configuration
-compileSdk = "36"
-targetSdk = "36"
-minSdk = "33"
-javaVersion = "24"
-
-# Plugin versions
-agp = "8.11.1"
 kotlin = "2.2.0"
+androidGradlePlugin = "8.11.0"
 ksp = "2.2.0-2.0.2"
-composeCompiler = "1.5.15"
 hilt = "2.57"
+java = "24"
+targetSdk = "36"
+compileSdk = "36"
+minSdk = "24"
+agp = "8.11.1"
+composeCompiler = "1.5.15"
 openapi = "7.10.0"
 room = "2.6.1"
 firebase = "33.7.0"
@@ -44,16 +43,19 @@ truth = "1.4.4"
 desugarJdkLibs = "2.1.4"
 
 [plugins]
+androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.6" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 openapi-generator = { id = "org.openapi.generator", version.ref = "openapi" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
 [libraries]
 # Core Android Libraries
