@@ -1,11 +1,23 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.plugin.KotlinBasePlugin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-// Enable Gradle's configuration cache for faster builds
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    // Apply the Kotlin Gradle plugin to the root project
+    kotlin("jvm") version "2.2.0" apply false
+    
+    // Apply the Android Gradle plugin
+    id("com.android.application") version "8.11.1" apply false
+    id("com.android.library") version "8.11.1" apply false
+    
+    // Apply other common plugins with versions from version catalog
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.ksp) apply false
+    
+    // OpenAPI Generator plugin
+    id("org.openapi.generator") version "7.3.0" apply false
+}
 
 // Configure all projects (root + subprojects)
 allprojects {
@@ -65,13 +77,13 @@ subprojects {
     }
 
     // Configure Kotlin compilation for all projects with Kotlin plugin
-    plugins.withType<KotlinBasePlugin> {
+    plugins.withType<org.jetbrains.kotlin.gradle.plugin.KotlinBasePlugin> {
         tasks.withType<KotlinCompile>().configureEach {
-            compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_17)
-                apiVersion.set(KotlinVersion.fromVersion("2.2.0"))
-                languageVersion.set(KotlinVersion.fromVersion("2.2.0"))
-                freeCompilerArgs.addAll(
+            kotlinOptions {
+                jvmTarget = "17"
+                apiVersion = "2.2"
+                languageVersion = "2.2"
+                freeCompilerArgs = freeCompilerArgs + listOf(
                     "-Xjvm-default=all",
                     "-opt-in=kotlin.RequiresOptIn",
                     "-opt-in=kotlin.ExperimentalStdlibApi"
