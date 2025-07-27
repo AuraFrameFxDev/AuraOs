@@ -1,8 +1,10 @@
-// Apply plugins with versions from the version catalog
+// Apply plugins with direct IDs to avoid version conflicts
+// Note: Versions are managed in the root build.gradle.kts
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") version "2.0.2"
+    id("com.google.devtools.ksp") version libs.versions.ksp.get()
+    id("com.google.dagger.hilt.android") version libs.versions.hilt.get()
 }
 
 android {
@@ -58,6 +60,7 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)

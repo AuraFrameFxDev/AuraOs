@@ -1,1 +1,0 @@
-C:\Project Genesis - Copy\AuraOs\app\src\main\cpp\CMakeLists.txt

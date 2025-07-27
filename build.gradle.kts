@@ -1,29 +1,25 @@
-@file:Suppress("DSL_SCOPE_VIOLATION")
+// Note: All plugin versions are managed in gradle/libs.versions.toml
 
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// Apply plugins to the root project without applying them to the root project itself
 plugins {
-    // Apply the Kotlin Gradle plugin to the root project
-    kotlin("jvm") version "2.2.0" apply false
-    
-    // Apply the Android Gradle plugin
-    id("com.android.application") version "8.11.1" apply false
-    id("com.android.library") version "8.11.1" apply false
-    
-    // Apply other common plugins with versions from version catalog
+    // Android plugins - using alias with apply false to avoid classpath conflicts
+
+
+    // Kotlin plugins - using alias with apply false to avoid classpath conflicts
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.kotlin.compose) apply false
+
+    // Other plugins - using alias with apply false to avoid classpath conflicts
     alias(libs.plugins.ksp) apply false
-    
-    // OpenAPI Generator plugin
-    id("org.openapi.generator") version "7.3.0" apply false
+    alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.openapi.generator) apply false
+    alias(libs.plugins.detekt) apply false
 }
 
-// Configure all projects (root + subprojects)
-allprojects {
-    // Apply common configuration to all projects
-    group = "dev.aurakai.auraframefx"
-    version = "1.0.0"
+// Configure all projects to use the same Kotlin and Java versions
+
 
     repositories {
         google()
@@ -108,4 +104,33 @@ tasks.register<Delete>("clean") {
     delete("${rootProject.projectDir}/build")
     delete("${rootProject.projectDir}/.idea")
 }
+
+
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

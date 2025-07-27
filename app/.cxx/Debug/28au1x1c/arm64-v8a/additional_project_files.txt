@@ -1,2 +1,0 @@
-C:\Project Genesis - Copy\AuraOs\app\.cxx\Debug\28au1x1c\arm64-v8a\CMakeFiles\format
-C:\Project Genesis - Copy\AuraOs\app\.cxx\Debug\28au1x1c\arm64-v8a\CMakeFiles\format.rule

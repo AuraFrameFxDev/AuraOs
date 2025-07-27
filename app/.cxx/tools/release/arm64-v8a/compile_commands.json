@@ -1,7 +1,0 @@
-[
-{
-  "directory": "C:/Project Genesis - Copy/AuraOs/app/.cxx/RelWithDebInfo/25125q5r/arm64-v8a",
-  "command": "C:\\Users\\Wehtt\\AppData\\Local\\Android\\Sdk\\ndk\\25.2.9519653\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android24 --sysroot=C:/Users/Wehtt/AppData/Local/Android/Sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DANDROID_NDK -DANDROID_STL=\\\"c++_shared\\\" -DNDEBUG=1 -Dlanguage_id_l2c_jni_EXPORTS -IC:/Users/Wehtt/AppData/Local/Android/Sdk/ndk/25.2.9519653/sources/android/native_app_glue -I\"C:/Project Genesis - Copy/AuraOs/app/src/main/cpp\" -I\"C:/Project Genesis - Copy/AuraOs/app/src/main/cpp/include\" -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -Wall -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -fno-limit-debug-info -O2 -g -DNDEBUG -fPIC -O3 -DNDEBUG -fomit-frame-pointer -fstrict-aliasing -std=c++17 -o CMakeFiles\\language_id_l2c_jni.dir\\language_id_l2c_jni.cpp.o -c \"C:\\Project Genesis - Copy\\AuraOs\\app\\src\\main\\cpp\\language_id_l2c_jni.cpp\"",
-  "file": "C:\\Project Genesis - Copy\\AuraOs\\app\\src\\main\\cpp\\language_id_l2c_jni.cpp"
-}
-]
