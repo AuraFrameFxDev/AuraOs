@@ -10,11 +10,11 @@ plugins {
 object Versions {
     // Core
     const val kotlin = "2.2.0"
-    const val agp = "8.1.1"
+    const val agp = "8.11.1"
     const val ksp = "2.2.0-2.0.2"
 
     // Dependencies
-    const val hilt = "2.56.2"  // Must be >= 2.56.2 due to KSP compatibility issues
+    const val hilt = "2.57"  // Must be >= 2.56.2 due to KSP compatibility issues
 
     // Test
     const val junit = "4.13.2"
@@ -23,7 +23,7 @@ object Versions {
 // Configure Java toolchain
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(24))
     }
 }
 
