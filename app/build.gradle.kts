@@ -1,28 +1,24 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 // Apply plugins with versions from version catalog
 plugins {
-    alias(libs.plugins.android.application) apply true
-    alias(libs.plugins.kotlin.android) apply true
+    id("com.android.application")
+    id("org.openapi.generator")
     alias(libs.plugins.kotlin.serialization) apply true
     alias(libs.plugins.ksp) apply true
-    id("org.openapi.generator") version libs.versions.openapi.get()
 }
 
 // Configure OpenAPI generation
 openApiGenerate {
     generatorName.set("kotlin")
-    inputSpec.set("${rootProject.projectDir}/openapi.yml")
-    outputDir.set("${buildDir}/generated/openapi")
-    configFile.set("${rootProject.projectDir}/openapi-generator-config.json")
-    
-    // Ensure clean generation
+    inputSpec.set(rootProject.layout.projectDirectory.file("openapi.yml").asFile.path)
+    outputDir.set(layout.buildDirectory.dir("generated/openapi").get().asFile.path)
+    configFile.set(rootProject.layout.projectDirectory.file("openapi-generator-config.json").asFile.path)
     skipOverwrite.set(false)
-    
-    // Configure for Kotlin
     library.set("jvm-retrofit2")
     apiPackage.set("dev.aurakai.auraframefx.api.generated")
     modelPackage.set("dev.aurakai.auraframefx.model.generated")
-    
-    // Additional properties
     configOptions.set(mapOf(
         "useCoroutines" to "true",
         "serializationLibrary" to "kotlinx_serialization",
@@ -33,18 +29,18 @@ openApiGenerate {
 }
 
 // Add generated sources to the main source set
-sourceSets.main {
-    java.srcDirs("${buildDir}/generated/openapi/src/main/kotlin")
+android.sourceSets.getByName("main") {
+    java.srcDir(layout.buildDirectory.dir("generated/openapi/src/main/kotlin"))
 }
 
 // Ensure OpenAPI generation happens before compilation
-tasks.named("compileKotlin") {
+tasks.named("preBuild") {
     dependsOn("openApiGenerate")
 }
 
 // Clean task for generated files
 tasks.register("cleanOpenApi", Delete::class) {
-    delete("${buildDir}/generated/openapi")
+    delete(layout.buildDirectory.dir("generated/openapi"))
 }
 
 tasks.clean {
@@ -89,13 +85,10 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
     
-    // Kotlin compiler options are now configured using the new compilerOptions DSL
-    
     // Configure Java toolchain for all tasks
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(17))
-            vendor = JvmVendorSpec.AZUL
         }
     }
     
@@ -137,21 +130,6 @@ android {
         }
     }
 
-    kotlin {
-        jvmToolchain(17)
-        
-        // Configure compiler options
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-            
-            // Configure free compiler args
-            freeCompilerArgs.addAll(
-                "-opt-in=kotlin.RequiresOptIn",
-                "-Xjvm-default=all"
-            )
-        }
-    }
-    
     // Configure packaging options for all build types
     packaging {
         resources {
@@ -325,4 +303,14 @@ dependencies {
     debugImplementation(libs.compose.ui.test.manifest)
     
     kspAndroidTest(libs.hilt.compiler)
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
+        freeCompilerArgs.addAll(
+            "-opt-in=kotlin.RequiresOptIn",
+            "-Xjvm-default=all"
+        )
+    }
 }

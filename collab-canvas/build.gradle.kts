@@ -1,8 +1,6 @@
+import com.android.build.api.dsl.ApplicationExtension
+
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.parcelize)
-    alias(libs.plugins.kotlin.kapt)
     id("io.gitlab.arturbosch.detekt") version libs.versions.detekt.get()
 }
 

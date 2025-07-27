@@ -9,7 +9,7 @@ plugins {
 // Define versions in the build file since buildSrc can't access the version catalog directly
 object Versions {
     const val kotlin = "2.0.0"
-    const val agp = "8.1.1"
+    const val agp = "8.11.1"
     const val hilt = "2.51.1"
     const val openapi = "7.10.0"
     const val romTooling = "1.0.0"
@@ -19,14 +19,6 @@ object Versions {
     const val googleServices = "4.4.3"
     const val firebaseCrashlytics = "3.0.5"
     const val firebasePerf = "1.4.2"
-}
-
-// Configure repositories for buildSrc
-repositories {
-    gradlePluginPortal()
-    google()
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
 }
 
 // Configure Java toolchain
@@ -75,6 +67,9 @@ gradlePlugin {
             displayName = "Aura Base Plugin"
             description = "Base plugin for Aura projects"
         }
+    }
+}
+
 // Configure Kotlin settings for buildSrc
 kotlin {
     jvmToolchain {
@@ -84,7 +79,7 @@ kotlin {
 
 // Configure the plugin bundle extension (for publishing to Gradle Plugin Portal)
 
-    // Explicitly set the JVM target for Kotlin compilation in buildSrc
+// Explicitly set the JVM target for Kotlin compilation in buildSrc
 dependencies {
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")

@@ -39,11 +39,8 @@ pluginManagement {
 
 // Dependency Resolution Management
 dependencyResolutionManagement {
-    // Configure to fail if any project declares repositories
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-
-    // Configure repositories for all projects
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
         maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
