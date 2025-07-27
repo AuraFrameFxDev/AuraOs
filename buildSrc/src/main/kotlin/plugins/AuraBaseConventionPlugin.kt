@@ -4,6 +4,8 @@ import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
 
 /**
  * Base convention plugin that sets up common configurations for all AuraFrameFX modules.
@@ -16,7 +18,7 @@ abstract class AuraBaseConventionPlugin : Plugin<Project> {
             pluginManager.apply("com.google.dagger.hilt.android")
 
             // Common Android configurations
-            val android = extensions.getByName("android") as BaseExtension
+            val android = extensions.getByType<BaseExtension>()
             android.compileSdkVersion(34)
             android.defaultConfig.apply {
                 minSdk = 24
@@ -24,8 +26,8 @@ abstract class AuraBaseConventionPlugin : Plugin<Project> {
                 testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             }
             android.compileOptions.apply {
-                sourceCompatibility = JavaVersion.VERSION_17
-                targetCompatibility = JavaVersion.VERSION_17
+                sourceCompatibility = JavaVersion.VERSION_1_24
+                targetCompatibility = JavaVersion.VERSION_1_24
             }
             android.buildTypes.getByName("release").apply {
                 isMinifyEnabled = true
@@ -36,10 +38,12 @@ abstract class AuraBaseConventionPlugin : Plugin<Project> {
             }
 
             // Add dependencies using Kotlin DSL
-            dependencies.add("implementation", "androidx.core:core-ktx:1.12.0")
-            dependencies.add("testImplementation", "junit:junit:4.13.2")
-            dependencies.add("androidTestImplementation", "androidx.test.ext:junit:1.1.5")
-            dependencies.add("androidTestImplementation", "androidx.test.espresso:espresso-core:3.5.1")
+            dependencies {
+                add("implementation", "androidx.core:core-ktx:1.12.0")
+                add("testImplementation", "junit:junit:4.13.2")
+                add("androidTestImplementation", "androidx.test.ext:junit:1.1.5")
+                add("androidTestImplementation", "androidx.test.espresso:espresso-core:3.5.1")
+            }
         }
     }
 }

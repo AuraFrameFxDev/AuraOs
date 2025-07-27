@@ -1,3 +1,3 @@
-repositories {
-    mavenCentral()
+plugins {
+    id("com.example.my-library-conventions")
 }
