@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 // Apply plugins with versions from version catalog
 plugins {
     id("com.android.application")
@@ -91,12 +88,11 @@ android {
             languageVersion.set(JavaLanguageVersion.of(17))
         }
     }
-    
-    // Ensure all Java compilation tasks use Java 17
+
+    // Configure Java compilation tasks to use Java 17
     tasks.withType<JavaCompile>().configureEach {
         sourceCompatibility = JavaVersion.VERSION_17.toString()
         targetCompatibility = JavaVersion.VERSION_17.toString()
-        options.release.set(17)
     }
 
     // Configure Android resources
@@ -229,64 +225,69 @@ tasks.named("preBuild") {
 }
 
 dependencies {
+    // Core library desugaring for Java 8+ APIs on older Android versions
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+
     // Core AndroidX dependencies
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
-    
+
     // Compose dependencies
     implementation(platform("androidx.compose:compose-bom:2024.02.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-extended")
-    
+
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
-    
-    // Xposed Framework API
-    compileOnly("de.robv.android.xposed:api:82")
-    compileOnly("de.robv.android.xposed:api:82:sources")
-    
+
+    // Xposed Framework from local libs folder
+    compileOnly(fileTree("${rootProject.projectDir}/Libs") {
+        include("*.jar")
+    })
+
     // LSPosed Framework
     compileOnly("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
-    
+
     // Color Picker
     implementation("com.github.Mahmud0808:ColorBlendr:1.0.0")
-    
+
     // Core Android
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("androidx.cardview:cardview:1.0.0")
-    
-    // Material 3
-    implementation("androidx.compose.material3:material3:1.2.0")  
-    implementation("androidx.compose.material3:material3-window-size-class:1.2.0")
+
+    // Material 3 with BOM (Bill of Materials) - Using stable version
+    val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
+    implementation(composeBom)
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material3:material3-window-size-class")
+
+    // Material3 Adaptive components - Temporarily disabled as they're not available in stable
+    // implementation("androidx.compose.material3:material3-adaptive")
+    // implementation("androidx.compose.material3:material3-adaptive-navigation-suite")
+
+    // Material Icons Extended
     implementation("androidx.compose.material:material-icons-extended")
-    
+
     // Material Components (for View-based components)
     implementation("com.google.android.material:material:1.11.0")
-    
-    // Compose with Material 3
-    implementation(platform(libs.compose.bom))
-    androidTestImplementation(platform(libs.compose.bom))
+
+    // Compose dependencies from version catalog
     implementation(libs.bundles.compose)
     debugImplementation(libs.bundles.compose.debug)
-    
-    // Material 3 Adaptive for different screen sizes
-    implementation("androidx.compose.material3:material3-adaptive:1.2.6")
-    implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.2.0")
-    
+
     // Networking
     implementation(libs.okhttp.logging.interceptor)
-    
+
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.kotlinx.serialization)
-    
+
     // DataStore & Security
     implementation(libs.bundles.security)
 
@@ -296,21 +297,14 @@ dependencies {
 
     // Testing
     testImplementation(libs.bundles.testing.unit)
-    
+
     // Android Testing
     androidTestImplementation(libs.bundles.testing.android)
     androidTestImplementation(libs.compose.ui.test.junit4)
     debugImplementation(libs.compose.ui.test.manifest)
-    
-    kspAndroidTest(libs.hilt.compiler)
-}
 
-tasks.withType<KotlinCompile>().configureEach {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_17)
-        freeCompilerArgs.addAll(
-            "-opt-in=kotlin.RequiresOptIn",
-            "-Xjvm-default=all"
-        )
-    }
+    kspAndroidTest(libs.hilt.compiler)
+
+    // Local color blending module
+    implementation(project(":colorblendr"))
 }

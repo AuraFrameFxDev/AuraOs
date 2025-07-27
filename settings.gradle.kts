@@ -54,7 +54,10 @@ rootProject.name = "AuraFrameFX"
 listOf(
     ":app",
     ":jvm-test",
-    ":collab-canvas"
+    ":sandbox-ui",
+    ":oracle-drive-integration",
+    ":collab-canvas",
+    ":colorblendr"
 ).forEach { include(it) }
 
 // Configure all projects to use standard build.gradle.kts

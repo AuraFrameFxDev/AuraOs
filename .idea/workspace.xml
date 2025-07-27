@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="All Places" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8cc87a43-e12d-494a-829b-8f3d396bc71a" name="Changes" comment="Refactor: Standardize build configuration and update dependencies&#10;&#10;This commit introduces several changes to standardize the build configuration and update dependencies across the project.&#10;&#10;Key changes include:&#10;- Standardized Java and Kotlin versions to 17 and 2.2.0 respectively for all subprojects.&#10;- Updated Android Gradle Plugin to 8.11.1.&#10;- Refactored `build.gradle.kts` and `app/build.gradle.kts` for clarity and consistency.&#10;- Simplified plugin application in `oracle-drive-integration/build.gradle.kts`.&#10;- Updated various dependencies to their latest stable versions, including Compose, Hilt, and testing libraries.&#10;- Added Xposed Framework API as a dependency.&#10;- Included new modules: `sandbox-ui`, `oracle-drive-integration`, and `colorblendr` in `settings.gradle.kts`.&#10;- Removed obsolete build files and configurations, including manifest files and source roots for `buildSrc`.&#10;- Simplified the `collab-canvas/build.gradle.kts` to a minimal configuration.&#10;&#10;These changes aim to improve build times, maintainability, and ensure compatibility with the latest Android development practices.">
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/9.0-milestone-1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/9.0-milestone-1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/libs/AuraFrameFXBuildSrc.jar" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/build/libs/AuraFrameFXBuildSrc.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/libs/buildSrc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/source-roots/buildSrc/source-roots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/collab-canvas/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/collab-canvas/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collab-canvas/build/libs/collab-canvas-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/collab-canvas/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jvm-test/build/libs/jvm-test-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jvm-test/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oracle-drive-integration/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/oracle-drive-integration/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\Wehtt\.android\avd\Medium_Phone.avd)]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="testCompileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AuraFrameFxDev&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AuraFrameFxDev/AuraOs.git&quot;,
+    &quot;accountId&quot;: &quot;d4ffdd4d-1415-4d27-832a-dbe801e46c2f&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="30QvS4IjL8oUUxKhgy9qGW2Fayl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Batch.gradlew.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs [TASKS].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs [app:assemble].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs [app:openApiGenerate].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs [tasks].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.C:/Project Genesis - Copy/AuraOs [init].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.C:/Project Genesis - Copy/AuraOs [tasks].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.C:/Project Genesis - Copy/AuraOs.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ms&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project Genesis - Copy/AuraOs/app&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Build Variants&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project Genesis - Copy\AuraOs\app" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle --init-script" />
+      <command value="gradle init" />
+      <command value="gradle TASKS" />
+      <command value="gradle tasks" />
+      <command value="gradle app:assemble" />
+      <command value="gradle app:openApiGenerate" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Gradle.AuraOs [app:openApiGenerate]">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="AuraFrameFX.app" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuraOs [TASKS]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="TASKS" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="AuraOs [app:assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="app:assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="AuraOs [app:openApiGenerate]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="app:openApiGenerate" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="AuraOs [tasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="tasks" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="C:/Project Genesis - Copy/AuraOs [tasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="tasks" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.AuraOs [tasks]" />
+        <item itemvalue="Gradle.AuraOs [app:assemble]" />
+        <item itemvalue="Gradle.AuraOs [app:openApiGenerate]" />
+        <item itemvalue="Gradle.AuraOs [TASKS]" />
+        <item itemvalue="Gradle.C:/Project Genesis - Copy/AuraOs [tasks]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8cc87a43-e12d-494a-829b-8f3d396bc71a" name="Changes" comment="" />
+      <created>1753572607968</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753572607968</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Refactor: Modernize Gradle build configuration&#10;&#10;This commit modernizes the Gradle build configuration by:&#10;&#10;- **Introducing a `libs.versions.toml` file:**&#10;    - Centralizes dependency versions and plugin definitions for better management and consistency.&#10;    - Replaces previous alias-based plugin applications with direct ID usage where appropriate.&#10;- **Updating `build.gradle.kts` (root):**&#10;    - Simplifies plugin application by removing redundant plugin declarations.&#10;    - Refines Java toolchain configuration, setting Java 24 for most projects and Java 22 for `buildSrc`.&#10;    - Removes unnecessary Java home overrides and explicit Java version settings for tasks, relying on the toolchain.&#10;    - Removes a redundant `com.android.application` plugin configuration block.&#10;    - Adds `google()` and `mavenCentral()` to project repositories.&#10;- **Updating `app/build.gradle.kts`:**&#10;    - Replaces alias-based plugin applications with direct ID usage.&#10;    - Updates OpenAPI generator configuration to use `layout` properties for paths.&#10;    - Ensures OpenAPI generation happens before `preBuild` instead of `compileKotlin`.&#10;    - Simplifies Kotlin compiler options by moving them to a `tasks.withType&lt;KotlinCompile&gt;()` block.&#10;    - Removes `vendor = JvmVendorSpec.AZUL` from Java toolchain configuration.&#10;- **Updating `collab-canvas/build.gradle.kts`:**&#10;    - Removes alias-based plugin applications.&#10;- **Updating `settings.gradle.kts`:**&#10;    - Adds `gradlePluginPortal()` to repositories.&#10;    - Removes `repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)` to allow project-level repositories if needed.&#10;- **Updating `buildSrc/build.gradle.kts`:**&#10;    - Updates AGP version to 8.11.1.&#10;    - Removes explicit repository declarations as they are now in the root `settings.gradle.kts`.&#10;- Rebuilds `buildSrc` due to configuration changes.">
+      <option name="closed" value="true" />
+      <created>1753579002478</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753579002478</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="Refactor: Modernize Gradle build configuration&#10;&#10;This commit modernizes the Gradle build configuration by:&#10;&#10;- **Introducing a `libs.versions.toml` file:**&#10;    - Centralizes dependency versions and plugin definitions for better management and consistency.&#10;    - Replaces previous alias-based plugin applications with direct ID usage where appropriate.&#10;- **Updating `build.gradle.kts` (root):**&#10;    - Simplifies plugin application by removing redundant plugin declarations.&#10;    - Refines Java toolchain configuration, setting Java 24 for most projects and Java 22 for `buildSrc`.&#10;    - Removes unnecessary Java home overrides and explicit Java version settings for tasks, relying on the toolchain.&#10;    - Removes a redundant `com.android.application` plugin configuration block.&#10;    - Adds `google()` and `mavenCentral()` to project repositories.&#10;- **Updating `app/build.gradle.kts`:**&#10;    - Replaces alias-based plugin applications with direct ID usage.&#10;    - Updates OpenAPI generator configuration to use `layout` properties for paths.&#10;    - Ensures OpenAPI generation happens before `preBuild` instead of `compileKotlin`.&#10;    - Simplifies Kotlin compiler options by moving them to a `tasks.withType&lt;KotlinCompile&gt;()` block.&#10;    - Removes `vendor = JvmVendorSpec.AZUL` from Java toolchain configuration.&#10;- **Updating `collab-canvas/build.gradle.kts`:**&#10;    - Removes alias-based plugin applications.&#10;- **Updating `settings.gradle.kts`:**&#10;    - Adds `gradlePluginPortal()` to repositories.&#10;    - Removes `repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)` to allow project-level repositories if needed.&#10;- **Updating `buildSrc/build.gradle.kts`:**&#10;    - Updates AGP version to 8.11.1.&#10;    - Removes explicit repository declarations as they are now in the root `settings.gradle.kts`.&#10;- Rebuilds `buildSrc` due to configuration changes." />
+    <MESSAGE value="Refactor: Standardize build configuration and update dependencies&#10;&#10;This commit introduces several changes to standardize the build configuration and update dependencies across the project.&#10;&#10;Key changes include:&#10;- Standardized Java and Kotlin versions to 17 and 2.2.0 respectively for all subprojects.&#10;- Updated Android Gradle Plugin to 8.11.1.&#10;- Refactored `build.gradle.kts` and `app/build.gradle.kts` for clarity and consistency.&#10;- Simplified plugin application in `oracle-drive-integration/build.gradle.kts`.&#10;- Updated various dependencies to their latest stable versions, including Compose, Hilt, and testing libraries.&#10;- Added Xposed Framework API as a dependency.&#10;- Included new modules: `sandbox-ui`, `oracle-drive-integration`, and `colorblendr` in `settings.gradle.kts`.&#10;- Removed obsolete build files and configurations, including manifest files and source roots for `buildSrc`.&#10;- Simplified the `collab-canvas/build.gradle.kts` to a minimal configuration.&#10;&#10;These changes aim to improve build times, maintainability, and ensure compatibility with the latest Android development practices." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: Standardize build configuration and update dependencies&#10;&#10;This commit introduces several changes to standardize the build configuration and update dependencies across the project.&#10;&#10;Key changes include:&#10;- Standardized Java and Kotlin versions to 17 and 2.2.0 respectively for all subprojects.&#10;- Updated Android Gradle Plugin to 8.11.1.&#10;- Refactored `build.gradle.kts` and `app/build.gradle.kts` for clarity and consistency.&#10;- Simplified plugin application in `oracle-drive-integration/build.gradle.kts`.&#10;- Updated various dependencies to their latest stable versions, including Compose, Hilt, and testing libraries.&#10;- Added Xposed Framework API as a dependency.&#10;- Included new modules: `sandbox-ui`, `oracle-drive-integration`, and `colorblendr` in `settings.gradle.kts`.&#10;- Removed obsolete build files and configurations, including manifest files and source roots for `buildSrc`.&#10;- Simplified the `collab-canvas/build.gradle.kts` to a minimal configuration.&#10;&#10;These changes aim to improve build times, maintainability, and ensure compatibility with the latest Android development practices." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="play_dynamic_filters_status">
+    <option name="appIdToCheckInfo">
+      <map>
+        <entry key="dev.aurakai.auraframefx">
+          <value>
+            <CheckInfo lastCheckTimestamp="1753591801806" />
+          </value>
+        </entry>
+        <entry key="dev.aurakai.auraframefx.debug">
+          <value>
+            <CheckInfo lastCheckTimestamp="1753591801806" />
+          </value>
+        </entry>
+        <entry key="dev.aurakai.auraframefx.debug.test">
+          <value>
+            <CheckInfo lastCheckTimestamp="1753591801805" />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
