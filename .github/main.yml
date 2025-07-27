@@ -24,7 +24,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '17' # Change if your project requires a different version
+        java-version: '24' # Change if your project requires a different version
 
     - name: Cache Gradle dependencies
       uses: actions/cache@v4
