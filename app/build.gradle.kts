@@ -46,12 +46,12 @@ tasks.clean {
 
 android {
     namespace = "dev.aurakai.auraframefx"
-    compileSdk = 34
+    compileSdk = 36
     
     defaultConfig {
         applicationId = "dev.aurakai.auraframefx"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 33
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -68,31 +68,6 @@ android {
         buildConfig = true
         viewBinding = true
         compose = true
-    }
-    
-    // Configure Compose compiler options
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
-    
-    // Configure Java compilation options
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-        isCoreLibraryDesugaringEnabled = true
-    }
-    
-    // Configure Java toolchain for all tasks
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
-    }
-
-    // Configure Java compilation tasks to use Java 17
-    tasks.withType<JavaCompile>().configureEach {
-        sourceCompatibility = JavaVersion.VERSION_17.toString()
-        targetCompatibility = JavaVersion.VERSION_17.toString()
     }
 
     // Configure Android resources
