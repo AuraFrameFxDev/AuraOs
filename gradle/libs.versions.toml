@@ -6,7 +6,7 @@ minSdk = "33"
 javaVersion = "24"
 
 # Plugin versions
-agp = "8.11.1"
+agp = "8.14.3"
 kotlin = "2.2.0"
 ksp = "2.2.0-2.0.2"
 composeCompiler = "1.5.15"
@@ -42,6 +42,12 @@ espresso = "3.6.1"
 mockk = "1.13.13"
 truth = "1.4.4"
 desugarJdkLibs = "2.1.5"
+android-application = "8.14.3"
+android-library = "8.14.3"
+kotlin-jvm = "2.2.0"
+hilt-android = "2.57"
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -51,7 +57,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 openapi-generator = { id = "org.openapi.generator", version.ref = "openapi" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 

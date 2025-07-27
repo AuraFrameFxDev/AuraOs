@@ -1,7 +1,10 @@
 package plugins
 
+import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 
 /**
  * Convention plugin for the OracleDrive module.
@@ -16,20 +19,23 @@ class OracleDriveConventionPlugin : Plugin<Project> {
             pluginManager.apply("auraframefx.base.convention")
 
             // OracleDrive specific dependencies
-            dependencies.add("implementation", "com.google.apis:google-api-services-drive:v3-rev20230210-2.0.0")
-            dependencies.add("implementation", "com.google.oauth-client:google-oauth-client-jetty:1.34.1")
-            dependencies.add("implementation", "commons-io:commons-io:2.11.0")
-            dependencies.add("implementation", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-            dependencies.add("implementation", "androidx.work:work-runtime-ktx:2.8.1")
+            dependencies {
+                add("implementation", "com.google.apis:google-api-services-drive:v3-rev20230210-2.0.0")
+                add("implementation", "com.google.oauth-client:google-oauth-client-jetty:1.34.1")
+                add("implementation", "commons-io:commons-io:2.11.0")
+                add("implementation", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+                add("implementation", "androidx.work:work-runtime-ktx:2.8.1")
+            }
 
             // Configure ProGuard rules for release builds
-            val android = extensions.getByName("android") as com.android.build.gradle.LibraryExtension
-            android.buildTypes.getByName("release").apply {
-                isMinifyEnabled = true
-                proguardFiles(
-                    android.getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-                )
+            extensions.configure<LibraryExtension> {
+                buildTypes.getByName("release").apply {
+                    isMinifyEnabled = true
+                    proguardFiles(
+                        getDefaultProguardFile("proguard-android-optimize.txt"),
+                        "proguard-rules.pro"
+                    )
+                }
             }
         }
     }
