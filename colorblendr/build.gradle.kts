@@ -1,3 +1,7 @@
+plugins {
+    kotlin("jvm") version "2.2.0"
+}
+
 group = "dev.aurakai"
 version = "1.0.0"
 
@@ -9,6 +13,8 @@ dependencies {
     implementation(kotlin("stdlib"))
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8)
+    }
 }

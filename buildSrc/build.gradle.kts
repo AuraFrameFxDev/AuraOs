@@ -8,8 +8,8 @@ plugins {
 
 // Define versions in the build file since buildSrc can't access the version catalog directly
 object Versions {
-    const val kotlin = "2.0.0"
-    const val agp = "8.11.1"
+    const val kotlin = "2.2.0"
+    const val agp = "8.1.1"
     const val hilt = "2.51.1"
     const val openapi = "7.10.0"
     const val romTooling = "1.0.0"
@@ -19,6 +19,7 @@ object Versions {
     const val googleServices = "4.4.3"
     const val firebaseCrashlytics = "3.0.5"
     const val firebasePerf = "1.4.2"
+    const val ksp = "2.2.0-1.0.11"
 }
 
 // Configure Java toolchain
@@ -26,6 +27,19 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
+}
+
+// Configure repositories for buildSrc
+repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+    implementation("com.android.tools.build:gradle:${Versions.agp}")
+    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${Versions.ksp}")
 }
 
 // Configure Gradle plugin publishing

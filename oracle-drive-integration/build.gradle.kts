@@ -1,8 +1,8 @@
-// Apply plugins using the plugins block without version (version comes from root build.gradle.kts)
+// Apply plugins with versions from the version catalog
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    id("com.google.devtools.ksp") version "2.0.2"
 }
 
 android {

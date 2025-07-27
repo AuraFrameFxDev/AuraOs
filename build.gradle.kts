@@ -16,6 +16,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }  // Add JitPack repository
         // Add Maven repositories for Compose and other dependencies
         maven { url = uri("https://androidx.dev/storage/compose-compiler/repository/") }
         maven { url = uri("https://androidx.dev/storage/compose_ui/repository/") }
@@ -29,9 +30,14 @@ allprojects {
 
 // Configure all subprojects (excluding root)
 subprojects {
-    // Apply Java plugin to non-Android projects
-    if (name != "app") {
-        pluginManager.apply("java")
+    // Only apply Java plugin to specific modules that need it
+    afterEvaluate {
+        val isAndroidModule = plugins.hasPlugin("com.android.library") ||
+                plugins.hasPlugin("com.android.application")
+
+        if (!isAndroidModule && name != "app") {
+            pluginManager.apply("java")
+        }
     }
 
     // Configure Java toolchain for all projects

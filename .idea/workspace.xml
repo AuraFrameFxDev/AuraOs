@@ -8,26 +8,61 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cc87a43-e12d-494a-829b-8f3d396bc71a" name="Changes" comment="Refactor: Standardize build configuration and update dependencies&#10;&#10;This commit introduces several changes to standardize the build configuration and update dependencies across the project.&#10;&#10;Key changes include:&#10;- Standardized Java and Kotlin versions to 17 and 2.2.0 respectively for all subprojects.&#10;- Updated Android Gradle Plugin to 8.11.1.&#10;- Refactored `build.gradle.kts` and `app/build.gradle.kts` for clarity and consistency.&#10;- Simplified plugin application in `oracle-drive-integration/build.gradle.kts`.&#10;- Updated various dependencies to their latest stable versions, including Compose, Hilt, and testing libraries.&#10;- Added Xposed Framework API as a dependency.&#10;- Included new modules: `sandbox-ui`, `oracle-drive-integration`, and `colorblendr` in `settings.gradle.kts`.&#10;- Removed obsolete build files and configurations, including manifest files and source roots for `buildSrc`.&#10;- Simplified the `collab-canvas/build.gradle.kts` to a minimal configuration.&#10;&#10;These changes aim to improve build times, maintainability, and ensure compatibility with the latest Android development practices.">
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+    <list default="true" id="8cc87a43-e12d-494a-829b-8f3d396bc71a" name="Changes" comment="Refactor: Update plugin application in `oracle-drive-integration`&#10;&#10;This commit updates the `oracle-drive-integration/build.gradle.kts` file to use direct plugin IDs (`id(&quot;com.android.library&quot;)` and `id(&quot;org.jetbrains.kotlin.android&quot;)`) instead of aliases for applying the Android library and Kotlin Android plugins.&#10;&#10;The `buildSrc` JAR has also been updated, likely as a result of build configuration changes.">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14.3/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14.3/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14.3/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14.3/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0-milestone-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.cxx/Debug/28au1x1c/arm64-v8a/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/app/.cxx/Debug/28au1x1c/arm64-v8a/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.cxx/RelWithDebInfo/25125q5r/arm64-v8a/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/app/.cxx/RelWithDebInfo/25125q5r/arm64-v8a/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/cxx/Debug/28au1x1c/logs/arm64-v8a/build_model.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/cxx/Debug/28au1x1c/logs/arm64-v8a/generate_cxx_metadata_44_timing.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/cxx/Debug/28au1x1c/logs/arm64-v8a/metadata_generation_record.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/configuration-cache/co2u9us5jjfoz1vxz1690c2pt/ey5jzppgqexr06lxfi5w81f33/configuration-cache-report.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/9.0-milestone-1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/9.0-milestone-1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/9.0-milestone-1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/9.0-milestone-1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/9.0-milestone-1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/9.0-milestone-1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/libs/AuraFrameFXBuildSrc.jar" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/build/libs/AuraFrameFXBuildSrc.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/libs/buildSrc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/Dependencies.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/JVM.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/META-INF/AuraFrameFXBuildSrc.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/RomToolingPlugin$apply$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/RomToolingPlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/Versions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/dev/aurakai/aura/gradle/AuraBasePlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/plugins/AssistantJobsConventionPlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/plugins/AuraBaseConventionPlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/plugins/OracleDriveConventionPlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/plugins/UiConventionPlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/tasks/GenerateRomTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/libs/AuraFrameFXBuildSrc.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/build/source-roots/buildSrc/source-roots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/collab-canvas/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/collab-canvas/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collab-canvas/build/libs/collab-canvas-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/collab-canvas/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jvm-test/build/libs/jvm-test-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jvm-test/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/colorblendr/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/colorblendr/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oracle-drive-integration/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/oracle-drive-integration/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +84,9 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -59,7 +97,76 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="install" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="openapi tools" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
                 <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
+                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="help" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -101,6 +208,9 @@
     &quot;accountId&quot;: &quot;d4ffdd4d-1415-4d27-832a-dbe801e46c2f&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -113,11 +223,21 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Batch.clean_and_rebuild.executor&quot;: &quot;Run&quot;,
     &quot;Batch.gradlew.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs [:buildSrc:buildEnvironment].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs [:buildSrc:tasks].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.AuraOs [TASKS].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.AuraOs [app:assemble].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.AuraOs [app:openApiGenerate].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs [clean].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.AuraOs [tasks].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs:app [androidDependencies].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs:app [assembleUnitTest].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs:app [buildDependents].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs:app [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs:app [openApiGenerate].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AuraOs:app [openApiGenerators].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.C:/Project Genesis - Copy/AuraOs [init].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.C:/Project Genesis - Copy/AuraOs [tasks].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.C:/Project Genesis - Copy/AuraOs.executor&quot;: &quot;Run&quot;,
@@ -149,13 +269,14 @@
     <option name="myCommands">
       <command value="gradle --init-script" />
       <command value="gradle init" />
-      <command value="gradle TASKS" />
-      <command value="gradle tasks" />
       <command value="gradle app:assemble" />
       <command value="gradle app:openApiGenerate" />
+      <command value="gradle tasks" />
+      <command value="gradle TASKS" />
+      <command value="gradle clean" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.AuraOs [app:openApiGenerate]">
+  <component name="RunManager" selected="Gradle.AuraOs [tasks]">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="AuraFrameFX.app" />
       <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
@@ -228,6 +349,17 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="clean_and_rebuild" type="BatchConfigurationType" factoryName="Batch" temporary="true">
+      <module name="AuraFrameFX" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="clean_and_rebuild.bat" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AuraOs [TASKS]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -240,28 +372,6 @@
         <option name="taskNames">
           <list>
             <option value="TASKS" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="AuraOs [app:assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="app:assemble" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -294,7 +404,7 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="AuraOs [tasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuraOs [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -305,7 +415,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="tasks" />
+            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -316,7 +426,7 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="C:/Project Genesis - Copy/AuraOs [tasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuraOs [tasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -341,10 +451,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.AuraOs [tasks]" />
-        <item itemvalue="Gradle.AuraOs [app:assemble]" />
-        <item itemvalue="Gradle.AuraOs [app:openApiGenerate]" />
+        <item itemvalue="Batch.clean_and_rebuild" />
+        <item itemvalue="Gradle.AuraOs [clean]" />
         <item itemvalue="Gradle.AuraOs [TASKS]" />
-        <item itemvalue="Gradle.C:/Project Genesis - Copy/AuraOs [tasks]" />
+        <item itemvalue="Gradle.AuraOs [tasks]" />
       </list>
     </recent_temporary>
   </component>
@@ -364,7 +474,39 @@
       <option name="project" value="LOCAL" />
       <updated>1753579002478</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Refactor: Update Gradle configuration and dependencies&#10;&#10;This commit introduces several changes to the Gradle build configuration and dependencies:&#10;&#10;**Build Configuration:**&#10;- Standardized Java version to 17 across all modules, including `buildSrc`.&#10;- Updated Kotlin API and language versions to 2.2.0.&#10;- Added common repositories (Google, Maven Central, JetBrains Compose/Kotlin specific).&#10;- Refined `build.gradle.kts` for common project settings and plugin application.&#10;- Removed outdated or redundant plugin applications.&#10;- Updated clean task to use `rootProject.layout.buildDirectory`.&#10;&#10;**`app` Module:**&#10;- Updated Xposed Framework dependency to use local JARs.&#10;- Added `colorblendr` module as a project dependency.&#10;- Aligned Compose Bill of Materials (BOM) version.&#10;- Ensured Java compilation tasks target Java 17.&#10;- Removed redundant Kotlin compile options block.&#10;&#10;**`oracle-drive-integration` Module:**&#10;- Migrated plugin declarations from `alias` to `id`.&#10;- Removed `targetSdk` from `defaultConfig`.&#10;- Updated dependency declarations to use specific versions from `libs.versions.toml`.&#10;&#10;**`collab-canvas` Module:**&#10;- Removed entire previous build script content, leaving only a `repositories` block. This suggests a significant refactor or move of this module's build logic.&#10;&#10;**`gradle/libs.versions.toml`:**&#10;- Added `xposedbridge` version.&#10;&#10;**`settings.gradle.kts`:**&#10;- Added new modules: `:sandbox-ui`, `:oracle-drive-integration`, `:colorblendr`.&#10;&#10;**Build Outputs:**&#10;- Removed various temporary build files (MANIFEST.MF, source-roots.txt) and compiled JARs from `buildSrc`, `collab-canvas`, and `jvm-test`. This is a common practice when build configurations change significantly.&#10;- Updated `buildSrc` Gradle cache files.">
+      <option name="closed" value="true" />
+      <created>1753604491180</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1753604491180</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Refactor: Migrate `sandbox-ui` build script and update dependencies&#10;&#10;This commit introduces the following changes:&#10;&#10;**`sandbox-ui` Module:**&#10;- Migrated the build configuration from `sandbox-ui.gradle.kts` to `build.gradle.kts`.&#10;- Applied Android library, Kotlin Android, Kotlin Compose, KSP, and Hilt plugins using type-safe accessors (`alias(libs.plugins...)`).&#10;- Configured Android settings:&#10;    - `namespace`, `compileSdk`, `minSdk`.&#10;    - `testInstrumentationRunner`, `consumerProguardFiles`.&#10;    - Release build type with ProGuard configuration.&#10;    - Java 24 compatibility for source and target.&#10;    - Enabled Compose and `buildConfig` features.&#10;    - Set Kotlin compiler extension version for Compose from version catalog.&#10;- Added dependencies:&#10;    - Core project: `api(project(&quot;:app&quot;))`&#10;    - AndroidX: `core-ktx`, `lifecycle-runtime-ktx`, `activity-compose`.&#10;    - Compose: BOM, UI, tooling preview, Material 3, animation, foundation.&#10;    - Navigation: `navigation-compose`.&#10;    - Hilt: Android, compiler (KSP), navigation Compose.&#10;    - Debug tools: Compose UI tooling and test manifest.&#10;    - Testing: JUnit, AndroidX Test ext JUnit, Espresso core, Compose UI test JUnit4.&#10;&#10;**`oracle-drive-integration` Module:**&#10;- Updated dependency declarations to explicitly use versions from the `libs.versions.toml` file instead of type-safe accessors. This applies to:&#10;    - AndroidX Core (`core-ktx`, `lifecycle-runtime-ktx`)&#10;    - Compose (`compose-bom`, `ui`, `ui-graphics`, `ui-tooling-preview`, `material3`)&#10;    - Hilt (`hilt-android`, `hilt-compiler`)&#10;    - Coroutines (`kotlinx-coroutines-android`)&#10;    - Testing (`junit`, `androidx.test.ext`, `androidx.test.espresso`)&#10;- Imported `com.android.build.gradle.LibraryExtension`.">
+      <option name="closed" value="true" />
+      <created>1753606282793</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1753606282793</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactor: Migrate `sandbox-ui` build script and update dependencies&#10;&#10;This commit introduces the following changes:&#10;&#10;**`sandbox-ui` Module:**&#10;- Migrated the build configuration from `sandbox-ui.gradle.kts` to `build.gradle.kts`.&#10;- Applied Android library, Kotlin Android, Kotlin Compose, KSP, and Hilt plugins using type-safe accessors (`alias(libs.plugins...)`).&#10;- Configured Android settings:&#10;    - `namespace`, `compileSdk`, `minSdk`.&#10;    - `testInstrumentationRunner`, `consumerProguardFiles`.&#10;    - Release build type with ProGuard configuration.&#10;    - Java 24 compatibility for source and target.&#10;    - Enabled Compose and `buildConfig` features.&#10;    - Set Kotlin compiler extension version for Compose from version catalog.&#10;- Added dependencies:&#10;    - Core project: `api(project(&quot;:app&quot;))`&#10;    - AndroidX: `core-ktx`, `lifecycle-runtime-ktx`, `activity-compose`.&#10;    - Compose: BOM, UI, tooling preview, Material 3, animation, foundation.&#10;    - Navigation: `navigation-compose`.&#10;    - Hilt: Android, compiler (KSP), navigation Compose.&#10;    - Debug tools: Compose UI tooling and test manifest.&#10;    - Testing: JUnit, AndroidX Test ext JUnit, Espresso core, Compose UI test JUnit4.&#10;&#10;**`oracle-drive-integration` Module:**&#10;- Updated dependency declarations to explicitly use versions from the `libs.versions.toml` file instead of type-safe accessors. This applies to:&#10;    - AndroidX Core (`core-ktx`, `lifecycle-runtime-ktx`)&#10;    - Compose (`compose-bom`, `ui`, `ui-graphics`, `ui-tooling-preview`, `material3`)&#10;    - Hilt (`hilt-android`, `hilt-compiler`)&#10;    - Coroutines (`kotlinx-coroutines-android`)&#10;    - Testing (`junit`, `androidx.test.ext`, `androidx.test.espresso`)&#10;- Imported `com.android.build.gradle.LibraryExtension`.">
+      <option name="closed" value="true" />
+      <created>1753607088222</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1753607088222</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactor: Standardize plugin application in `oracle-drive-integration`&#10;&#10;Updated the `oracle-drive-integration/build.gradle.kts` file to apply plugins using their IDs directly in the `plugins {}` block. The plugin versions are managed in the root `build.gradle.kts` file.&#10;&#10;This change aligns with common Gradle practices for plugin application and improves clarity.&#10;&#10;Additionally, `buildSrc/build/libs/AuraFrameFXBuildSrc.jar` was rebuilt due to the Gradle configuration changes.">
+      <option name="closed" value="true" />
+      <created>1753607327132</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753607327132</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -382,10 +524,23 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Refactor: Modernize Gradle build configuration&#10;&#10;This commit modernizes the Gradle build configuration by:&#10;&#10;- **Introducing a `libs.versions.toml` file:**&#10;    - Centralizes dependency versions and plugin definitions for better management and consistency.&#10;    - Replaces previous alias-based plugin applications with direct ID usage where appropriate.&#10;- **Updating `build.gradle.kts` (root):**&#10;    - Simplifies plugin application by removing redundant plugin declarations.&#10;    - Refines Java toolchain configuration, setting Java 24 for most projects and Java 22 for `buildSrc`.&#10;    - Removes unnecessary Java home overrides and explicit Java version settings for tasks, relying on the toolchain.&#10;    - Removes a redundant `com.android.application` plugin configuration block.&#10;    - Adds `google()` and `mavenCentral()` to project repositories.&#10;- **Updating `app/build.gradle.kts`:**&#10;    - Replaces alias-based plugin applications with direct ID usage.&#10;    - Updates OpenAPI generator configuration to use `layout` properties for paths.&#10;    - Ensures OpenAPI generation happens before `preBuild` instead of `compileKotlin`.&#10;    - Simplifies Kotlin compiler options by moving them to a `tasks.withType&lt;KotlinCompile&gt;()` block.&#10;    - Removes `vendor = JvmVendorSpec.AZUL` from Java toolchain configuration.&#10;- **Updating `collab-canvas/build.gradle.kts`:**&#10;    - Removes alias-based plugin applications.&#10;- **Updating `settings.gradle.kts`:**&#10;    - Adds `gradlePluginPortal()` to repositories.&#10;    - Removes `repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)` to allow project-level repositories if needed.&#10;- **Updating `buildSrc/build.gradle.kts`:**&#10;    - Updates AGP version to 8.11.1.&#10;    - Removes explicit repository declarations as they are now in the root `settings.gradle.kts`.&#10;- Rebuilds `buildSrc` due to configuration changes." />
     <MESSAGE value="Refactor: Standardize build configuration and update dependencies&#10;&#10;This commit introduces several changes to standardize the build configuration and update dependencies across the project.&#10;&#10;Key changes include:&#10;- Standardized Java and Kotlin versions to 17 and 2.2.0 respectively for all subprojects.&#10;- Updated Android Gradle Plugin to 8.11.1.&#10;- Refactored `build.gradle.kts` and `app/build.gradle.kts` for clarity and consistency.&#10;- Simplified plugin application in `oracle-drive-integration/build.gradle.kts`.&#10;- Updated various dependencies to their latest stable versions, including Compose, Hilt, and testing libraries.&#10;- Added Xposed Framework API as a dependency.&#10;- Included new modules: `sandbox-ui`, `oracle-drive-integration`, and `colorblendr` in `settings.gradle.kts`.&#10;- Removed obsolete build files and configurations, including manifest files and source roots for `buildSrc`.&#10;- Simplified the `collab-canvas/build.gradle.kts` to a minimal configuration.&#10;&#10;These changes aim to improve build times, maintainability, and ensure compatibility with the latest Android development practices." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: Standardize build configuration and update dependencies&#10;&#10;This commit introduces several changes to standardize the build configuration and update dependencies across the project.&#10;&#10;Key changes include:&#10;- Standardized Java and Kotlin versions to 17 and 2.2.0 respectively for all subprojects.&#10;- Updated Android Gradle Plugin to 8.11.1.&#10;- Refactored `build.gradle.kts` and `app/build.gradle.kts` for clarity and consistency.&#10;- Simplified plugin application in `oracle-drive-integration/build.gradle.kts`.&#10;- Updated various dependencies to their latest stable versions, including Compose, Hilt, and testing libraries.&#10;- Added Xposed Framework API as a dependency.&#10;- Included new modules: `sandbox-ui`, `oracle-drive-integration`, and `colorblendr` in `settings.gradle.kts`.&#10;- Removed obsolete build files and configurations, including manifest files and source roots for `buildSrc`.&#10;- Simplified the `collab-canvas/build.gradle.kts` to a minimal configuration.&#10;&#10;These changes aim to improve build times, maintainability, and ensure compatibility with the latest Android development practices." />
+    <MESSAGE value="Refactor: Update Gradle configuration and dependencies&#10;&#10;This commit introduces several changes to the Gradle build configuration and dependencies:&#10;&#10;**Build Configuration:**&#10;- Standardized Java version to 17 across all modules, including `buildSrc`.&#10;- Updated Kotlin API and language versions to 2.2.0.&#10;- Added common repositories (Google, Maven Central, JetBrains Compose/Kotlin specific).&#10;- Refined `build.gradle.kts` for common project settings and plugin application.&#10;- Removed outdated or redundant plugin applications.&#10;- Updated clean task to use `rootProject.layout.buildDirectory`.&#10;&#10;**`app` Module:**&#10;- Updated Xposed Framework dependency to use local JARs.&#10;- Added `colorblendr` module as a project dependency.&#10;- Aligned Compose Bill of Materials (BOM) version.&#10;- Ensured Java compilation tasks target Java 17.&#10;- Removed redundant Kotlin compile options block.&#10;&#10;**`oracle-drive-integration` Module:**&#10;- Migrated plugin declarations from `alias` to `id`.&#10;- Removed `targetSdk` from `defaultConfig`.&#10;- Updated dependency declarations to use specific versions from `libs.versions.toml`.&#10;&#10;**`collab-canvas` Module:**&#10;- Removed entire previous build script content, leaving only a `repositories` block. This suggests a significant refactor or move of this module's build logic.&#10;&#10;**`gradle/libs.versions.toml`:**&#10;- Added `xposedbridge` version.&#10;&#10;**`settings.gradle.kts`:**&#10;- Added new modules: `:sandbox-ui`, `:oracle-drive-integration`, `:colorblendr`.&#10;&#10;**Build Outputs:**&#10;- Removed various temporary build files (MANIFEST.MF, source-roots.txt) and compiled JARs from `buildSrc`, `collab-canvas`, and `jvm-test`. This is a common practice when build configurations change significantly.&#10;- Updated `buildSrc` Gradle cache files." />
+    <MESSAGE value="Refactor: Migrate `sandbox-ui` build script and update dependencies&#10;&#10;This commit introduces the following changes:&#10;&#10;**`sandbox-ui` Module:**&#10;- Migrated the build configuration from `sandbox-ui.gradle.kts` to `build.gradle.kts`.&#10;- Applied Android library, Kotlin Android, Kotlin Compose, KSP, and Hilt plugins using type-safe accessors (`alias(libs.plugins...)`).&#10;- Configured Android settings:&#10;    - `namespace`, `compileSdk`, `minSdk`.&#10;    - `testInstrumentationRunner`, `consumerProguardFiles`.&#10;    - Release build type with ProGuard configuration.&#10;    - Java 24 compatibility for source and target.&#10;    - Enabled Compose and `buildConfig` features.&#10;    - Set Kotlin compiler extension version for Compose from version catalog.&#10;- Added dependencies:&#10;    - Core project: `api(project(&quot;:app&quot;))`&#10;    - AndroidX: `core-ktx`, `lifecycle-runtime-ktx`, `activity-compose`.&#10;    - Compose: BOM, UI, tooling preview, Material 3, animation, foundation.&#10;    - Navigation: `navigation-compose`.&#10;    - Hilt: Android, compiler (KSP), navigation Compose.&#10;    - Debug tools: Compose UI tooling and test manifest.&#10;    - Testing: JUnit, AndroidX Test ext JUnit, Espresso core, Compose UI test JUnit4.&#10;&#10;**`oracle-drive-integration` Module:**&#10;- Updated dependency declarations to explicitly use versions from the `libs.versions.toml` file instead of type-safe accessors. This applies to:&#10;    - AndroidX Core (`core-ktx`, `lifecycle-runtime-ktx`)&#10;    - Compose (`compose-bom`, `ui`, `ui-graphics`, `ui-tooling-preview`, `material3`)&#10;    - Hilt (`hilt-android`, `hilt-compiler`)&#10;    - Coroutines (`kotlinx-coroutines-android`)&#10;    - Testing (`junit`, `androidx.test.ext`, `androidx.test.espresso`)&#10;- Imported `com.android.build.gradle.LibraryExtension`." />
+    <MESSAGE value="Refactor: Update plugin application in `oracle-drive-integration`&#10;&#10;This commit updates the `oracle-drive-integration/build.gradle.kts` file to use direct plugin IDs (`id(&quot;com.android.library&quot;)` and `id(&quot;org.jetbrains.kotlin.android&quot;)`) instead of aliases for applying the Android library and Kotlin Android plugins.&#10;&#10;The `buildSrc` JAR has also been updated, likely as a result of build configuration changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: Update plugin application in `oracle-drive-integration`&#10;&#10;This commit updates the `oracle-drive-integration/build.gradle.kts` file to use direct plugin IDs (`id(&quot;com.android.library&quot;)` and `id(&quot;org.jetbrains.kotlin.android&quot;)`) instead of aliases for applying the Android library and Kotlin Android plugins.&#10;&#10;The `buildSrc` JAR has also been updated, likely as a result of build configuration changes." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="com.android.build.gradle.internal.BadPluginException" package="com.android.build.gradle.internal" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
