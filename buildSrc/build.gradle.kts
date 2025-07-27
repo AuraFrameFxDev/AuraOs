@@ -10,7 +10,7 @@ plugins {
 object Versions {
     // Core
     const val kotlin = "2.2.0"
-    const val agp = "8.1.1"
+    const val agp = "8.11.1"
     const val ksp = "2.2.0-2.0.2"
 
     // Dependencies
