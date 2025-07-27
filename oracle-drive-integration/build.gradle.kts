@@ -1,7 +1,8 @@
+// Apply plugins using the plugins block without version (version comes from root build.gradle.kts)
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
