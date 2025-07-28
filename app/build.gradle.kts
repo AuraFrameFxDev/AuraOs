@@ -273,7 +273,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
 
     // Material Components (for View-based components)
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.12.0")
 
     // Compose dependencies from version catalog
     implementation(libs.bundles.compose)
