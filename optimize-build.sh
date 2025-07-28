@@ -23,7 +23,11 @@ check_requirements() {
     log_info "Checking system requirements..."
     
     if command -v java >/dev/null 2>&1; then
-        JAVA_VERSION=$(java -version 2>&1 | head -n1 | cut -d'"' -f2 | cut -d'.' -f1)
+        JAVA_VERSION=$(java -version 2>&1 | head -n1 | grep -oE '[0-9]+' | head -n1)
+        if (( JAVA_VERSION < 24 )); then
+            echo "❌ Java 24+ required, but $JAVA_VERSION detected"
+            exit 1
+        fi
         log_success "Java $JAVA_VERSION detected"
     else
         echo "❌ Java not found in PATH"
