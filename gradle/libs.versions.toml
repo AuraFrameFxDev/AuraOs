@@ -33,7 +33,7 @@ composeUiTestJunit4 = "1.7.0"
 composeUiTooling = "1.7.0"
 composeUiToolingPreview = "1.7.0"
 composeMaterial3 = "1.2.0"
-composeActivityCompose = "1.9.0"
+composeActivityCompose = "1.10.1"
 
 # Timber & Coil
 timber = "5.0.1"
