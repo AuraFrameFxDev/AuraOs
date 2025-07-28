@@ -15,7 +15,7 @@ composeBom = "2023.10.01"
 
 # Dependencies
 hilt = "2.50"
-retrofit = "2.9.0"
+retrofit = "3.0.0"
 okhttp = "4.12.0"
 coroutines = "1.7.3"
 room = "2.6.1"
