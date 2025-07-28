@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.29.2)
+cmake_minimum_required(VERSION 3.22.1) # Use version bundled with r26 NDK
 project(NativeModule)
 
 # Add your native source files here
