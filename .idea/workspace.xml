@@ -9,204 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cc87a43-e12d-494a-829b-8f3d396bc71a" name="Changes" comment="Refactor: Streamline root build.gradle.kts&#10;&#10;This commit simplifies the root `build.gradle.kts` file by:&#10;&#10;- Removing redundant plugin applications (e.g., Android application/library plugins were already applied with `apply false`).&#10;- Consolidating repository definitions into the `allprojects` block and removing several specific JetBrains Space and AndroidX Maven repositories. It's assumed these are either no longer needed or covered by `google()` and `mavenCentral()`.&#10;- Streamlining Java toolchain configuration to apply to all subprojects uniformly. The conditional logic for `buildSrc` and non-Android projects regarding `sourceCompatibility` and `targetCompatibility` has been removed.&#10;- Simplifying Kotlin compiler options by removing `-opt-in=kotlin.ExperimentalStdlibApi`.&#10;- Removing explicit `java` plugin application logic, relying on individual modules to declare it if needed.&#10;- Removing deletion of `.idea` directory from the root clean task.&#10;- Removing an unused import for `org.jetbrains.kotlin.gradle.tasks.KotlinCompile`.&#10;- Removing commented-out descriptive lines and extra blank lines for better readability.">
-      <change afterPath="$PROJECT_DIR$/colleb-canvas/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core-module/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feature-module/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oracle-drive-integration/src/main/cpp/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oracledrive-integration/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oracledrive-integration/src/main/cpp/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sandbox-ui/src/main/cpp/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/'}" beforeDir="false" afterPath="$PROJECT_DIR$/collab-canvas/src/main/cpp/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14.3/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/noVersion/buildLogic.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/.gradle/config.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/file-system.probe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/Dependencies.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/JVM.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/META-INF/AuraFrameFXBuildSrc.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/RomToolingPlugin$apply$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/RomToolingPlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/Versions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/dev/aurakai/aura/gradle/AuraBasePlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/plugins/AssistantJobsConventionPlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/plugins/AuraBaseConventionPlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/plugins/OracleDriveConventionPlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/plugins/UiConventionPlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/classes/kotlin/main/tasks/GenerateRomTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/libs/AuraFrameFXBuildSrc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/pluginDescriptors/auraframefx.assistant.jobs.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/pluginDescriptors/auraframefx.base.convention.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/pluginDescriptors/auraframefx.oracledrive.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/pluginDescriptors/auraframefx.romtooling.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/pluginDescriptors/auraframefx.ui.conventions.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/pluginDescriptors/dev.aurakai.aura.base.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/resources/main/META-INF/gradle-plugins/auraframefx.assistant.jobs.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/resources/main/META-INF/gradle-plugins/auraframefx.base.convention.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/resources/main/META-INF/gradle-plugins/auraframefx.oracledrive.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/resources/main/META-INF/gradle-plugins/auraframefx.romtooling.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/resources/main/META-INF/gradle-plugins/auraframefx.ui.conventions.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/resources/main/META-INF/gradle-plugins/dev.aurakai.aura.base.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/source-roots/buildSrc/source-roots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/settings.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Constants.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Dependencies.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Versions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/dev/aurakai/aura/gradle/AuraBasePlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/plugins/AssistantJobsConventionPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/plugins/AuraBaseConventionPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/plugins/OracleDriveConventionPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/plugins/RomToolingPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/plugins/UiConventionPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/tasks/GenerateRomTask.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/test/kotlin/LibsVersionsTomlTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_module.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build_module.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collab-canvas/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/collab-canvas/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/NOTICE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/bin/gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/bin/gradle.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/init.d/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/annotations-24.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/ant-1.10.11.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/ant-junit-1.10.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/ant-launcher-1.10.11.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/asm-9.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/asm-commons-9.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/asm-tree-9.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/commons-compress-1.21.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/commons-io-2.11.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/commons-lang-2.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/fastutil-8.5.2-min.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/file-events-0.22-milestone-24.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-api-metadata-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-base-annotations-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-base-services-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-base-services-groovy-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-bootstrap-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-build-cache-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-build-cache-base-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-build-cache-packaging-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-build-events-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-build-operations-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-build-option-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-cli-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-core-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-core-api-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-enterprise-logging-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-enterprise-operations-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-enterprise-workers-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-execution-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-file-collections-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-file-temp-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-file-watching-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-files-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-functional-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-hashing-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-installation-beacon-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-internal-instrumentation-api-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-jvm-services-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-kotlin-dsl-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-kotlin-dsl-tooling-models-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-launcher-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-logging-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-logging-api-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-messaging-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-model-core-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-model-groovy-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-native-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-normalization-java-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-persistent-cache-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-problems-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-process-services-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-resources-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-runtime-api-info-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-snapshots-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-tooling-api-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-worker-processes-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-worker-services-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/gradle-wrapper-shared-8.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-ant-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-astbuilder-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-console-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-datetime-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-dateutil-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-docgenerator-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-groovydoc-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-json-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-nio-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-sql-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-swing-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-templates-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-test-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/groovy-xml-3.0.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/guava-31.1-jre.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/hamcrest-core-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/jansi-1.18.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/javaparser-core-3.17.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/javax.inject-1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/jcl-over-slf4j-1.7.30.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/jna-5.10.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/jsr305-3.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/jul-to-slf4j-1.7.30.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/junit-4.13.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-assignment-compiler-plugin-embeddable-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-compiler-embeddable-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-daemon-embeddable-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-reflect-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-sam-with-receiver-compiler-plugin-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-script-runtime-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-scripting-common-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-scripting-compiler-embeddable-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-scripting-compiler-impl-embeddable-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-scripting-jvm-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-scripting-jvm-host-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-stdlib-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-stdlib-jdk7-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlin-stdlib-jdk8-1.8.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kotlinx-metadata-jvm-0.5.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/kryo-2.24.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/log4j-over-slf4j-1.7.30.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/minlog-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/native-platform-0.22-milestone-24.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/objenesis-2.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/slf4j-api-1.7.30.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/tomlj-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/trove4j-1.0.20200330.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-8.1.1/lib/xml-apis-1.4.01.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/oracle-drive-integration/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/oracle-drive-integration/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sandbox-ui/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/sandbox-ui/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -672,7 +480,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753645044413</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Refactor: Streamline root build.gradle.kts&#10;&#10;This commit simplifies the root `build.gradle.kts` file by:&#10;&#10;- Removing redundant plugin applications (e.g., Android application/library plugins were already applied with `apply false`).&#10;- Consolidating repository definitions into the `allprojects` block and removing several specific JetBrains Space and AndroidX Maven repositories. It's assumed these are either no longer needed or covered by `google()` and `mavenCentral()`.&#10;- Streamlining Java toolchain configuration to apply to all subprojects uniformly. The conditional logic for `buildSrc` and non-Android projects regarding `sourceCompatibility` and `targetCompatibility` has been removed.&#10;- Simplifying Kotlin compiler options by removing `-opt-in=kotlin.ExperimentalStdlibApi`.&#10;- Removing explicit `java` plugin application logic, relying on individual modules to declare it if needed.&#10;- Removing deletion of `.idea` directory from the root clean task.&#10;- Removing an unused import for `org.jetbrains.kotlin.gradle.tasks.KotlinCompile`.&#10;- Removing commented-out descriptive lines and extra blank lines for better readability.">
+      <option name="closed" value="true" />
+      <created>1753668073903</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1753668073903</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

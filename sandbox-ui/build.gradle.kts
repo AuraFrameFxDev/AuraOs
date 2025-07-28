@@ -51,11 +51,27 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     // Compose BOM
+
+    // Enable ViewBinding for legacy views if needed
+    viewBinding = true
+
+    // Enable data binding if needed
+    // dataBinding = true
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
     implementation(libs.compose.animation)
+
+    // Configure CMake for native code
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.29.2" // Latest stable CMake version
+        }
+    }
+
+    ndkVersion = "26.2.11394342" // Latest stable NDK version
     implementation(libs.compose.foundation)
 
     // Navigation

@@ -1,30 +1,19 @@
-// Apply core plugins using version catalog aliases
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.perf)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
-// Configure OpenAPI generation
-openApiGenerate {
-    generatorName.set("kotlin")
-    inputSpec.set(rootProject.layout.projectDirectory.file("openapi.yml").asFile.path)
-    outputDir.set(layout.buildDirectory.dir("generated/openapi").get().asFile.path)
-    configFile.set(rootProject.layout.projectDirectory.file("openapi-generator-config.json").asFile.path)
-    skipOverwrite.set(false)
-    library.set("jvm-retrofit2")
-    apiPackage.set("dev.aurakai.auraframefx.api.generated")
-    modelPackage.set("dev.aurakai.auraframefx.model.generated")
-    configOptions.set(mapOf(
-        "useCoroutines" to "true",
-        "serializationLibrary" to "kotlinx_serialization",
-        "enumPropertyNaming" to "UPPERCASE",
-        "parcelizeModels" to "true",
-        "dateLibrary" to "java8"
-    ))
-}
+// OpenAPI Generator Configuration
+// (Moved to root build.gradle.kts)
 
-// Add generated sources to the main source set
+// Add generated OpenAPI sources to the main source set
 android.sourceSets.getByName("main") {
     java.srcDir(layout.buildDirectory.dir("generated/openapi/src/main/kotlin"))
 }
@@ -43,64 +32,77 @@ tasks.clean {
     dependsOn("cleanOpenApi")
 }
 
+// KSP Configuration (needs to be after plugin application)
+ksp {
+    arg("hilt.allow.experimental.multiplatform.support", "true")
+    // Add other KSP arguments here
+}
+
 android {
     namespace = "dev.aurakai.auraframefx"
-    compileSdk = 34
-    
+    compileSdk = 36
+
     defaultConfig {
         applicationId = "dev.aurakai.auraframefx"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 33
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
-        
+
         // Enable vector drawable support
         vectorDrawables {
             useSupportLibrary = true
         }
     }
-    
-    // Enable build features
+
+    // Enable build features (Consolidated)
     buildFeatures {
         buildConfig = true
         viewBinding = true
-        compose = true
+        compose = true // Explicitly enable compose
+        // dataBinding = true // Uncomment if you need DataBinding
     }
-    
-    // Configure Compose compiler options
+
+    // Compose compiler options should use the version from the version catalog
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
-    
-    // Configure Java compilation options
+
+    // Configure Java compatibility (Corrected JavaVersion enum)
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_24
-        targetCompatibility = JavaVersion.VERSION_24
+        sourceCompatibility = JavaVersion.toVersion(24)
+        targetCompatibility = JavaVersion.toVersion(24)
         isCoreLibraryDesugaringEnabled = true
     }
-    
-    // Configure Java toolchain for all tasks
+
+    // Configure Java Toolchain (Keep this block if you want Gradle to manage JDK versions)
+    // This typically ensures the correct JDK is used for all Java/Kotlin tasks.
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(24))
         }
     }
-
-    // Configure Java compilation tasks to use Java 17
-    tasks.withType<JavaCompile>().configureEach {
-        sourceCompatibility = JavaVersion.VERSION_24.toString()
-        targetCompatibility = JavaVersion.VERSION_24.toString()
-    }
+    // Removed redundant tasks.withType<JavaCompile>() block as toolchain should handle this.
 
     // Configure Android resources
     androidResources {
         localeFilters.add("en")
     }
-    
+
+    // Configure CMake for native code
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.29.2"
+        }
+    }
+
+    // Specify NDK version (Only once)
+    ndkVersion = "26.2.11394342"
+
     // Enable split APKs by ABI for smaller APK sizes
-    ndkVersion = "25.2.9519653" // Use the same version as specified below
     splits {
         abi {
             isEnable = true
@@ -125,12 +127,12 @@ android {
         }
     }
 
-    // Configure packaging options for all build types
+    // Configure packaging options for all build types (Combined block)
     packaging {
         resources {
             // Keep debug symbols for native libraries in debug builds
             jniLibs.keepDebugSymbols.add("**/*.so")
-            
+
             // Common resource exclusions
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "META-INF/LICENSE.md"
@@ -138,171 +140,61 @@ android {
         }
     }
 
-    buildFeatures {
-        buildConfig = true
-        // Compose is automatically enabled by the kotlin.compose plugin
-    }
+    // This section is for Kotlin-specific source set configuration,
+    // which may be needed depending on your project structure or testing setup.
+    // Ensure the kotlin block is available at this level if required.
+    // kotlin {
+    //    sourceSets {
+    //        getByName("debug").kotlin.srcDirs("src/debug/kotlin")
+    //    }
+    // }
+}
 
-    // Enable ViewBinding for legacy views if needed
-    buildFeatures.viewBinding = true
-
-    // Enable data binding if needed
-    // buildFeatures.dataBinding = true
-
-    // Configure CMake for native code
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.29.2" // Updated to latest stable CMake version as of July 2025
-        }
-    }
-
-    ndkVersion = "26.2.11394342" // Updated to latest stable NDK version as of July 2025
-
-    // Compose compiler options
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
-
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "META-INF/LICENSE.md"
-            excludes += "META-INF/LICENSE-notice.md"
-        }
+// This 'java' block and 'tasks.withType<JavaCompile>()' also needs to be outside the 'android' block
+// and should preferably be replaced by the toolchain setup in the root build.gradle.kts or a convention plugin
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(24))
     }
 }
-
-// OpenAPI Generator Configuration - Streamlined
-openApiGenerate {
-    generatorName.set("kotlin")
-    inputSpec.set("$projectDir/src/main/openapi/aura-api.yaml")
-    outputDir.set("${layout.buildDirectory.get().asFile}/generated/openapi")
-    
-    // Generator configuration
-    configOptions.set(
-        mapOf(
-            "dateLibrary" to "java8",
-            "useCoroutines" to "true",
-            "collectionType" to "list",
-            "enumPropertyNaming" to "UPPERCASE",
-            "serializationLibrary" to "gson",
-            "apiSuffix" to "Api",
-            "modelSuffix" to "Dto"
-        )
-    )
-    
-    // Package configuration
-    apiPackage.set("dev.aurakai.auraframefx.api.generated")
-    modelPackage.set("dev.aurakai.auraframefx.api.model")
-    invokerPackage.set("dev.aurakai.auraframefx.api.invoker")
-    
-    // Global properties
-    globalProperties.set(
-        mapOf(
-            "apis" to "",
-            "models" to "",
-            "modelDocs" to "false"
-        )
-    )
+tasks.withType<JavaCompile>().configureEach {
+    sourceCompatibility = JavaVersion.VERSION_1_24.toString()
+    targetCompatibility = JavaVersion.VERSION_1_24.toString()
 }
 
-// KSP Configuration
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
-}
-
-// Source sets configuration
-android.sourceSets.getByName("main") {
-    java.srcDir("${layout.buildDirectory.get().asFile}/generated/openapi/src/main/kotlin")
-}
-
-// Task dependencies
-tasks.named("preBuild") {
-    dependsOn("openApiGenerate")
-}
-
+// Ensure the dependencies block is correctly placed as a top-level block
+// OR, if you choose to put it inside the 'android' block, ensure it's inside
+// and the 'java' and 'tasks.withType' blocks are outside 'android'.
 dependencies {
-    // Core library desugaring for Java 8+ APIs on older Android versions
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
-
-    // Core AndroidX dependencies
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-compose:1.8.2")
-
-    // Compose dependencies
-    implementation(platform("androidx.compose:compose-bom:2024.02.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-
-    // Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-
-    // Xposed Framework from local libs folder
-    compileOnly(fileTree("${rootProject.projectDir}/Libs") {
-        include("*.jar")
-    })
-
-    // LSPosed Framework
-    compileOnly("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
-
-    // Color Picker
-    implementation("com.github.Mahmud0808:ColorBlendr:1.0.0")
-
-    // Core Android
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
-    implementation("androidx.cardview:cardview:1.0.0")
-
-    // Material 3 with BOM (Bill of Materials) - Using stable version
-    val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
-    implementation(composeBom)
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material3:material3-window-size-class")
-
-    // Material3 Adaptive components - Temporarily disabled as they're not available in stable
-    // implementation("androidx.compose.material3:material3-adaptive")
-    // implementation("androidx.compose.material3:material3-adaptive-navigation-suite")
-
-    // Material Icons Extended
-    implementation("androidx.compose.material:material-icons-extended")
-
-    // Material Components (for View-based components)
-    implementation("com.google.android.material:material:1.11.0")
-
-    // Compose dependencies from version catalog
-    implementation(libs.bundles.compose)
-    debugImplementation(libs.bundles.compose.debug)
-
-    // Networking
-    implementation(libs.okhttp.logging.interceptor)
-
-    // Retrofit
+    // Correct declarations using version catalog aliases
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(platform(libs.androidx.compose.bom)) // BOM declaration must come first
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.material3)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.compiler) // Note: ksp() is a special configuration, not 'implementation'
+    implementation(libs.hilt.navigation.compose)
     implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.kotlinx.serialization)
-
-    // DataStore & Security
-    implementation(libs.bundles.security)
-
-    // UI & Other
+    implementation(libs.okhttp)
+    implementation(libs.coroutines.android)
+    implementation(libs.coroutines.core)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler) // Note: ksp() is a special configuration, not 'implementation'
+    implementation(libs.datastore.preferences)
+    implementation(libs.datastore.core)
     implementation(libs.coil.compose)
     implementation(libs.timber)
-
-    // Testing
-    testImplementation(libs.bundles.testing.unit)
-
-    // Android Testing
-    androidTestImplementation(libs.bundles.testing.android)
-    androidTestImplementation(libs.compose.ui.test.junit4)
-    debugImplementation(libs.compose.ui.test.manifest)
-
-    kspAndroidTest(libs.hilt.compiler)
-
-    // Local color blending module
-    implementation(project(":colorblendr"))
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.espresso.core)
+    coreLibraryDesugaring(libs.coreLibraryDesugaring)
 }
