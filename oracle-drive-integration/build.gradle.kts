@@ -39,8 +39,10 @@ android {
         compose = true
     }
 
+    // Configure Compose compiler options
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+        kotlinCompilerExtensionVersion =
+            "1.9.0" // Use latest stable Compose compiler version for Compose 1.9
     }
 }
 
