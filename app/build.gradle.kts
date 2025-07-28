@@ -247,7 +247,7 @@ dependencies {
     })
 
     // LSPosed Framework
-    compileOnly("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
+    compileOnly("org.lsposed.hiddenapibypass:hiddenapibypass:6.1")
 
     // Color Picker
     implementation("com.github.Mahmud0808:ColorBlendr:1.0.0")
