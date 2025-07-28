@@ -1,9 +1,8 @@
-// Apply plugins with versions from version catalog
+// Apply core plugins using version catalog aliases
 plugins {
-    id("com.android.application")
-    id("org.openapi.generator")
-    alias(libs.plugins.kotlin.serialization) apply true
-    alias(libs.plugins.ksp) apply true
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 // Configure OpenAPI generation
@@ -77,22 +76,22 @@ android {
     
     // Configure Java compilation options
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_24
+        targetCompatibility = JavaVersion.VERSION_24
         isCoreLibraryDesugaringEnabled = true
     }
     
     // Configure Java toolchain for all tasks
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(24))
         }
     }
 
     // Configure Java compilation tasks to use Java 17
     tasks.withType<JavaCompile>().configureEach {
-        sourceCompatibility = JavaVersion.VERSION_17.toString()
-        targetCompatibility = JavaVersion.VERSION_17.toString()
+        sourceCompatibility = JavaVersion.VERSION_24.toString()
+        targetCompatibility = JavaVersion.VERSION_24.toString()
     }
 
     // Configure Android resources
@@ -154,12 +153,11 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
+            version = "3.29.2" // Updated to latest stable CMake version as of July 2025
         }
     }
 
-    // Configure NDK version
-    ndkVersion = "25.2.9519653" // Use the latest stable NDK version
+    ndkVersion = "26.2.11394342" // Updated to latest stable NDK version as of July 2025
 
     // Compose compiler options
     composeOptions {

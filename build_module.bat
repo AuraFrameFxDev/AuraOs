@@ -1,22 +1,9 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: Set the project root directory
-set "PROJECT_ROOT=%~dp0"
+REM Set Java 24 as the default for this batch file
+set JAVA_HOME=C:\Program Files\Java\jdk-24.0.2
+set PATH=!JAVA_HOME!\bin;%PATH%
 
-:: Change to the project root directory
-cd /d "%PROJECT_ROOT%"
-
-echo Building project...
-
-:: Run Gradle build with error handling
-call gradlew.bat build --stacktrace --info
-
-if %ERRORLEVEL% NEQ 0 (
-    echo Build failed with error code %ERRORLEVEL%
-    pause
-    exit /b %ERRORLEVEL%
-)
-
-echo Build completed successfully!
-pause
+REM Run the Gradle wrapper with the provided arguments
+call gradlew.bat %*

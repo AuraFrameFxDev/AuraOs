@@ -1,10 +1,9 @@
-// Apply plugins with direct IDs to avoid version conflicts
-// Note: Versions are managed in the root build.gradle.kts
+// Apply only the Android and Kotlin plugins directly, versions managed in root
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") version libs.versions.ksp.get()
-    id("com.google.dagger.hilt.android") version libs.versions.hilt.get()
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -28,12 +27,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_24
+        targetCompatibility = JavaVersion.VERSION_24
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "24"
     }
 
     buildFeatures {
@@ -52,10 +51,7 @@ dependencies {
 
     // Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.ui.graphics)
-    implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.material3)
+    implementation(libs.bundles.compose)
 
     // Hilt
     implementation(libs.hilt.android)
@@ -67,10 +63,23 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test) // For coroutines testing
+    testImplementation(libs.mockk) // For mocking in tests
+    testImplementation(libs.turbine) // For testing Kotlin Flows
+    testImplementation(libs.androidx.core.testing) // For InstantTaskExecutorRule, etc.
+
+    // Test runtime dependencies
+    testRuntimeOnly(libs.junit.engine) // For JUnit 5 tests if needed
+
+    // Android Instrumentation Tests
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.hilt.android.testing) // For Hilt testing
+    kspAndroidTest(libs.hilt.compiler) // For Hilt test components
+
+    // Debug implementations
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
 }

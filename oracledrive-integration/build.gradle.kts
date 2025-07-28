@@ -1,8 +1,8 @@
-repositories {
-    mavenCentral()
-}
+// oracledrive-integration build configuration
 
 android {
+    // ...
+
     // Enable ViewBinding for legacy views if needed
     buildFeatures.viewBinding = true
 
@@ -18,4 +18,6 @@ android {
     }
 
     ndkVersion = "26.2.11394342" // Latest stable NDK version
+
+    // ...
 }

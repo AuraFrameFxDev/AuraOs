@@ -1,47 +1,47 @@
 // Root build file - manages plugin versions and common configuration
 plugins {
+    // Android plugins
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
+
+    // Kotlin plugins
     alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.kotlin.serialization) apply false
-    alias(libs.plugins.hilt) apply false
+
+    // KSP (Kotlin Symbol Processing)
     alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.openapi.generator) apply false
-    alias(libs.plugins.detekt) apply false
+
+    // Hilt for dependency injection
+    alias(libs.plugins.hilt.android) apply false
+
+    // Other plugins
+    id("org.openapi.generator") version "7.2.0" apply false
+    id("io.gitlab.arturbosch.detekt") version "1.23.5" apply false
 }
 
-// Configure repositories for all projects
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-    }
-}
+
 
 // Common configuration for all subprojects
 subprojects {
+    // Configure Java toolchain for all Java projects
     plugins.withType<JavaBasePlugin> {
         extensions.configure<JavaPluginExtension> {
-            toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+            toolchain.languageVersion.set(JavaLanguageVersion.of(24))
         }
     }
 
+    // Configure Kotlin compiler options for all Kotlin projects
     plugins.withType<org.jetbrains.kotlin.gradle.plugin.KotlinBasePlugin> {
-        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-            kotlinOptions {
-                jvmTarget = "17"
-                apiVersion = "2.2"
-                languageVersion = "2.2"
-                freeCompilerArgs = freeCompilerArgs + listOf(
-                    "-Xjvm-default=all",
-                    "-opt-in=kotlin.RequiresOptIn"
-                )
+        extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension> {
+            // Configure K2 compiler
+            jvmToolchain {
+                languageVersion.set(JavaLanguageVersion.of(24))
             }
         }
     }
 
+    // Test configuration
     tasks.withType<Test> {
         useJUnitPlatform()
         testLogging {
