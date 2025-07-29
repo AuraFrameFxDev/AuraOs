@@ -1,9 +1,9 @@
-// Apply plugins with versions from version catalog
 plugins {
-    id("com.android.application")
+    id("android-application-conventions")
+    id("detekt-conventions")
+    id("spotless-conventions")
     id("org.openapi.generator")
     alias(libs.plugins.kotlin.serialization) apply true
-    alias(libs.plugins.ksp) apply true
 }
 
 // Configure OpenAPI generation
@@ -46,15 +46,11 @@ tasks.clean {
 
 android {
     namespace = "dev.aurakai.auraframefx"
-    compileSdk = 34
-    
+
     defaultConfig {
         applicationId = "dev.aurakai.auraframefx"
-        minSdk = 24
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         
         // Enable vector drawable support
@@ -77,24 +73,9 @@ android {
     
     // Configure Java compilation options
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
         isCoreLibraryDesugaringEnabled = true
     }
     
-    // Configure Java toolchain for all tasks
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
-    }
-
-    // Configure Java compilation tasks to use Java 17
-    tasks.withType<JavaCompile>().configureEach {
-        sourceCompatibility = JavaVersion.VERSION_17.toString()
-        targetCompatibility = JavaVersion.VERSION_17.toString()
-    }
-
     // Configure Android resources
     androidResources {
         localeFilters.add("en")
@@ -113,13 +94,6 @@ android {
 
     // Configure build types
     buildTypes {
-        release {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
         debug {
             isDebuggable = true
             applicationIdSuffix = ".debug"
