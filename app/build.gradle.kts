@@ -224,7 +224,7 @@ tasks.named("preBuild") {
 
 dependencies {
     // Core library desugaring for Java 8+ APIs on older Android versions
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 
     // Core AndroidX dependencies
     implementation("androidx.core:core-ktx:1.12.0")

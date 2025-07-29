@@ -45,7 +45,7 @@ datastorePreferences = "1.1.0"
 datastoreCore = "1.1.0"
 
 # Core Library Desugaring
-coreLibraryDesugaring = "2.0.4"
+coreLibraryDesugaring = "2.1.5"
 
 # Test
 junit = "4.13.2"
