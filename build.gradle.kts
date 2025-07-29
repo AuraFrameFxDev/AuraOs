@@ -16,7 +16,7 @@ plugins {
     alias(libs.plugins.hilt.android) apply false
 
     // Other plugins
-    id("org.openapi.generator") version "7.2.0" apply false
+    id("org.openapi.generator") version "7.14.0" apply false
     id("io.gitlab.arturbosch.detekt") version "1.23.5" apply false
 }
 
