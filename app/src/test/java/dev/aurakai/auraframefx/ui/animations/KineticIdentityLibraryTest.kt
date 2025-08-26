@@ -17,11 +17,11 @@ import dev.aurakai.auraframefx.ui.animations.KineticIdentityLibrary.EmotionalSta
 import dev.aurakai.auraframefx.ui.animations.KineticIdentityLibrary.FlowDirection
 import dev.aurakai.auraframefx.ui.animations.KineticIdentityLibrary.Particle
 import io.mockk.*
-import kotlinx.coroutines.test.runTest
 import org.junit.Rule
-import org.junit.Test
-import org.junit.Before
-import org.junit.After
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.AfterEach
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.test.assertNotNull
@@ -48,7 +48,7 @@ class KineticIdentityLibraryTest {
 
     private lateinit var mockTheme: AuraTheme
 
-    @Before
+    @BeforeEach
     fun setup() {
         mockTheme = mockk<AuraTheme>(relaxed = true) {
             every { accentColor } returns Color.Blue
@@ -56,14 +56,14 @@ class KineticIdentityLibraryTest {
         }
     }
 
-    @After
+    @AfterEach
     fun tearDown() {
         clearAllMocks()
     }
 
     // BREATHING ANIMATION TESTS
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun breathingAnimation_rendersSuccessfully() {
         composeTestRule.setContent {
             KineticIdentityLibrary.BreathingAnimation(
@@ -141,7 +141,7 @@ class KineticIdentityLibraryTest {
         composeTestRule.onNodeWithTag("breathing_neutral").assertExists()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun breathingAnimation_respectsIntensityParameter() {
         composeTestRule.setContent {
             KineticIdentityLibrary.BreathingAnimation(
@@ -216,7 +216,7 @@ class KineticIdentityLibraryTest {
         composeTestRule.onNodeWithTag("glow_inactive").assertExists()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun responsiveGlow_rendersWhenActive() {
         composeTestRule.setContent {
             KineticIdentityLibrary.ResponsiveGlow(
@@ -432,7 +432,7 @@ class KineticIdentityLibraryTest {
         composeTestRule.onNodeWithTag("particle_zero_count").assertExists()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun particleFlow_handlesLargeParticleCount() {
         composeTestRule.setContent {
             KineticIdentityLibrary.ParticleFlow(
@@ -445,7 +445,7 @@ class KineticIdentityLibraryTest {
         composeTestRule.onNodeWithTag("particle_large_count").assertExists()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun particleFlow_respectsIntensityParameter() {
         composeTestRule.setContent {
             KineticIdentityLibrary.ParticleFlow(
@@ -552,7 +552,7 @@ class KineticIdentityLibraryTest {
         assertTrue(values.contains(EmotionalState.NEUTRAL))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun flowDirection_allValuesExist() {
         val values = FlowDirection.values()
         assertEquals(5, values.size)
@@ -749,7 +749,7 @@ class KineticIdentityLibraryTest {
         composeTestRule.onNodeWithTag("breathing_float_bounds_max").assertExists()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun responsiveGlow_handlesInfiniteFloatValues() {
         composeTestRule.setContent {
             KineticIdentityLibrary.ResponsiveGlow(
@@ -779,7 +779,7 @@ class KineticIdentityLibraryTest {
         composeTestRule.onNodeWithTag("glow_nan_intensity").assertExists()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun particleFlow_handlesNegativeParticleCount() {
         composeTestRule.setContent {
             KineticIdentityLibrary.ParticleFlow(
@@ -792,7 +792,7 @@ class KineticIdentityLibraryTest {
         composeTestRule.onNodeWithTag("particle_negative_count").assertExists()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun keyboardGlow_handlesNaNIntensity() {
         composeTestRule.setContent {
             KineticIdentityLibrary.KeyboardGlow(
@@ -834,7 +834,7 @@ class KineticIdentityLibraryTest {
 
     // STRESS TESTS
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun multipleParticleFlows_renderConcurrently() {
         composeTestRule.setContent {
             Box(modifier = Modifier.fillMaxSize()) {

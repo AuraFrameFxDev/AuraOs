@@ -8,9 +8,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.mockk.*
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import org.junit.Rule
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
@@ -22,7 +23,7 @@ class AppNavGraphTest {
     private lateinit var navController: NavHostController
     private lateinit var mockNavController: NavHostController
 
-    @Before
+    @BeforeEach
     fun setUp() {
         mockNavController = mockk<NavHostController>(relaxed = true)
         clearAllMocks()
@@ -44,7 +45,7 @@ class AppNavGraphTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_navigationToAllDestinations_succeeds() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -67,7 +68,7 @@ class AppNavGraphTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_backNavigation_worksCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -88,7 +89,7 @@ class AppNavGraphTest {
         assertEquals("Back navigation failed", "home", navController.currentDestination?.route)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_deepLinking_handlesCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -127,7 +128,7 @@ class AppNavGraphTest {
         assertNotNull("Current destination should not be null", navController.currentDestination)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_parametrizedNavigation_worksCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -145,7 +146,7 @@ class AppNavGraphTest {
         assertTrue("Parametrized navigation failed", currentRoute?.contains("profile") == true)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_multipleBackStackEntries_maintainedCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -176,7 +177,7 @@ class AppNavGraphTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_navigationWithTransitions_appliesCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -197,7 +198,7 @@ class AppNavGraphTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_navigationState_persistsCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -242,7 +243,7 @@ class AppNavGraphTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_singleTopLaunchMode_preventsDuplicates() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -273,7 +274,7 @@ class AppNavGraphTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_popUpTo_clearsBackStackCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -304,7 +305,7 @@ class AppNavGraphTest {
         assertEquals("PopUpTo navigation failed", "about", navController.currentDestination?.route)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_argumentPassing_worksCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -322,7 +323,7 @@ class AppNavGraphTest {
         assertTrue("Argument passing failed", currentRoute?.contains(testArgument) == true)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_nestedNavigation_worksCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -395,7 +396,7 @@ class AppNavGraphTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_memoryLeaks_preventedCorrectly() = runTest {
         // This test would verify that navigation doesn't cause memory leaks
         composeTestRule.setContent {
@@ -420,7 +421,7 @@ class AppNavGraphTest {
         assertTrue("Memory leak test completed", true)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_concurrentNavigation_handlesSafely() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()
@@ -441,7 +442,7 @@ class AppNavGraphTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun appNavGraph_customTransitions_applyCorrectly() = runTest {
         composeTestRule.setContent {
             navController = rememberNavController()

@@ -1,8 +1,8 @@
 package dev.aurakai.auraframefx.gradle
 
 import org.junit.Assert.assertTrue
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import java.io.File
 
 /**
@@ -14,7 +14,7 @@ class OpenApiConfigurationTest {
 
     private lateinit var buildContent: String
 
-    @Before
+    @BeforeEach
     fun setup() {
         val buildFile = File("app/build.gradle.kts")
         buildContent = if (buildFile.exists()) {

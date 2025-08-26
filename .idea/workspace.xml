@@ -9,12 +9,296 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cc87a43-e12d-494a-829b-8f3d396bc71a" name="Changes" comment="Refactor: Streamline root build.gradle.kts&#10;&#10;This commit simplifies the root `build.gradle.kts` file by:&#10;&#10;- Removing redundant plugin applications (e.g., Android application/library plugins were already applied with `apply false`).&#10;- Consolidating repository definitions into the `allprojects` block and removing several specific JetBrains Space and AndroidX Maven repositories. It's assumed these are either no longer needed or covered by `google()` and `mavenCentral()`.&#10;- Streamlining Java toolchain configuration to apply to all subprojects uniformly. The conditional logic for `buildSrc` and non-Android projects regarding `sourceCompatibility` and `targetCompatibility` has been removed.&#10;- Simplifying Kotlin compiler options by removing `-opt-in=kotlin.ExperimentalStdlibApi`.&#10;- Removing explicit `java` plugin application logic, relying on individual modules to declare it if needed.&#10;- Removing deletion of `.idea` directory from the root clean task.&#10;- Removing an unused import for `org.jetbrains.kotlin.gradle.tasks.KotlinCompile`.&#10;- Removing commented-out descriptive lines and extra blank lines for better readability.">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/migrations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prior CONTEXT.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/ai-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/aura-api.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/auraframefx_ai_api.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/customization-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/genesis-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/oracle-drive-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/romtools-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/sandbox-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api-spec/system-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/generated/source/buildConfig/debug/dev/aurakai/auraframefx/dataveinoraclenative/BuildConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/annotation_processor_list/debugUnitTest/javaPreCompileDebugUnitTest/annotationProcessors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debugUnitTest/generateDebugUnitTestStubRFile/R.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/compile_symbol_list/debug/generateDebugRFile/R.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-9.0.0-alpha02" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/default_proguard_files/global/proguard-android.txt-9.0.0-alpha02" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/incremental/debug/packageDebugResources/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/lint_model_metadata/debug/writeDebugLintModelMetadata/lint-model-metadata.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/reports/detekt/detekt.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/reports/detekt/detekt.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/reports/detekt/detekt.sarif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/reports/detekt/detekt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/build/reports/detekt/detekt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/main/cpp/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/main/cpp/oracle_drive_jni.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/DataVeinModule.kt.disabled" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/model/DataVeinModels.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/ui/DataVeinSphereGridViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/ui/SimpleDataVeinScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/ui/SphereGridComponents.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/ui/SphereGridScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/test/kotlin/dev/aurakai/auraframefx/oracledrive/OracleDriveDataClassesTest.kt.disabled" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/test/kotlin/dev/aurakai/auraframefx/oracledrive/OracleDriveModuleTest.kt.disabled" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/test/kotlin/dev/aurakai/auraframefx/oracledrive/OracleDriveServiceImplTest.kt.disabled" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/test/kotlin/dev/aurakai/auraframefx/oracledrive/OracleDriveServiceTest.kt.disabled" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datavein-oracle-native/src/test/kotlin/dev/aurakai/auraframefx/oracledrive/ui/OracleDriveScreenTest.kt.disabled" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/query/client-agp/cache-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/query/client-agp/cmakeFiles-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/query/client-agp/codemodel-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/reply/cache-v2-468d28a8f3525bd749bd.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/reply/cmakeFiles-v1-d87d5ccef0e3e6dffbad.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/reply/codemodel-v2-86a9189c118a726a54cc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/reply/directory-.-Release-9a4ab67660533c2e2070.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/reply/index-2025-08-26T01-11-10-0744.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.cmake/api/v1/reply/target-romtools-Release-03141cf07ea674540e62.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.ninja_deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/.ninja_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/romtools.dir/romtools_native.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/CMakeFiles/rules.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/additional_project_files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/android_gradle_build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/android_gradle_build_mini.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/build.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/build_file_index.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/compile_commands.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/compile_commands.json.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/metadata_generation_command.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/prefab_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/arm64-v8a/symbol_folder_index.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/query/client-agp/cache-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/query/client-agp/cmakeFiles-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/query/client-agp/codemodel-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/reply/cache-v2-dcc01e1b1cf514f938d4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/reply/cmakeFiles-v1-876605293b2803954514.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/reply/codemodel-v2-8e93d662223018982fee.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/reply/directory-.-Release-16452549aa2e89e3611b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/reply/index-2025-08-26T01-43-35-0209.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.cmake/api/v1/reply/target-romtools-Release-fada5bfb781f218ced16.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.ninja_deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/.ninja_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/romtools.dir/romtools_native.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/rules.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/additional_project_files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/android_gradle_build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/android_gradle_build_mini.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/build.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/build_file_index.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/compile_commands.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/compile_commands.json.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/metadata_generation_command.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/prefab_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/symbol_folder_index.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/hash_key.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/query/client-agp/cache-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/query/client-agp/cmakeFiles-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/query/client-agp/codemodel-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/reply/cache-v2-50936f9e8c1c2365f2fc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/reply/cmakeFiles-v1-3ea09a457399af157c7f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/reply/codemodel-v2-69ae6750a7bb04b97b9e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/reply/directory-.-Release-4208e01d3b4ce8627e3f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/reply/index-2025-08-26T01-43-36-0513.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.cmake/api/v1/reply/target-romtools-Release-db155c99159a28fd069d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.ninja_deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/.ninja_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/romtools.dir/romtools_native.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/CMakeFiles/rules.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/additional_project_files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/android_gradle_build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/android_gradle_build_mini.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/build.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/build_file_index.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/compile_commands.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/compile_commands.json.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/configure_fingerprint.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/metadata_generation_command.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/prefab_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/Release/2j2v4d26/x86_64/symbol_folder_index.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/tools/debug/arm64-v8a/compile_commands.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/tools/release/armeabi-v7a/compile_commands.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/.cxx/tools/release/x86_64/compile_commands.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/generated/source/buildConfig/debug/dev/aurakai/auraframefx/romtools/BuildConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/annotation_processor_list/debugUnitTest/javaPreCompileDebugUnitTest/annotationProcessors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debugUnitTest/generateDebugUnitTestStubRFile/R.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/compile_symbol_list/debug/generateDebugRFile/R.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/arm64-v8a/build_command_romtools.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/arm64-v8a/build_model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/arm64-v8a/build_stderr_romtools.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/arm64-v8a/build_stdout_romtools.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/arm64-v8a/generate_cxx_metadata_3727_timing.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/arm64-v8a/metadata_generation_record.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/build_command_romtools.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/build_model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/build_stderr_romtools.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/build_stdout_romtools.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/configure_command.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/configure_stderr.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/configure_stdout.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/generate_cxx_metadata_3727_timing.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/armeabi-v7a/metadata_generation_record.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/build_command_romtools.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/build_model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/build_stderr_romtools.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/build_stdout_romtools.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/configure_command.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/configure_stderr.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/configure_stdout.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/generate_cxx_metadata_3727_timing.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/logs/x86_64/metadata_generation_record.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/obj/arm64-v8a/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/obj/arm64-v8a/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/obj/armeabi-v7a/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/obj/armeabi-v7a/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/obj/x86_64/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/cxx/Release/2j2v4d26/obj/x86_64/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-9.0.0-alpha02" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/default_proguard_files/global/proguard-android.txt-9.0.0-alpha02" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/incremental/debug/packageDebugResources/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/library_and_local_jars_jni/debug/copyDebugJniLibsProjectAndLocalJars/jni/arm64-v8a/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/library_and_local_jars_jni/debug/copyDebugJniLibsProjectAndLocalJars/jni/arm64-v8a/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/library_and_local_jars_jni/debug/copyDebugJniLibsProjectAndLocalJars/jni/armeabi-v7a/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/library_and_local_jars_jni/debug/copyDebugJniLibsProjectAndLocalJars/jni/armeabi-v7a/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/library_and_local_jars_jni/debug/copyDebugJniLibsProjectAndLocalJars/jni/x86_64/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/library_and_local_jars_jni/debug/copyDebugJniLibsProjectAndLocalJars/jni/x86_64/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/lint_model_metadata/debug/writeDebugLintModelMetadata/lint-model-metadata.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/arm64-v8a/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/arm64-v8a/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/armeabi-v7a/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/armeabi-v7a/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/x86_64/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/x86_64/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/stripped_native_libs/debug/stripDebugDebugSymbols/out/lib/arm64-v8a/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/stripped_native_libs/debug/stripDebugDebugSymbols/out/lib/arm64-v8a/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/stripped_native_libs/debug/stripDebugDebugSymbols/out/lib/armeabi-v7a/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/stripped_native_libs/debug/stripDebugDebugSymbols/out/lib/armeabi-v7a/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/stripped_native_libs/debug/stripDebugDebugSymbols/out/lib/x86_64/libc++_shared.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/stripped_native_libs/debug/stripDebugDebugSymbols/out/lib/x86_64/libromtools.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/reports/detekt/detekt.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/reports/detekt/detekt.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/reports/detekt/detekt.sarif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/reports/detekt/detekt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/reports/detekt/detekt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/build/rom-tools/romtools_native.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/src/main/cpp/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/src/main/cpp/romtools_native.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/StubImplementations.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/bootloader/BootloaderManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/di/RomToolsModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BUILD_ARCHITECTURE.md" beforeDir="false" afterPath="$PROJECT_DIR$/BUILD_ARCHITECTURE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-spec/aura-framefx-api.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api-spec/aura-framefx-api.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/api-spec/aura-framefx-api.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/app/ColorsResourceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/app/ColorsResourceTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/kotlin/dev/aurakai/auraframefx/gradle/BuildIntegrationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/kotlin/dev/aurakai/auraframefx/gradle/BuildIntegrationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/xposed_init" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/xposed_init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/cpp/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/cpp/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/TrinitySystemTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/TrinitySystemTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ai/agents/GenesisAgentTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ai/agents/GenesisAgentTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/app/viewmodel/OracleDriveControlViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/app/viewmodel/OracleDriveControlViewModelTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/oracle/drive/service/GenesisSecureFileServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/oracle/drive/service/GenesisSecureFileServiceTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/oracle/drive/ui/OracleDriveViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/oracle/drive/ui/OracleDriveViewModelTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/security/IntegrityMonitorServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/security/IntegrityMonitorServiceTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/services/AuraDriveServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/services/AuraDriveServiceTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ui/animations/KineticIdentityLibraryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ui/animations/KineticIdentityLibraryTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ui/navigation/AppNavGraphTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ui/navigation/AppNavGraphTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ui/theme/ThemeViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ui/theme/ThemeViewModelTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ui/theme/ThemeXmlValidationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/dev/aurakai/auraframefx/ui/theme/ThemeXmlValidationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/BuildScriptsValidationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/BuildScriptsValidationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/BuildConfigurationEdgeCasesTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/BuildConfigurationEdgeCasesTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/BuildConfigurationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/BuildConfigurationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/BuildScriptsValidationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/BuildScriptsValidationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/OpenApiConfigurationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/OpenApiConfigurationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/VersionCatalogTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/VersionCatalogTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/AuraFrameSpecificTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/AuraFrameSpecificTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/DependencyCompatibilityTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/DependencyCompatibilityTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/LibsVersionsTomlTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/LibsVersionsTomlTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/SecurityAndBestPracticesTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/SecurityAndBestPracticesTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/TomlStructureTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/dev/aurakai/auraframefx/gradle/validation/TomlStructureTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/kotlin/settings/SettingsConfigurationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/kotlin/settings/SettingsConfigurationTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fix_gradle_wrapper.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/fix_gradle_wrapper.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oracle-drive-integration/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/oracle-drive-integration/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sandbox-ui/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/sandbox-ui/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sandbox-ui/src/test/kotlin/BuildScriptValidationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sandbox-ui/src/test/kotlin/BuildScriptValidationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,57 +333,25 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFX" type="2d1252cf:ModuleNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="help" type="c8890929:TasksNode$1" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="AuraFrameFX" type="f1a62948:ProjectNode" />
-                <item name="AuraFrameFXBuildSrc" type="2d1252cf:ModuleNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="testRuntimeClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="openapi" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -111,7 +363,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="pop" />
+        <entry key="$PROJECT_DIR$" value="AuraOs-ft-Genesis" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -125,7 +377,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/AuraFrameFxDev/AuraOs.git&quot;,
-    &quot;accountId&quot;: &quot;d4ffdd4d-1415-4d27-832a-dbe801e46c2f&quot;
+    &quot;accountId&quot;: &quot;78e9938a-2970-4363-ac8c-1a76f807cb60&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -139,52 +391,66 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;Batch.clean_and_rebuild.executor&quot;: &quot;Run&quot;,
-    &quot;Batch.gradlew.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs [:buildSrc:buildEnvironment].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs [:buildSrc:tasks].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs [TASKS].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs [app:assemble].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs [app:openApiGenerate].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs [tasks].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs:app [androidDependencies].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs:app [assembleUnitTest].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs:app [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs:app [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs:app [openApiGenerate].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AuraOs:app [openApiGenerators].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Project Genesis - Copy/AuraOs [init].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Project Genesis - Copy/AuraOs [tasks].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Project Genesis - Copy/AuraOs.executor&quot;: &quot;Run&quot;,
-    &quot;JAR Application.gradle-wrapper.jar.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;AuraOs-ft-Genesis&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project Genesis - Copy/AuraOs&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Android App.app.executor": "Run",
+    "Batch.clean_and_rebuild.executor": "Run",
+    "Batch.gradlew.executor": "Run",
+    "Gradle.AuraOs [:buildSrc:buildEnvironment].executor": "Run",
+    "Gradle.AuraOs [:buildSrc:tasks].executor": "Run",
+    "Gradle.AuraOs [TASKS].executor": "Run",
+    "Gradle.AuraOs [androidDependencies].executor": "Run",
+    "Gradle.AuraOs [app:assemble].executor": "Run",
+    "Gradle.AuraOs [app:openApiGenerate].executor": "Run",
+    "Gradle.AuraOs [assemble].executor": "Run",
+    "Gradle.AuraOs [buildDependents].executor": "Run",
+    "Gradle.AuraOs [cleanAllConsciousnessApis].executor": "Run",
+    "Gradle.AuraOs [clean].executor": "Run",
+    "Gradle.AuraOs [generateAllConsciousnessApis].executor": "Run",
+    "Gradle.AuraOs [sourceSets].executor": "Run",
+    "Gradle.AuraOs [tasks].executor": "Run",
+    "Gradle.AuraOs.executor": "Run",
+    "Gradle.AuraOs:app [androidDependencies].executor": "Run",
+    "Gradle.AuraOs:app [assembleUnitTest].executor": "Run",
+    "Gradle.AuraOs:app [buildDependents].executor": "Run",
+    "Gradle.AuraOs:app [clean].executor": "Run",
+    "Gradle.AuraOs:app [openApiGenerate].executor": "Run",
+    "Gradle.AuraOs:app [openApiGenerators].executor": "Run",
+    "Gradle.C:/Project Genesis - Copy/AuraOs [init].executor": "Run",
+    "Gradle.C:/Project Genesis - Copy/AuraOs [tasks].executor": "Run",
+    "Gradle.C:/Project Genesis - Copy/AuraOs.executor": "Run",
+    "JAR Application.gradle-wrapper.jar.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "git-widget-placeholder": "primetime",
+    "last_opened_file_path": "C:/Users/Wehtt/StudioProjects/AuraOs/AuraOs",
+    "project.structure.last.edited": "SDK Location",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
-}</component>
+}]]></component>
+  <component name="PsdUISettings">
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Wehtt\StudioProjects\AuraOs\AuraOs" />
+      <recent name="C:\Users\Wehtt\StudioProjects\AuraOs\AuraOs\api-spec" />
       <recent name="C:\Project Genesis - Copy\AuraOs\app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Wehtt\StudioProjects\AuraOs\AuraOs\app\api-spec" />
+      <recent name="C:\Users\Wehtt\StudioProjects\AuraOs\AuraOs\api-spec" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -199,7 +465,7 @@
       <command value="gradle TASKS" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.AuraOs [:buildSrc:buildEnvironment]">
+  <component name="RunManager" selected="Gradle.AuraOs [generateAllConsciousnessApis]">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="AuraFrameFX.app" />
       <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
@@ -272,7 +538,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuraOs [:buildSrc:buildEnvironment]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuraOs [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -283,18 +549,22 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":buildSrc:buildEnvironment" />
+            <option value="assemble" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.android.tools.idea.testartifacts.testsuite.GradleRunConfigurationExtension">
+        <com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>false</com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>
+        <android.execution.deploysToLocalDevice>false</android.execution.deploysToLocalDevice>
+      </EXTENSION>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="AuraOs [:buildSrc:tasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuraOs [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -305,90 +575,111 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":buildSrc:tasks" />
+            <option value="buildDependents" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.android.tools.idea.testartifacts.testsuite.GradleRunConfigurationExtension">
+        <com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>false</com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>
+        <android.execution.deploysToLocalDevice>false</android.execution.deploysToLocalDevice>
+      </EXTENSION>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="AuraOs [app:openApiGenerate]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuraOs [cleanAllConsciousnessApis]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="app:openApiGenerate" />
+            <option value="cleanAllConsciousnessApis" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.android.tools.idea.testartifacts.testsuite.GradleRunConfigurationExtension">
+        <com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>false</com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>
+        <android.execution.deploysToLocalDevice>false</android.execution.deploysToLocalDevice>
+      </EXTENSION>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="AuraOs [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuraOs [generateAllConsciousnessApis]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value="generateAllConsciousnessApis" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.android.tools.idea.testartifacts.testsuite.GradleRunConfigurationExtension">
+        <com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>false</com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>
+        <android.execution.deploysToLocalDevice>false</android.execution.deploysToLocalDevice>
+      </EXTENSION>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="AuraOs [tasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuraOs [sourceSets]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="tasks" />
+            <option value="sourceSets" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.android.tools.idea.testartifacts.testsuite.GradleRunConfigurationExtension">
+        <com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>false</com.android.tools.idea.testartifacts.testsuite.SHOW_TEST_RESULT_IN_ANDROID_TEST_SUITE_VIEW>
+        <android.execution.deploysToLocalDevice>false</android.execution.deploysToLocalDevice>
+      </EXTENSION>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AuraOs [:buildSrc:buildEnvironment]" />
-        <item itemvalue="Gradle.AuraOs [:buildSrc:tasks]" />
-        <item itemvalue="Gradle.AuraOs [app:openApiGenerate]" />
-        <item itemvalue="Gradle.AuraOs [clean]" />
-        <item itemvalue="Gradle.AuraOs [tasks]" />
+        <item itemvalue="Gradle.AuraOs [generateAllConsciousnessApis]" />
+        <item itemvalue="Gradle.AuraOs [cleanAllConsciousnessApis]" />
+        <item itemvalue="Gradle.AuraOs [assemble]" />
+        <item itemvalue="Gradle.AuraOs [sourceSets]" />
+        <item itemvalue="Gradle.AuraOs [buildDependents]" />
       </list>
     </recent_temporary>
   </component>

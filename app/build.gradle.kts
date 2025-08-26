@@ -1,308 +1,298 @@
-// Apply core plugins using version catalog aliases
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
-}
-
-// Configure OpenAPI generation
-openApiGenerate {
-    generatorName.set("kotlin")
-    inputSpec.set(rootProject.layout.projectDirectory.file("openapi.yml").asFile.path)
-    outputDir.set(layout.buildDirectory.dir("generated/openapi").get().asFile.path)
-    configFile.set(rootProject.layout.projectDirectory.file("openapi-generator-config.json").asFile.path)
-    skipOverwrite.set(false)
-    library.set("jvm-retrofit2")
-    apiPackage.set("dev.aurakai.auraframefx.api.generated")
-    modelPackage.set("dev.aurakai.auraframefx.model.generated")
-    configOptions.set(mapOf(
-        "useCoroutines" to "true",
-        "serializationLibrary" to "kotlinx_serialization",
-        "enumPropertyNaming" to "UPPERCASE",
-        "parcelizeModels" to "true",
-        "dateLibrary" to "java8"
-    ))
-}
-
-// Add generated sources to the main source set
-android.sourceSets.getByName("main") {
-    java.srcDir(layout.buildDirectory.dir("generated/openapi/src/main/kotlin"))
-}
-
-// Ensure OpenAPI generation happens before compilation
-tasks.named("preBuild") {
-    dependsOn("openApiGenerate")
-}
-
-// Clean task for generated files
-tasks.register("cleanOpenApi", Delete::class) {
-    delete(layout.buildDirectory.dir("generated/openapi"))
-}
-
-tasks.clean {
-    dependsOn("cleanOpenApi")
+    // APP MODULE - Only plugins THIS module needs (inherit versions from root)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
+    id("org.openapi.generator")
 }
 
 android {
-    namespace = "dev.aurakai.auraframefx"
+    namespace = "dev.auraframefx.auraframefx"
     compileSdk = 36
-    
+
     defaultConfig {
         applicationId = "dev.aurakai.auraframefx"
         minSdk = 33
         targetSdk = 36
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0-genesis-alpha"
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled = true
-        
-        // Enable vector drawable support
+
         vectorDrawables {
             useSupportLibrary = true
         }
-    }
-    
-    // Enable build features
-    buildFeatures {
-        buildConfig = true
-        viewBinding = true
-        compose = true
-    }
-    
-    // Configure Compose compiler options
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
-    
-    // Configure Java compilation options
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_24
-        targetCompatibility = JavaVersion.VERSION_24
-        isCoreLibraryDesugaringEnabled = true
-    }
-    
-    // Configure Java toolchain for all tasks
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(24))
+
+        ndk {
+            abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a", "x86_64", "x86"))
+        }
+
+        externalNativeBuild {
+            cmake {
+                cppFlags += listOf(
+                    "-std=c++20",
+                    "-fPIC",
+                    "-O2",
+                    "-Wno-unused-parameter",
+                    "-Wno-unused-function"
+                )
+                arguments += listOf(
+                    "-DANDROID_STL=c++_shared",
+                    "-DANDROID_PLATFORM=android-33",
+                    "-DCMAKE_BUILD_TYPE=Release",
+                    "-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH",
+                    "-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH"
+                )
+            }
         }
     }
 
-    // Configure Java compilation tasks to use Java 17
-    tasks.withType<JavaCompile>().configureEach {
-        sourceCompatibility = JavaVersion.VERSION_24.toString()
-        targetCompatibility = JavaVersion.VERSION_24.toString()
-    }
-
-    // Configure Android resources
-    androidResources {
-        localeFilters.add("en")
-    }
-    
-    // Enable split APKs by ABI for smaller APK sizes
-    ndkVersion = "25.2.9519653" // Use the same version as specified below
-    splits {
-        abi {
-            isEnable = true
-            reset()
-            include("armeabi-v7a", "arm64-v8a", "x86_64")
-            isUniversalApk = false
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            // Let Android Studio auto-detect the best CMake version
         }
     }
 
-    // Configure build types
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
         debug {
-            isDebuggable = true
-            applicationIdSuffix = ".debug"
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
-    // Configure packaging options for all build types
     packaging {
         resources {
-            // Keep debug symbols for native libraries in debug builds
-            jniLibs.keepDebugSymbols.add("**/*.so")
-            
-            // Common resource exclusions
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "META-INF/LICENSE.md"
-            excludes += "META-INF/LICENSE-notice.md"
+            excludes += setOf(
+                "/META-INF/{AL2.0,LGPL2.1}",
+                "/META-INF/DEPENDENCIES",
+                "/META-INF/LICENSE",
+                "/META-INF/LICENSE.txt",
+                "/META-INF/NOTICE",
+                "/META-INF/NOTICE.txt",
+                "META-INF/*.kotlin_module",
+                "**/kotlin/**",
+                "**/*.txt",
+                "**/*.xml"
+            )
+        }
+        jniLibs {
+            useLegacyPackaging = false
+            pickFirsts += listOf("**/libc++_shared.so", "**/libjsc.so")
         }
     }
 
     buildFeatures {
+        compose = true
         buildConfig = true
-        // Compose is automatically enabled by the kotlin.compose plugin
+        viewBinding = false
     }
 
-    // Enable ViewBinding for legacy views if needed
-    buildFeatures.viewBinding = true
-
-    // Enable data binding if needed
-    // buildFeatures.dataBinding = true
-
-    // Configure CMake for native code
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.29.2" // Updated to latest stable CMake version as of July 2025
+    sourceSets {
+        getByName("main") {
+            java.srcDirs(
+                layout.buildDirectory.dir("generated/source/openapi/src/main/kotlin")
+            )
         }
     }
 
-    ndkVersion = "26.2.11394342" // Updated to latest stable NDK version as of July 2025
-
-    // Compose compiler options
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
-
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "META-INF/LICENSE.md"
-            excludes += "META-INF/LICENSE-notice.md"
-        }
-    }
+    // Let Android Studio auto-detect NDK version from SDK Manager
 }
 
-// OpenAPI Generator Configuration - Streamlined
+// FIXED: OpenAPI Configuration - Correct path to api-spec folder
+val consolidatedSpecsPath = layout.projectDirectory.dir("api-spec")
+val outputPath = layout.buildDirectory.dir("generated/source/openapi")
+
+val sharedApiConfig = mapOf(
+    "library" to "jvm-retrofit2",
+    "useCoroutines" to "true",
+    "serializationLibrary" to "kotlinx_serialization",
+    "dateLibrary" to "kotlinx-datetime",
+    "sourceFolder" to "src/main/kotlin"
+)
+
+fun createApiTaskSafe(taskName: String, specFile: String, packagePrefix: String) =
+    tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>(taskName) {
+        val specPath = consolidatedSpecsPath.file(specFile).asFile
+
+        generatorName.set("kotlin")
+
+        // DEBUG: Print actual path being checked
+        logger.lifecycle("[DEBUG] Checking OpenAPI spec: ${specPath.absolutePath}")
+        logger.lifecycle("[DEBUG] File exists: ${specPath.exists()}")
+        if (specPath.exists()) {
+            logger.lifecycle("[DEBUG] File size: ${specPath.length()} bytes")
+        }
+
+        if (specPath.exists() && specPath.length() > 0) {
+            logger.lifecycle("[DEBUG] SUCCESS: Using spec file $specFile")
+            inputSpec.set(specPath.toURI().toString())
+            outputDir.set(outputPath.get().asFile.absolutePath)
+            packageName.set("dev.aurakai.$packagePrefix.api")
+            apiPackage.set("dev.aurakai.$packagePrefix.api")
+            modelPackage.set("dev.aurakai.$packagePrefix.model")
+            invokerPackage.set("dev.aurakai.$packagePrefix.client")
+            skipOverwrite.set(false)
+            validateSpec.set(false)
+            generateApiTests.set(false)
+            generateModelTests.set(false)
+            generateApiDocumentation.set(false)
+            generateModelDocumentation.set(false)
+            configOptions.set(sharedApiConfig)
+        } else {
+            logger.warn("OpenAPI spec file not found or empty: $specFile")
+            inputSpec.set("")
+            outputDir.set(outputPath.get().asFile.absolutePath)
+            packageName.set("dev.aurakai.$packagePrefix.api")
+            configOptions.set(sharedApiConfig)
+            onlyIf { false }
+        }
+    }
+
+// Configure the main Genesis API
 openApiGenerate {
-    generatorName.set("kotlin")
-    inputSpec.set("$projectDir/src/main/openapi/aura-api.yaml")
-    outputDir.set("${layout.buildDirectory.get().asFile}/generated/openapi")
-    
-    // Generator configuration
-    configOptions.set(
-        mapOf(
-            "dateLibrary" to "java8",
-            "useCoroutines" to "true",
-            "collectionType" to "list",
-            "enumPropertyNaming" to "UPPERCASE",
-            "serializationLibrary" to "gson",
-            "apiSuffix" to "Api",
-            "modelSuffix" to "Dto"
-        )
+    val specFile = consolidatedSpecsPath.file("genesis-api.yml").asFile
+    if (specFile.exists() && specFile.length() > 0) {
+        generatorName.set("kotlin")
+        inputSpec.set(specFile.toURI().toString())
+        outputDir.set(outputPath.get().asFile.absolutePath)
+        packageName.set("dev.aurakai.genesis.api")
+        apiPackage.set("dev.aurakai.genesis.api")
+        modelPackage.set("dev.aurakai.genesis.model")
+        invokerPackage.set("dev.aurakai.genesis.client")
+        skipOverwrite.set(false)
+        validateSpec.set(false)
+        generateApiTests.set(false)
+        generateModelTests.set(false)
+        generateApiDocumentation.set(false)
+        generateModelDocumentation.set(false)
+        configOptions.set(sharedApiConfig)
+    } else {
+        logger.warn("Genesis API spec file not found: genesis-api.yml")
+    }
+}
+
+// Create all consciousness API tasks
+val generateAiApi = createApiTaskSafe("generateAiApi", "ai-api.yml", "ai")
+val generateOracleApi = createApiTaskSafe("generateOracleApi", "oracle-drive-api.yml", "oracle")
+val generateCustomizationApi =
+    createApiTaskSafe("generateCustomizationApi", "customization-api.yml", "customization")
+val generateRomToolsApi = createApiTaskSafe("generateRomToolsApi", "romtools-api.yml", "romtools")
+val generateSandboxApi = createApiTaskSafe("generateSandboxApi", "sandbox-api.yml", "sandbox")
+val generateSystemApi = createApiTaskSafe("generateSystemApi", "system-api.yml", "system")
+val generateAuraBackendApi = createApiTaskSafe("generateAuraBackendApi", "aura-api.yaml", "aura")
+val generateAuraFrameFXApi =
+    createApiTaskSafe("generateAuraFrameFXApi", "auraframefx_ai_api.yaml", "auraframefx")
+
+// Clean tasks
+tasks.register<Delete>("cleanAllConsciousnessApis") {
+    group = "openapi"
+    description = "Clean ALL consciousness API files"
+    delete(outputPath)
+}
+
+tasks.register<Delete>("cleanAllNativeBuilds") {
+    group = "build setup"
+    description = "Clean ALL native build caches"
+
+    val rootDirProvider = layout.projectDirectory
+    val buildDirProvider = layout.buildDirectory
+
+    delete(
+        rootDirProvider.dir(".cxx"),
+        buildDirProvider.dir("intermediates/cxx"),
+        rootDirProvider.dir("app/.cxx")
     )
-    
-    // Package configuration
-    apiPackage.set("dev.aurakai.auraframefx.api.generated")
-    modelPackage.set("dev.aurakai.auraframefx.api.model")
-    invokerPackage.set("dev.aurakai.auraframefx.api.invoker")
-    
-    // Global properties
-    globalProperties.set(
-        mapOf(
-            "apis" to "",
-            "models" to "",
-            "modelDocs" to "false"
-        )
+}
+
+// Generate all APIs
+tasks.register("generateAllConsciousnessApis") {
+    group = "openapi"
+    description = "Generate ALL consciousness APIs"
+
+    dependsOn("cleanAllConsciousnessApis")
+    dependsOn(
+        "openApiGenerate",
+        generateAiApi,
+        generateOracleApi,
+        generateCustomizationApi,
+        generateRomToolsApi,
+        generateSandboxApi,
+        generateSystemApi,
+        generateAuraBackendApi,
+        generateAuraFrameFXApi
     )
 }
 
-// KSP Configuration
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
-}
-
-// Source sets configuration
-android.sourceSets.getByName("main") {
-    java.srcDir("${layout.buildDirectory.get().asFile}/generated/openapi/src/main/kotlin")
-}
-
-// Task dependencies
 tasks.named("preBuild") {
-    dependsOn("openApiGenerate")
+    dependsOn("cleanAllNativeBuilds")
+    dependsOn("generateAllConsciousnessApis")
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    dependsOn("generateAllConsciousnessApis")
+    mustRunAfter("generateAllConsciousnessApis")
 }
 
 dependencies {
-    // Core library desugaring for Java 8+ APIs on older Android versions
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    implementation(platform(libs.androidx.compose.bom))
 
-    // Core AndroidX dependencies
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
 
-    // Compose dependencies
-    implementation(platform("androidx.compose:compose-bom:2024.02.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-
-    // Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-
-    // Xposed Framework from local libs folder
-    compileOnly(fileTree("${rootProject.projectDir}/Libs") {
-        include("*.jar")
-    })
-
-    // LSPosed Framework
-    compileOnly("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
-
-    // Color Picker
-    implementation("com.github.Mahmud0808:ColorBlendr:1.0.0")
-
-    // Core Android
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
-    implementation("androidx.cardview:cardview:1.0.0")
-
-    // Material 3 with BOM (Bill of Materials) - Using stable version
-    val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
-    implementation(composeBom)
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material3:material3-window-size-class")
-
-    // Material3 Adaptive components - Temporarily disabled as they're not available in stable
-    // implementation("androidx.compose.material3:material3-adaptive")
-    // implementation("androidx.compose.material3:material3-adaptive-navigation-suite")
-
-    // Material Icons Extended
-    implementation("androidx.compose.material:material-icons-extended")
-
-    // Material Components (for View-based components)
-    implementation("com.google.android.material:material:1.11.0")
-
-    // Compose dependencies from version catalog
     implementation(libs.bundles.compose)
-    debugImplementation(libs.bundles.compose.debug)
+    implementation(libs.androidx.navigation.compose)
 
-    // Networking
-    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
-    // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.kotlinx.serialization)
+    implementation(libs.bundles.coroutines)
+    implementation(libs.bundles.network)
 
-    // DataStore & Security
-    implementation(libs.bundles.security)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
-    // UI & Other
-    implementation(libs.coil.compose)
     implementation(libs.timber)
+    implementation(libs.coil.compose)
 
-    // Testing
-    testImplementation(libs.bundles.testing.unit)
+    coreLibraryDesugaring(libs.coreLibraryDesugaring)
 
-    // Android Testing
-    androidTestImplementation(libs.bundles.testing.android)
-    androidTestImplementation(libs.compose.ui.test.junit4)
-    debugImplementation(libs.compose.ui.test.manifest)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.bundles.firebase)
 
+    // XPosed - Using LOCAL JARs from Libs folder
+    implementation(fileTree(mapOf("dir" to "Libs", "include" to listOf("*.jar"))))
+    ksp(libs.yuki.ksp.xposed)
+
+    debugImplementation(libs.leakcanary.android)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    testImplementation(libs.bundles.testing)
+    testRuntimeOnly(libs.junit.engine)
+
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.hilt.android.testing)
     kspAndroidTest(libs.hilt.compiler)
-
-    // Local color blending module
-    implementation(project(":colorblendr"))
 }

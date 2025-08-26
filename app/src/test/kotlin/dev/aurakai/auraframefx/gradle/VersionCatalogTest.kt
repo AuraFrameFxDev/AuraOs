@@ -1,8 +1,8 @@
 package dev.aurakai.auraframefx.gradle
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import java.io.File
 
 /**
@@ -14,7 +14,7 @@ class VersionCatalogTest {
 
     private lateinit var buildContent: String
 
-    @Before
+    @BeforeEach
     fun setup() {
         val buildFile = File("app/build.gradle.kts")
         buildContent = if (buildFile.exists()) {
@@ -53,7 +53,7 @@ class VersionCatalogTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test libs references are properly formatted`() {
         val libsReferences = Regex("libs\\.[a-zA-Z0-9\\.]+").findAll(buildContent)
         assertTrue("Should have multiple version catalog references", libsReferences.count() > 20)
@@ -94,7 +94,7 @@ class VersionCatalogTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version references in configuration`() {
         assertTrue(
             "Should reference Kotlin version from catalog",
@@ -143,7 +143,7 @@ class VersionCatalogTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version catalog references follow naming conventions`() {
         val libsReferences = Regex("libs\\.[a-zA-Z0-9\\.]+").findAll(buildContent)
         libsReferences.forEach { match ->
@@ -161,7 +161,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test plugin alias format consistency`() {
         val pluginAliases =
             Regex("alias\\(libs\\.plugins\\.[a-zA-Z0-9\\.]+\\)").findAll(buildContent)
@@ -214,7 +214,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version catalog bundles usage`() {
         // Check if bundles are used for related dependencies
         val bundlePattern = Regex("libs\\.bundles\\.[a-zA-Z0-9\\.]+")
@@ -254,7 +254,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test BOM platform dependencies are properly handled`() {
         val bomPattern = Regex("platform\\(libs\\.[a-zA-Z0-9\\.]+\\)")
         bomPattern.findAll(buildContent)
@@ -271,7 +271,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version reference syntax consistency`() {
         val versionReferences =
             Regex("libs\\.versions\\.[a-zA-Z0-9\\.]+\\.get\\(\\)").findAll(buildContent)
@@ -294,7 +294,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test implementation vs api usage patterns`() {
         val apiCount = Regex("api\\s*\\(").findAll(buildContent).count()
         val implementationCount = Regex("implementation\\s*\\(").findAll(buildContent).count()
@@ -330,7 +330,7 @@ class VersionCatalogTest {
         ) // Always pass but log findings
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test proper multiline dependency formatting`() {
         // Check for consistent formatting in multiline dependency blocks
         val dependencyBlocks = Regex("dependencies\\s*\\{[^}]*\\}", RegexOption.DOT_MATCHES_ALL)
@@ -359,7 +359,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version catalog availability edge cases`() {
         // Test behavior when build file might not exist or be empty
         val emptyBuildContent = ""
@@ -374,7 +374,7 @@ class VersionCatalogTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test configuration cache compatibility`() {
         // Check for patterns that might break configuration cache
         val problematicPatterns = listOf(
@@ -427,7 +427,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test proper dependency scoping`() {
         // Verify that test dependencies are properly scoped
         val testDependencies =
@@ -445,7 +445,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test namespace consistency`() {
         // Check that namespace matches expected pattern
         val namespacePattern = Regex("namespace\\s*=\\s*\"([^\"]+)\"")
@@ -460,7 +460,7 @@ class VersionCatalogTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version catalog usage completeness`() {
         // Ensure high percentage of dependencies use version catalog
         val allDependencies =

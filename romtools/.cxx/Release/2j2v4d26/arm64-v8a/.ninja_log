@@ -1,0 +1,7 @@
+# ninja log v5
+0	9	0	clean	bfff2010d6239e2d
+0	11	0	clean	bfff2010d6239e2d
+0	10	0	clean	bfff2010d6239e2d
+0	11	0	clean	bfff2010d6239e2d
+1	224	7778758142786498	CMakeFiles/romtools.dir/romtools_native.cpp.o	bb2056946b7d835d
+226	428	7778758144887901	C:/Users/Wehtt/StudioProjects/AuraOs/romtools/build/intermediates/cxx/Release/2j2v4d26/obj/arm64-v8a/libromtools.so	3b37363337eff868

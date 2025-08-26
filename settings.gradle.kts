@@ -71,7 +71,7 @@ rootProject.children.forEach { project ->
     } ?: "build.gradle.kts"
 
     // Create build file if it doesn't exist
-    val buildFile = project.projectDir.resolve(project.buildFileName!!)
+    val buildFile = project.projectDir.resolve(project.buildFileName)
     if (!buildFile.exists()) {
         buildFile.parentFile?.mkdirs()
         buildFile.createNewFile()

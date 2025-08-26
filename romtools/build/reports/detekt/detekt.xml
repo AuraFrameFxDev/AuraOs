@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="4.3">
+    <file name="romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt">
+        <error column="42" line="28" message="The constructor(context: Context, bootloaderManager: BootloaderManager, recoveryManager: RecoveryManager, systemModificationManager: SystemModificationManager, flashManager: FlashManager, verificationManager: RomVerificationManager, backupManager: BackupManager) has too many parameters. The current threshold is set to 7."
+            severity="warning"
+            source="detekt.LongParameterList" />
+        <error column="7" line="28" message="Class &apos;RomToolsManager&apos; with &apos;11&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;"
+            severity="warning"
+            source="detekt.TooManyFunctions" />
+        <error column="18" line="118" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled."
+            severity="warning"
+            source="detekt.TooGenericExceptionCaught" />
+        <error column="18" line="143" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled."
+            severity="warning"
+            source="detekt.TooGenericExceptionCaught" />
+        <error column="18" line="168" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled."
+            severity="warning"
+            source="detekt.TooGenericExceptionCaught" />
+        <error column="18" line="193" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled."
+            severity="warning"
+            source="detekt.TooGenericExceptionCaught" />
+        <error column="18" line="210" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled."
+            severity="warning"
+            source="detekt.TooGenericExceptionCaught" />
+        <error column="18" line="236" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled."
+            severity="warning"
+            source="detekt.TooGenericExceptionCaught" />
+        <error column="18" line="236" message="The caught exception is swallowed. The original exception could be lost."
+            severity="warning"
+            source="detekt.SwallowedException" />
+        <error column="65" line="81" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="71" line="86" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="76" line="92" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="75" line="98" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="64" line="103" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="68" line="105" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="86" line="105" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="74" line="109" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="61" line="112" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="61" line="137" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="61" line="162" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="61" line="187" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="35" line="364" message="Function parameter `deviceModel` is unused."
+            severity="warning" source="detekt.UnusedParameter" />
+        <error column="37" line="29" message="Private property `context` is unused."
+            severity="warning" source="detekt.UnusedPrivateProperty" />
+    </file>
+    <file name="romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt">
+        <error column="5" line="32" message="The function RomToolsScreen is too long (128). The maximum length is 60."
+            severity="warning"
+            source="detekt.LongMethod" />
+        <error column="47" line="328" message="This empty block of code can be removed."
+            severity="warning" source="detekt.EmptyElseBlock" />
+        <error column="5" line="32" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="194" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="239" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="260" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="280" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="320" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="468" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="473" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="1" line="4" message="androidx.compose.animation.* is a wildcard import. Replace it with fully qualified imports."
+            severity="warning"
+            source="detekt.WildcardImport" />
+        <error column="1" line="6" message="androidx.compose.foundation.layout.* is a wildcard import. Replace it with fully qualified imports."
+            severity="warning"
+            source="detekt.WildcardImport" />
+        <error column="1" line="11" message="androidx.compose.material.icons.filled.* is a wildcard import. Replace it with fully qualified imports."
+            severity="warning"
+            source="detekt.WildcardImport" />
+        <error column="1" line="12" message="androidx.compose.material3.* is a wildcard import. Replace it with fully qualified imports."
+            severity="warning"
+            source="detekt.WildcardImport" />
+        <error column="1" line="13" message="androidx.compose.runtime.* is a wildcard import. Replace it with fully qualified imports."
+            severity="warning"
+            source="detekt.WildcardImport" />
+        <error column="31" line="45" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="46" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="47" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="35" line="57" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="39" line="78" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="39" line="112" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="43" line="160" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="43" line="177" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="36" line="201" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="211" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="45" line="253" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="68" line="253" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="36" line="287" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="297" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="305" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="36" line="306" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="51" line="331" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="74" line="331" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="385" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="394" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="403" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="412" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="421" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="430" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="30" line="468" message="Function parameter `rom` is unused."
+            severity="warning" source="detekt.UnusedParameter" />
+        <error column="24" line="473" message="Function parameter `backup` is unused."
+            severity="warning" source="detekt.UnusedParameter" />
+    </file>
+    <file
+        name="romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/bootloader/BootloaderManager.kt">
+        <error column="9" line="22" message="Forbidden TODO todo marker in comment, please do the changes."
+            severity="warning"
+            source="detekt.ForbiddenComment" />
+        <error column="9" line="27" message="Forbidden TODO todo marker in comment, please do the changes."
+            severity="warning"
+            source="detekt.ForbiddenComment" />
+        <error column="9" line="32" message="Forbidden TODO todo marker in comment, please do the changes."
+            severity="warning"
+            source="detekt.ForbiddenComment" />
+    </file>
+    <file name="romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsConfig.kt">
+        <error column="56" line="15" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="60" line="15" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="64" line="15" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="68" line="15" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+    </file>
+</checkstyle>

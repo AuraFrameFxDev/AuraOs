@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+    </style>
+    <meta charset="utf-8">
+    <title>detekt report</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            width: fit-content;
+            background: -webkit-linear-gradient(left, rgba(105, 33, 224, 1), rgba(247, 44, 67, 1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+            background: rgb(105, 33, 224);
+            background: linear-gradient(90deg, rgba(105, 33, 224, 0.8) 0%, rgba(158, 41, 156, 0.8) 50%, rgba(247, 44, 67, 0.8) 100%);
+            padding: 0.2em;
+            color: #ffffff;
+            border-radius: 4px;
+        }
+
+        h3 {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, rgba(105, 33, 224, 0.4) 0%, rgba(158, 41, 156, 0.4) 50%, rgba(247, 44, 67, 0.4) 100%);
+            padding: 0.5em;
+            border-radius: 4px;
+        }
+
+        .rule-container {
+            background: linear-gradient(90deg, rgba(105, 33, 224, 0.2) 0%, rgba(158, 41, 156, 0.2) 100%);
+            border-radius: 4px;
+            padding-left: 1em;
+            padding-bottom: 0.3em;
+            padding-top: 0.3em;
+            padding-right: 1em;
+            line-height: 1.5em;
+            margin-bottom: 8px;
+            margin-top: 8px;
+        }
+
+        .rule {
+            font-family: Arial, sans-serif;
+            padding: 0.3em;
+            font-weight: 600;
+            border-radius: 3px;
+        }
+
+        .description {
+            font-family: Arial, sans-serif;
+            color: #000000;
+            padding: 0.3em;
+        }
+
+        .location {
+            font-family: Jetbrains Mono, monospace;
+            font-weight: 500;
+            color: #000000;
+            display: block;
+        }
+
+        .message {
+            font-family: Arial, sans-serif;
+            font-size: 0.8em;
+            color: #444444;
+            display: block;
+            margin-top: 1pt;
+        }
+
+        code {
+            font-family: JetBrains Mono, monospace;
+            font-weight: 400;
+        }
+
+        pre {
+            font-family: JetBrains Mono, monospace;
+            font-weight: 500;
+            border: 1px solid #e0e0e0;
+            overflow: auto;
+        }
+
+        .lineno {
+            margin-right: 24px;
+            color: #9771c3;
+            background-color: rgba(230, 211, 243, 0.51);
+        }
+
+        .error {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AwCFR4T/3uLMgAAADxJREFUCNdNyLERQEAABMCjL4lQwIzcjErpguAL+C9AvgKJDbeD/PRpLdm35Hm+MU+cB+tCKaJW4L4YBy+CAiLJrFs9mgAAAABJRU5ErkJggg==) bottom repeat-x;
+        }
+
+        .exception {
+            color: #b60808;
+            display: inline-block;
+            background-color: #ecdada;
+            border-color: #b60808;
+            border-radius: 10px;
+            border: solid 2px;
+            padding-left: 16px;
+            padding-right: 16px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<svg fill="none" height="53" style="padding-top: 8px" viewBox="0 0 225 53" width="225"
+     xmlns="http://www.w3.org/2000/svg">
+    <path d="M88.8883 42.2665V7.99487H81.6954V20.389C79.9918 18.3703 77.6257 16.6332 73.7926 16.6332C67.7828 16.6332 62.2461 21.2341 62.2461 29.6377V29.7316C62.2461 38.1352 67.8774 42.736 73.7926 42.736C77.5311 42.736 79.9445 40.9989 81.6954 38.6516V42.2665H88.8883ZM81.79 29.7316C81.79 33.9099 78.998 36.6798 75.6382 36.6798C72.2783 36.6798 69.439 33.9099 69.439 29.7316V29.6377C69.439 25.4124 72.2783 22.6894 75.6382 22.6894C78.998 22.6894 81.79 25.4593 81.79 29.6377V29.7316Z"
+          fill="#222222"/>
+    <path d="M120.325 30.3888V30.2949C120.325 23.1589 116.444 16.6332 107.974 16.6332C100.591 16.6332 95.4334 22.5486 95.4334 29.7316V29.8254C95.4334 37.5248 101.065 42.8299 108.683 42.8299C113.274 42.8299 116.681 41.0459 119.047 38.1352L114.93 34.5202C112.942 36.3511 111.192 37.1023 108.778 37.1023C105.56 37.1023 103.289 35.4122 102.579 32.1728H120.23C120.277 31.5156 120.325 31.093 120.325 30.3888ZM113.321 27.7128H102.484C103.052 24.4734 104.992 22.3608 107.974 22.3608C111.002 22.3608 112.895 24.5204 113.321 27.7128Z"
+          fill="#222222"/>
+    <path d="M141.278 41.2337V35.5061C140.237 36.0695 139.054 36.3981 137.729 36.3981C136.12 36.3981 135.41 35.6 135.41 33.9568V23.2059H141.373V17.1027H135.41V10.6709H128.217V17.1027H125.189V23.2059H128.217V35.1305C128.217 40.952 131.199 42.6891 135.599 42.6891C138.013 42.6891 139.764 42.1257 141.278 41.2337Z"
+          fill="#222222"/>
+    <path d="M172.008 30.3888V30.2949C172.008 23.1589 168.128 16.6332 159.657 16.6332C152.275 16.6332 147.117 22.5486 147.117 29.7316V29.8254C147.117 37.5248 152.748 42.8299 160.367 42.8299C164.958 42.8299 168.365 41.0459 170.731 38.1352L166.614 34.5202C164.626 36.3511 162.875 37.1023 160.462 37.1023C157.244 37.1023 154.973 35.4122 154.263 32.1728H171.914C171.961 31.5156 172.008 31.093 172.008 30.3888ZM165.005 27.7128H154.168C154.736 24.4734 156.676 22.3608 159.657 22.3608C162.686 22.3608 164.579 24.5204 165.005 27.7128Z"
+          fill="#222222"/>
+    <path d="M203.278 42.2665L193.293 27.0086L202.947 17.1027H194.334L185.911 26.2574V7.99487H178.718V42.2665H185.911V34.6141L188.419 31.985L195.044 42.2665H203.278Z"
+          fill="#222222"/>
+    <path d="M224.905 41.2337V35.5061C223.864 36.0695 222.681 36.3981 221.356 36.3981C219.747 36.3981 219.037 35.6 219.037 33.9568V23.2059H225V17.1027H219.037V10.6709H211.844V17.1027H208.816V23.2059H211.844V35.1305C211.844 40.952 214.826 42.6891 219.227 42.6891C221.64 42.6891 223.391 42.1257 224.905 41.2337Z"
+          fill="#222222"/>
+    <path clip-rule="evenodd" d="M2.18611 0C0.978755 0 0 0.978755 0 2.18611V40.771C0 41.9783 0.978755 42.9571 2.18611 42.9571H24.2534C25.6525 42.9571 26.6258 41.5473 26.3774 40.1705C26.2109 39.2481 26.124 38.2981 26.124 37.3279C26.124 28.5443 33.2445 21.4239 42.028 21.4239C42.8689 21.4239 43.6945 21.4892 44.5001 21.6149C45.8578 21.8268 47.22 20.8585 47.22 19.4844V2.18611C47.22 0.978755 46.2412 0 45.0339 0H2.18611Z"
+          fill="url(#paint0_linear)"
+          fill-rule="evenodd"/>
+    <path d="M55.3358 48.6166L54.7673 48.0481L53.2421 46.5229L52.9516 46.2324C52.2427 45.5234 52.1855 44.4067 52.673 43.5306C53.6299 41.8109 54.1762 39.833 54.1762 37.7293C54.1762 32.9104 51.3147 28.7499 47.2029 26.8501C46.5196 26.5344 45.8024 26.2808 45.0573 26.0974C44.3636 25.9268 43.6467 25.8164 42.9118 25.7727C42.6749 25.7587 42.4369 25.7495 42.1966 25.7495C38.5166 25.7495 35.2203 27.4188 33.0211 30.0381C31.9784 31.2802 31.1838 32.7357 30.7114 34.3293C30.3916 35.4079 30.217 36.5481 30.217 37.7291C30.217 38.0293 30.2319 38.3259 30.2537 38.6205C30.3082 39.3559 30.4265 40.0733 30.6082 40.766C30.8038 41.5117 31.0689 42.2296 31.3974 42.9116C33.3332 46.9295 37.4465 49.7089 42.1967 49.7089C43.957 49.7089 45.6291 49.3259 47.1357 48.6403C47.9841 48.2543 49.0046 48.3536 49.6636 49.0127L50.0894 49.4385L51.6301 50.9794L52.3016 51.6509C52.7205 52.0699 53.2697 52.2794 53.8186 52.2794C54.3677 52.2794 54.9169 52.0699 55.3357 51.6509C56.1738 50.8129 56.1738 49.4544 55.3358 48.6166ZM42.1967 45.418C39.9525 45.418 37.93 44.451 36.5232 42.9122C35.9485 42.2836 35.4772 41.5594 35.135 40.7667C34.845 40.0954 34.6493 39.3746 34.5617 38.6211C34.5277 38.3283 34.5084 38.0314 34.5084 37.7297C34.5084 33.4903 37.9574 30.0413 42.1968 30.0413C42.4379 30.0413 42.6762 30.0539 42.912 30.0756C43.6638 30.1455 44.3837 30.3242 45.0576 30.5956C45.8458 30.9127 46.5689 31.3564 47.2031 31.902C48.8434 33.3131 49.8852 35.4015 49.8852 37.7297C49.885 41.9688 46.4361 45.418 42.1967 45.418Z"
+          fill="url(#paint1_linear)"/>
+    <path d="M9.9936 25.6979C9.34217 25.6979 8.84618 25.4958 8.50566 25.0914C8.16514 24.6709 7.99487 24.1695 7.99487 23.5873V23.4903C7.99487 22.908 8.16514 22.4147 8.50566 22.0104C8.84618 21.5899 9.34217 21.3796 9.9936 21.3796C10.645 21.3796 11.141 21.5899 11.4815 22.0104C11.8221 22.4147 11.9923 22.908 11.9923 23.4903V23.5873C11.9923 24.1695 11.8221 24.6709 11.4815 25.0914C11.141 25.4958 10.645 25.6979 9.9936 25.6979ZM8.17254 10.8158V7.99487H11.8147V10.8158L10.6598 19.1612H9.32736L8.17254 10.8158Z"
+          fill="white"/>
+    <path d="M20.2729 25.6979C19.6215 25.6979 19.1255 25.4958 18.785 25.0914C18.4444 24.6709 18.2742 24.1695 18.2742 23.5873V23.4903C18.2742 22.908 18.4444 22.4147 18.785 22.0104C19.1255 21.5899 19.6215 21.3796 20.2729 21.3796C20.9243 21.3796 21.4203 21.5899 21.7608 22.0104C22.1014 22.4147 22.2716 22.908 22.2716 23.4903V23.5873C22.2716 24.1695 22.1014 24.6709 21.7608 25.0914C21.4203 25.4958 20.9243 25.6979 20.2729 25.6979ZM18.4518 10.8158V7.99487H22.094V10.8158L20.9391 19.1612H19.6067L18.4518 10.8158Z"
+          fill="white"/>
+    <defs>
+        <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear" x1="5.222e-07" x2="51.982" y1="41.3361"
+                        y2="33.29">
+            <stop stop-color="#7942EE"/>
+            <stop offset="1" stop-color="#FF4651"/>
+        </linearGradient>
+        <linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear" x1="53.0121" x2="60.9801" y1="51.5465"
+                        y2="30.2423">
+            <stop stop-color="#7942EE"/>
+            <stop offset="1" stop-color="#FF4651"/>
+        </linearGradient>
+    </defs>
+</svg>
+
+<h2>Metrics</h2>
+
+<div>
+    <ul>
+        <li>22 number of properties</li>
+        <li>64 number of functions</li>
+        <li>54 number of classes</li>
+        <li>4 number of packages</li>
+        <li>6 number of kt files</li>
+    </ul>
+</div>
+
+
+<h2>Complexity Report</h2>
+
+<div>
+    <ul>
+        <li>1,162 lines of code (loc)</li>
+        <li>913 source lines of code (sloc)</li>
+        <li>707 logical lines of code (lloc)</li>
+        <li>110 comment lines of code (cloc)</li>
+        <li>112 cyclomatic complexity (mcc)</li>
+        <li>66 cognitive complexity</li>
+        <li>71 number of total code smells</li>
+        <li>12% comment source ratio</li>
+        <li>158 mcc per 1,000 lloc</li>
+        <li>100 code smells per 1,000 lloc</li>
+    </ul>
+</div>
+
+
+<h2>Findings</h2>
+<div>Total: 71
+    <h3>complexity: 3</h3>
+    <details id="LongMethod" open="open">
+        <summary class="rule-container"><span class="rule">LongMethod: 1 </span><span
+                class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/complexity#longmethod">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:32:5</span><span
+                    class="message">The function RomToolsScreen is too long (128). The maximum length is 60.</span>
+                <pre><code><span class="lineno">  29 </span> */
+<span class="lineno">  30 </span>@OptIn(ExperimentalMaterial3Api::class)
+<span class="lineno">  31 </span>@Composable
+<span class="lineno">  32 </span>fun <span class="error">RomToolsScreen</span>(
+<span class="lineno">  33 </span>    modifier: Modifier = Modifier,
+<span class="lineno">  34 </span>    romToolsManager: RomToolsManager = hiltViewModel()
+<span class="lineno">  35 </span>) {
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <details id="LongParameterList" open="open">
+        <summary class="rule-container"><span class="rule">LongParameterList: 1 </span><span
+                class="description">The more parameters a function has the more complex it is. Long parameter lists are often used to control complex algorithms and violate the Single Responsibility Principle. Prefer functions with short parameter lists.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/complexity#longparameterlist">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:28:42</span><span
+                    class="message">The constructor(context: Context, bootloaderManager: BootloaderManager, recoveryManager: RecoveryManager, systemModificationManager: SystemModificationManager, flashManager: FlashManager, verificationManager: RomVerificationManager, backupManager: BackupManager) has too many parameters. The current threshold is set to 7.</span>
+                <pre><code><span class="lineno">  25 </span> * - AI-assisted ROM optimization
+<span class="lineno">  26 </span> */
+<span class="lineno">  27 </span>@Singleton
+<span class="lineno">  28 </span>class RomToolsManager @Inject constructor<span
+                            class="error">(</span>
+<span class="lineno">  29 </span><span class="error">    @ApplicationContext private val context: Context,</span>
+<span class="lineno">  30 </span><span class="error">    private val bootloaderManager: BootloaderManager,</span>
+<span class="lineno">  31 </span><span class="error">    private val recoveryManager: RecoveryManager,</span>
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <details id="TooManyFunctions" open="open">
+        <summary class="rule-container"><span class="rule">TooManyFunctions: 1 </span><span
+                class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/complexity#toomanyfunctions">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:28:7</span><span
+                    class="message">Class 'RomToolsManager' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
+                <pre><code><span class="lineno">  25 </span> * - AI-assisted ROM optimization
+<span class="lineno">  26 </span> */
+<span class="lineno">  27 </span>@Singleton
+<span class="lineno">  28 </span>class <span class="error">RomToolsManager</span> @Inject constructor(
+<span class="lineno">  29 </span>    @ApplicationContext private val context: Context,
+<span class="lineno">  30 </span>    private val bootloaderManager: BootloaderManager,
+<span class="lineno">  31 </span>    private val recoveryManager: RecoveryManager,
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <h3>empty-blocks: 1</h3>
+    <details id="EmptyElseBlock" open="open">
+        <summary class="rule-container"><span class="rule">EmptyElseBlock: 1 </span><span
+                class="description">Empty block of code detected. As they serve no purpose they should be removed.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/empty-blocks#emptyelseblock">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:328:47</span><span
+                    class="message">This empty block of code can be removed.</span>
+                <pre><code><span class="lineno"> 325 </span>) {
+<span class="lineno"> 326 </span>    Card(
+<span class="lineno"> 327 </span>        modifier = modifier.fillMaxWidth(),
+<span class="lineno"> 328 </span>        onClick = if (isEnabled) onClick else <span
+                            class="error">{</span>
+<span class="lineno"> 329 </span><span class="error">        }</span>,
+<span class="lineno"> 330 </span>        colors = CardDefaults.cardColors(
+<span class="lineno"> 331 </span>            containerColor = if (isEnabled) Color(0xFF1E1E1E) else Color(0xFF111111)
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <h3>exceptions: 7</h3>
+    <details id="SwallowedException" open="open">
+        <summary class="rule-container"><span class="rule">SwallowedException: 1 </span><span
+                class="description">The caught exception is swallowed. The original exception could be lost.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/exceptions#swallowedexception">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:236:18</span><span
+                    class="message">The caught exception is swallowed. The original exception could be lost.</span>
+                <pre><code><span class="lineno"> 233 </span>        return try {
+<span class="lineno"> 234 </span>            val process = Runtime.getRuntime().exec(&quot;su -c 'echo test'&quot;)
+<span class="lineno"> 235 </span>            process.waitFor() == 0
+<span class="lineno"> 236 </span>        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 237 </span>            false
+<span class="lineno"> 238 </span>        }
+<span class="lineno"> 239 </span>    }
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <details id="TooGenericExceptionCaught" open="open">
+        <summary class="rule-container"><span class="rule">TooGenericExceptionCaught: 6 </span><span
+                class="description">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/exceptions#toogenericexceptioncaught">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:118:18</span><span
+                    class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+                <pre><code><span class="lineno"> 115 </span>            Timber.i(&quot;ROM flashed successfully: ${romFile.name}&quot;)
+<span class="lineno"> 116 </span>            Result.success(Unit)
+<span class="lineno"> 117 </span>
+<span class="lineno"> 118 </span>        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 119 </span>            Timber.e(e, &quot;Failed to flash ROM: ${romFile.name}&quot;)
+<span class="lineno"> 120 </span>            updateOperationProgress(RomOperation.FAILED, 0f)
+<span class="lineno"> 121 </span>            clearOperationProgress()
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:143:18</span><span
+                    class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+                <pre><code><span class="lineno"> 140 </span>            Timber.i(&quot;NANDroid backup created: $backupName&quot;)
+<span class="lineno"> 141 </span>            Result.success(backupInfo)
+<span class="lineno"> 142 </span>
+<span class="lineno"> 143 </span>        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 144 </span>            Timber.e(e, &quot;Failed to create NANDroid backup: $backupName&quot;)
+<span class="lineno"> 145 </span>            updateOperationProgress(RomOperation.FAILED, 0f)
+<span class="lineno"> 146 </span>            clearOperationProgress()
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:168:18</span><span
+                    class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+                <pre><code><span class="lineno"> 165 </span>            Timber.i(&quot;NANDroid backup restored: ${backupInfo.name}&quot;)
+<span class="lineno"> 166 </span>            Result.success(Unit)
+<span class="lineno"> 167 </span>
+<span class="lineno"> 168 </span>        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 169 </span>            Timber.e(e, &quot;Failed to restore NANDroid backup: ${backupInfo.name}&quot;)
+<span class="lineno"> 170 </span>            updateOperationProgress(RomOperation.FAILED, 0f)
+<span class="lineno"> 171 </span>            clearOperationProgress()
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:193:18</span><span
+                    class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+                <pre><code><span class="lineno"> 190 </span>            Timber.i(&quot;Genesis AI optimizations installed successfully&quot;)
+<span class="lineno"> 191 </span>            Result.success(Unit)
+<span class="lineno"> 192 </span>
+<span class="lineno"> 193 </span>        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 194 </span>            Timber.e(e, &quot;Failed to install Genesis optimizations&quot;)
+<span class="lineno"> 195 </span>            updateOperationProgress(RomOperation.FAILED, 0f)
+<span class="lineno"> 196 </span>            clearOperationProgress()
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:210:18</span><span
+                    class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+                <pre><code><span class="lineno"> 207 </span>            val deviceModel = _romToolsState.value.capabilities?.deviceModel ?: &quot;unknown&quot;
+<span class="lineno"> 208 </span>            val roms = romRepository.getCompatibleRoms(deviceModel)
+<span class="lineno"> 209 </span>            Result.success(roms)
+<span class="lineno"> 210 </span>        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 211 </span>            Timber.e(e, &quot;Failed to get available ROMs&quot;)
+<span class="lineno"> 212 </span>            Result.failure(e)
+<span class="lineno"> 213 </span>        }
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:236:18</span><span
+                    class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+                <pre><code><span class="lineno"> 233 </span>        return try {
+<span class="lineno"> 234 </span>            val process = Runtime.getRuntime().exec(&quot;su -c 'echo test'&quot;)
+<span class="lineno"> 235 </span>            process.waitFor() == 0
+<span class="lineno"> 236 </span>        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 237 </span>            false
+<span class="lineno"> 238 </span>        }
+<span class="lineno"> 239 </span>    }
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <h3>naming: 8</h3>
+    <details id="FunctionNaming" open="open">
+        <summary class="rule-container"><span class="rule">FunctionNaming: 8 </span><span
+                class="description">Function names should follow the naming convention set in the configuration.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/naming#functionnaming">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:32:5</span><span
+                    class="message">Function names should match the pattern: [a-z][a-zA-Z0-9]*</span>
+                <pre><code><span class="lineno">  29 </span> */
+<span class="lineno">  30 </span>@OptIn(ExperimentalMaterial3Api::class)
+<span class="lineno">  31 </span>@Composable
+<span class="lineno">  32 </span>fun <span class="error">RomToolsScreen</span>(
+<span class="lineno">  33 </span>    modifier: Modifier = Modifier,
+<span class="lineno">  34 </span>    romToolsManager: RomToolsManager = hiltViewModel()
+<span class="lineno">  35 </span>) {
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:194:13</span><span
+                    class="message">Function names should match the pattern: [a-z][a-zA-Z0-9]*</span>
+                <pre><code><span class="lineno"> 191 </span>}
+<span class="lineno"> 192 </span>
+<span class="lineno"> 193 </span>@Composable
+<span class="lineno"> 194 </span>private fun <span class="error">DeviceCapabilitiesCard</span>(
+<span class="lineno"> 195 </span>    capabilities: dev.aurakai.auraframefx.romtools.RomCapabilities?,
+<span class="lineno"> 196 </span>    modifier: Modifier = Modifier
+<span class="lineno"> 197 </span>) {
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:239:13</span><span
+                    class="message">Function names should match the pattern: [a-z][a-zA-Z0-9]*</span>
+                <pre><code><span class="lineno"> 236 </span>}
+<span class="lineno"> 237 </span>
+<span class="lineno"> 238 </span>@Composable
+<span class="lineno"> 239 </span>private fun <span class="error">CapabilityRow</span>(label: String, hasCapability: Boolean) {
+<span class="lineno"> 240 </span>    Row(
+<span class="lineno"> 241 </span>        modifier = Modifier.fillMaxWidth(),
+<span class="lineno"> 242 </span>        horizontalArrangement = Arrangement.SpaceBetween,
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:260:13</span><span
+                    class="message">Function names should match the pattern: [a-z][a-zA-Z0-9]*</span>
+                <pre><code><span class="lineno"> 257 </span>}
+<span class="lineno"> 258 </span>
+<span class="lineno"> 259 </span>@Composable
+<span class="lineno"> 260 </span>private fun <span class="error">InfoRow</span>(label: String, value: String) {
+<span class="lineno"> 261 </span>    Row(
+<span class="lineno"> 262 </span>        modifier = Modifier.fillMaxWidth(),
+<span class="lineno"> 263 </span>        horizontalArrangement = Arrangement.SpaceBetween
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:280:13</span><span
+                    class="message">Function names should match the pattern: [a-z][a-zA-Z0-9]*</span>
+                <pre><code><span class="lineno"> 277 </span>}
+<span class="lineno"> 278 </span>
+<span class="lineno"> 279 </span>@Composable
+<span class="lineno"> 280 </span>private fun <span class="error">OperationProgressCard</span>(
+<span class="lineno"> 281 </span>    operation: dev.aurakai.auraframefx.romtools.OperationProgress,
+<span class="lineno"> 282 </span>    modifier: Modifier = Modifier
+<span class="lineno"> 283 </span>) {
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:320:13</span><span
+                    class="message">Function names should match the pattern: [a-z][a-zA-Z0-9]*</span>
+                <pre><code><span class="lineno"> 317 </span>}
+<span class="lineno"> 318 </span>
+<span class="lineno"> 319 </span>@Composable
+<span class="lineno"> 320 </span>private fun <span class="error">RomToolActionCard</span>(
+<span class="lineno"> 321 </span>    action: RomToolAction,
+<span class="lineno"> 322 </span>    isEnabled: Boolean,
+<span class="lineno"> 323 </span>    onClick: () -&gt; Unit,
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:468:13</span><span
+                    class="message">Function names should match the pattern: [a-z][a-zA-Z0-9]*</span>
+                <pre><code><span class="lineno"> 465 </span>}
+<span class="lineno"> 466 </span>
+<span class="lineno"> 467 </span>@Composable
+<span class="lineno"> 468 </span>private fun <span class="error">AvailableRomCard</span>(rom: dev.aurakai.auraframefx.romtools.AvailableRom) {
+<span class="lineno"> 469 </span>    // Implementation for available ROM card
+<span class="lineno"> 470 </span>}
+<span class="lineno"> 471 </span>
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:473:13</span><span
+                    class="message">Function names should match the pattern: [a-z][a-zA-Z0-9]*</span>
+                <pre><code><span class="lineno"> 470 </span>}
+<span class="lineno"> 471 </span>
+<span class="lineno"> 472 </span>@Composable
+<span class="lineno"> 473 </span>private fun <span class="error">BackupCard</span>(backup: dev.aurakai.auraframefx.romtools.BackupInfo) {
+<span class="lineno"> 474 </span>    // Implementation for backup card
+<span class="lineno"> 475 </span>}
+<span class="lineno"> 476 </span>
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <h3>style: 52</h3>
+    <details id="ForbiddenComment" open="open">
+        <summary class="rule-container"><span class="rule">ForbiddenComment: 3 </span><span
+                class="description">Flags a forbidden comment.</span></summary>
+        <a href="https://detekt.dev/docs/rules/style#forbiddencomment">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/bootloader/BootloaderManager.kt:22:9</span><span
+                    class="message">Forbidden TODO todo marker in comment, please do the changes.</span>
+                <pre><code><span class="lineno">  19 </span>@Singleton
+<span class="lineno">  20 </span>class BootloaderManagerImpl @Inject constructor() : BootloaderManager {
+<span class="lineno">  21 </span>    override fun checkBootloaderAccess(): Boolean {
+<span class="lineno">  22 </span>        <span class="error">// TODO: Implement bootloader access check</span>
+<span class="lineno">  23 </span>        return false
+<span class="lineno">  24 </span>    }
+<span class="lineno">  25 </span>
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/bootloader/BootloaderManager.kt:27:9</span><span
+                    class="message">Forbidden TODO todo marker in comment, please do the changes.</span>
+                <pre><code><span class="lineno">  24 </span>    }
+<span class="lineno">  25 </span>
+<span class="lineno">  26 </span>    override fun isBootloaderUnlocked(): Boolean {
+<span class="lineno">  27 </span>        <span class="error">// TODO: Implement bootloader unlock status check</span>
+<span class="lineno">  28 </span>        return false
+<span class="lineno">  29 </span>    }
+<span class="lineno">  30 </span>
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/bootloader/BootloaderManager.kt:32:9</span><span
+                    class="message">Forbidden TODO todo marker in comment, please do the changes.</span>
+                <pre><code><span class="lineno">  29 </span>    }
+<span class="lineno">  30 </span>
+<span class="lineno">  31 </span>    override suspend fun unlockBootloader(): Result&lt;Unit&gt; {
+<span class="lineno">  32 </span>        <span
+                            class="error">// TODO: Implement bootloader unlock</span>
+<span class="lineno">  33 </span>        return Result.failure(Exception(&quot;Not implemented&quot;))
+<span class="lineno">  34 </span>    }
+<span class="lineno">  35 </span>}
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <details id="MagicNumber" open="open">
+        <summary class="rule-container"><span class="rule">MagicNumber: 40 </span><span
+                class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/style#magicnumber">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsConfig.kt:15:56</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  12 </span>    const val ROM_TOOLS_ENABLED: Boolean = true
+<span class="lineno">  13 </span>
+<span class="lineno">  14 </span>    /** Supported Android versions for ROM manipulation */
+<span class="lineno">  15 </span>    val SUPPORTED_ANDROID_VERSIONS: List&lt;Int&gt; = listOf(<span
+                            class="error">13</span>, 14, 15, 16)
+<span class="lineno">  16 </span>
+<span class="lineno">  17 </span>    /** Supported CPU architectures */
+<span class="lineno">  18 </span>    val SUPPORTED_ARCHITECTURES: List&lt;String&gt; = listOf(
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsConfig.kt:15:60</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  12 </span>    const val ROM_TOOLS_ENABLED: Boolean = true
+<span class="lineno">  13 </span>
+<span class="lineno">  14 </span>    /** Supported Android versions for ROM manipulation */
+<span class="lineno">  15 </span>    val SUPPORTED_ANDROID_VERSIONS: List&lt;Int&gt; = listOf(13, <span
+                            class="error">14</span>, 15, 16)
+<span class="lineno">  16 </span>
+<span class="lineno">  17 </span>    /** Supported CPU architectures */
+<span class="lineno">  18 </span>    val SUPPORTED_ARCHITECTURES: List&lt;String&gt; = listOf(
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsConfig.kt:15:64</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  12 </span>    const val ROM_TOOLS_ENABLED: Boolean = true
+<span class="lineno">  13 </span>
+<span class="lineno">  14 </span>    /** Supported Android versions for ROM manipulation */
+<span class="lineno">  15 </span>    val SUPPORTED_ANDROID_VERSIONS: List&lt;Int&gt; = listOf(13, 14, <span
+                            class="error">15</span>, 16)
+<span class="lineno">  16 </span>
+<span class="lineno">  17 </span>    /** Supported CPU architectures */
+<span class="lineno">  18 </span>    val SUPPORTED_ARCHITECTURES: List&lt;String&gt; = listOf(
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsConfig.kt:15:68</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  12 </span>    const val ROM_TOOLS_ENABLED: Boolean = true
+<span class="lineno">  13 </span>
+<span class="lineno">  14 </span>    /** Supported Android versions for ROM manipulation */
+<span class="lineno">  15 </span>    val SUPPORTED_ANDROID_VERSIONS: List&lt;Int&gt; = listOf(13, 14, 15, <span
+                            class="error">16</span>)
+<span class="lineno">  16 </span>
+<span class="lineno">  17 </span>    /** Supported CPU architectures */
+<span class="lineno">  18 </span>    val SUPPORTED_ARCHITECTURES: List&lt;String&gt; = listOf(
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:81:65</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  78 </span>            updateOperationProgress(RomOperation.FLASHING_ROM, 0f)
+<span class="lineno">  79 </span>
+<span class="lineno">  80 </span>            // Step 1: Verify ROM file integrity
+<span class="lineno">  81 </span>            updateOperationProgress(RomOperation.VERIFYING_ROM, <span
+                            class="error">10f</span>)
+<span class="lineno">  82 </span>            verificationManager.verifyRomFile(romFile).getOrThrow()
+<span class="lineno">  83 </span>
+<span class="lineno">  84 </span>            // Step 2: Create backup if requested
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:86:71</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  83 </span>
+<span class="lineno">  84 </span>            // Step 2: Create backup if requested
+<span class="lineno">  85 </span>            if (_romToolsState.value.settings.autoBackup) {
+<span class="lineno">  86 </span>                updateOperationProgress(RomOperation.CREATING_BACKUP, <span
+                            class="error">20f</span>)
+<span class="lineno">  87 </span>                backupManager.createFullBackup().getOrThrow()
+<span class="lineno">  88 </span>            }
+<span class="lineno">  89 </span>
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:92:76</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  89 </span>
+<span class="lineno">  90 </span>            // Step 3: Unlock bootloader if needed
+<span class="lineno">  91 </span>            if (!bootloaderManager.isBootloaderUnlocked()) {
+<span class="lineno">  92 </span>                updateOperationProgress(RomOperation.UNLOCKING_BOOTLOADER, <span
+                            class="error">30f</span>)
+<span class="lineno">  93 </span>                bootloaderManager.unlockBootloader().getOrThrow()
+<span class="lineno">  94 </span>            }
+<span class="lineno">  95 </span>
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:98:75</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  95 </span>
+<span class="lineno">  96 </span>            // Step 4: Install custom recovery if needed
+<span class="lineno">  97 </span>            if (!recoveryManager.isCustomRecoveryInstalled()) {
+<span class="lineno">  98 </span>                updateOperationProgress(RomOperation.INSTALLING_RECOVERY, <span
+                            class="error">40f</span>)
+<span class="lineno">  99 </span>                recoveryManager.installCustomRecovery().getOrThrow()
+<span class="lineno"> 100 </span>            }
+<span class="lineno"> 101 </span>
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:103:64</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 100 </span>            }
+<span class="lineno"> 101 </span>
+<span class="lineno"> 102 </span>            // Step 5: Flash ROM
+<span class="lineno"> 103 </span>            updateOperationProgress(RomOperation.FLASHING_ROM, <span
+                            class="error">50f</span>)
+<span class="lineno"> 104 </span>            flashManager.flashRom(romFile) { progress -&gt;
+<span class="lineno"> 105 </span>                updateOperationProgress(RomOperation.FLASHING_ROM, 50f + (progress * 40f))
+<span class="lineno"> 106 </span>            }.getOrThrow()
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:105:68</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 102 </span>            // Step 5: Flash ROM
+<span class="lineno"> 103 </span>            updateOperationProgress(RomOperation.FLASHING_ROM, 50f)
+<span class="lineno"> 104 </span>            flashManager.flashRom(romFile) { progress -&gt;
+<span class="lineno"> 105 </span>                updateOperationProgress(RomOperation.FLASHING_ROM, <span
+                            class="error">50f</span> + (progress * 40f))
+<span class="lineno"> 106 </span>            }.getOrThrow()
+<span class="lineno"> 107 </span>
+<span class="lineno"> 108 </span>            // Step 6: Verify installation
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:105:86</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 102 </span>            // Step 5: Flash ROM
+<span class="lineno"> 103 </span>            updateOperationProgress(RomOperation.FLASHING_ROM, 50f)
+<span class="lineno"> 104 </span>            flashManager.flashRom(romFile) { progress -&gt;
+<span class="lineno"> 105 </span>                updateOperationProgress(RomOperation.FLASHING_ROM, 50f + (progress * <span
+                            class="error">40f</span>))
+<span class="lineno"> 106 </span>            }.getOrThrow()
+<span class="lineno"> 107 </span>
+<span class="lineno"> 108 </span>            // Step 6: Verify installation
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:109:74</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 106 </span>            }.getOrThrow()
+<span class="lineno"> 107 </span>
+<span class="lineno"> 108 </span>            // Step 6: Verify installation
+<span class="lineno"> 109 </span>            updateOperationProgress(RomOperation.VERIFYING_INSTALLATION, <span
+                            class="error">90f</span>)
+<span class="lineno"> 110 </span>            verificationManager.verifyInstallation().getOrThrow()
+<span class="lineno"> 111 </span>
+<span class="lineno"> 112 </span>            updateOperationProgress(RomOperation.COMPLETED, 100f)
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:112:61</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 109 </span>            updateOperationProgress(RomOperation.VERIFYING_INSTALLATION, 90f)
+<span class="lineno"> 110 </span>            verificationManager.verifyInstallation().getOrThrow()
+<span class="lineno"> 111 </span>
+<span class="lineno"> 112 </span>            updateOperationProgress(RomOperation.COMPLETED, <span
+                            class="error">100f</span>)
+<span class="lineno"> 113 </span>            clearOperationProgress()
+<span class="lineno"> 114 </span>
+<span class="lineno"> 115 </span>            Timber.i(&quot;ROM flashed successfully: ${romFile.name}&quot;)
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:137:61</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 134 </span>                updateOperationProgress(RomOperation.CREATING_BACKUP, progress)
+<span class="lineno"> 135 </span>            }.getOrThrow()
+<span class="lineno"> 136 </span>
+<span class="lineno"> 137 </span>            updateOperationProgress(RomOperation.COMPLETED, <span
+                            class="error">100f</span>)
+<span class="lineno"> 138 </span>            clearOperationProgress()
+<span class="lineno"> 139 </span>
+<span class="lineno"> 140 </span>            Timber.i(&quot;NANDroid backup created: $backupName&quot;)
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:162:61</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 159 </span>                updateOperationProgress(RomOperation.RESTORING_BACKUP, progress)
+<span class="lineno"> 160 </span>            }.getOrThrow()
+<span class="lineno"> 161 </span>
+<span class="lineno"> 162 </span>            updateOperationProgress(RomOperation.COMPLETED, <span
+                            class="error">100f</span>)
+<span class="lineno"> 163 </span>            clearOperationProgress()
+<span class="lineno"> 164 </span>
+<span class="lineno"> 165 </span>            Timber.i(&quot;NANDroid backup restored: ${backupInfo.name}&quot;)
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:187:61</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 184 </span>                updateOperationProgress(RomOperation.APPLYING_OPTIMIZATIONS, progress)
+<span class="lineno"> 185 </span>            }.getOrThrow()
+<span class="lineno"> 186 </span>
+<span class="lineno"> 187 </span>            updateOperationProgress(RomOperation.COMPLETED, <span
+                            class="error">100f</span>)
+<span class="lineno"> 188 </span>            clearOperationProgress()
+<span class="lineno"> 189 </span>
+<span class="lineno"> 190 </span>            Timber.i(&quot;Genesis AI optimizations installed successfully&quot;)
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:45:31</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  42 </span>            .background(
+<span class="lineno">  43 </span>                brush = androidx.compose.ui.graphics.Brush.verticalGradient(
+<span class="lineno">  44 </span>                    colors = listOf(
+<span class="lineno">  45 </span>                        Color(<span class="error">0xFF0A0A0A</span>),
+<span class="lineno">  46 </span>                        Color(0xFF1A1A1A),
+<span class="lineno">  47 </span>                        Color(0xFF0A0A0A)
+<span class="lineno">  48 </span>                    )
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:46:31</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  43 </span>                brush = androidx.compose.ui.graphics.Brush.verticalGradient(
+<span class="lineno">  44 </span>                    colors = listOf(
+<span class="lineno">  45 </span>                        Color(0xFF0A0A0A),
+<span class="lineno">  46 </span>                        Color(<span class="error">0xFF1A1A1A</span>),
+<span class="lineno">  47 </span>                        Color(0xFF0A0A0A)
+<span class="lineno">  48 </span>                    )
+<span class="lineno">  49 </span>                )
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:47:31</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  44 </span>                    colors = listOf(
+<span class="lineno">  45 </span>                        Color(0xFF0A0A0A),
+<span class="lineno">  46 </span>                        Color(0xFF1A1A1A),
+<span class="lineno">  47 </span>                        Color(<span class="error">0xFF0A0A0A</span>)
+<span class="lineno">  48 </span>                    )
+<span class="lineno">  49 </span>                )
+<span class="lineno">  50 </span>            )
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:57:35</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  54 </span>            title = {
+<span class="lineno">  55 </span>                Text(
+<span class="lineno">  56 </span>                    text = &quot;ROM Tools&quot;,
+<span class="lineno">  57 </span>                    color = Color(<span
+                            class="error">0xFFFF6B35</span>),
+<span class="lineno">  58 </span>                    fontWeight = FontWeight.Bold,
+<span class="lineno">  59 </span>                    fontSize = 20.sp
+<span class="lineno">  60 </span>                )
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:78:39</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno">  75 </span>                    verticalArrangement = Arrangement.spacedBy(16.dp)
+<span class="lineno">  76 </span>                ) {
+<span class="lineno">  77 </span>                    CircularProgressIndicator(
+<span class="lineno">  78 </span>                        color = Color(<span class="error">0xFFFF6B35</span>),
+<span class="lineno">  79 </span>                        strokeWidth = 3.dp
+<span class="lineno">  80 </span>                    )
+<span class="lineno">  81 </span>                    Text(
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:112:39</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 109 </span>                item {
+<span class="lineno"> 110 </span>                    Text(
+<span class="lineno"> 111 </span>                        text = &quot;ROM Operations&quot;,
+<span class="lineno"> 112 </span>                        color = Color(<span class="error">0xFFFF6B35</span>),
+<span class="lineno"> 113 </span>                        fontSize = 18.sp,
+<span class="lineno"> 114 </span>                        fontWeight = FontWeight.Bold,
+<span class="lineno"> 115 </span>                        modifier = Modifier.padding(vertical = 8.dp)
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:160:43</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 157 </span>                    item {
+<span class="lineno"> 158 </span>                        Text(
+<span class="lineno"> 159 </span>                            text = &quot;Available ROMs&quot;,
+<span class="lineno"> 160 </span>                            color = Color(<span class="error">0xFFFF6B35</span>),
+<span class="lineno"> 161 </span>                            fontSize = 18.sp,
+<span class="lineno"> 162 </span>                            fontWeight = FontWeight.Bold,
+<span class="lineno"> 163 </span>                            modifier = Modifier.padding(vertical = 8.dp)
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:177:43</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 174 </span>                    item {
+<span class="lineno"> 175 </span>                        Text(
+<span class="lineno"> 176 </span>                            text = &quot;Backups&quot;,
+<span class="lineno"> 177 </span>                            color = Color(<span class="error">0xFFFF6B35</span>),
+<span class="lineno"> 178 </span>                            fontSize = 18.sp,
+<span class="lineno"> 179 </span>                            fontWeight = FontWeight.Bold,
+<span class="lineno"> 180 </span>                            modifier = Modifier.padding(vertical = 8.dp)
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:201:36</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 198 </span>    Card(
+<span class="lineno"> 199 </span>        modifier = modifier.fillMaxWidth(),
+<span class="lineno"> 200 </span>        colors = CardDefaults.cardColors(
+<span class="lineno"> 201 </span>            containerColor = Color(<span
+                            class="error">0xFF1E1E1E</span>)
+<span class="lineno"> 202 </span>        ),
+<span class="lineno"> 203 </span>        shape = RoundedCornerShape(12.dp)
+<span class="lineno"> 204 </span>    ) {
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:211:31</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 208 </span>        ) {
+<span class="lineno"> 209 </span>            Text(
+<span class="lineno"> 210 </span>                text = &quot;Device Capabilities&quot;,
+<span class="lineno"> 211 </span>                color = Color(<span class="error">0xFFFF6B35</span>),
+<span class="lineno"> 212 </span>                fontSize = 16.sp,
+<span class="lineno"> 213 </span>                fontWeight = FontWeight.Bold
+<span class="lineno"> 214 </span>            )
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:253:45</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 250 </span>        Icon(
+<span class="lineno"> 251 </span>            imageVector = if (hasCapability) Icons.Default.CheckCircle else Icons.Default.Cancel,
+<span class="lineno"> 252 </span>            contentDescription = null,
+<span class="lineno"> 253 </span>            tint = if (hasCapability) Color(<span class="error">0xFF4CAF50</span>) else Color(0xFFF44336),
+<span class="lineno"> 254 </span>            modifier = Modifier.size(20.dp)
+<span class="lineno"> 255 </span>        )
+<span class="lineno"> 256 </span>    }
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:253:68</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 250 </span>        Icon(
+<span class="lineno"> 251 </span>            imageVector = if (hasCapability) Icons.Default.CheckCircle else Icons.Default.Cancel,
+<span class="lineno"> 252 </span>            contentDescription = null,
+<span class="lineno"> 253 </span>            tint = if (hasCapability) Color(0xFF4CAF50) else Color(<span
+                            class="error">0xFFF44336</span>),
+<span class="lineno"> 254 </span>            modifier = Modifier.size(20.dp)
+<span class="lineno"> 255 </span>        )
+<span class="lineno"> 256 </span>    }
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:287:36</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 284 </span>    Card(
+<span class="lineno"> 285 </span>        modifier = modifier.fillMaxWidth(),
+<span class="lineno"> 286 </span>        colors = CardDefaults.cardColors(
+<span class="lineno"> 287 </span>            containerColor = Color(<span
+                            class="error">0xFF2E2E2E</span>)
+<span class="lineno"> 288 </span>        ),
+<span class="lineno"> 289 </span>        shape = RoundedCornerShape(12.dp)
+<span class="lineno"> 290 </span>    ) {
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:297:31</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 294 </span>        ) {
+<span class="lineno"> 295 </span>            Text(
+<span class="lineno"> 296 </span>                text = operation.operation.getDisplayName(),
+<span class="lineno"> 297 </span>                color = Color(<span class="error">0xFFFF6B35</span>),
+<span class="lineno"> 298 </span>                fontSize = 16.sp,
+<span class="lineno"> 299 </span>                fontWeight = FontWeight.Bold
+<span class="lineno"> 300 </span>            )
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:305:31</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 302 </span>            LinearProgressIndicator(
+<span class="lineno"> 303 </span>                progress = operation.progress / 100f,
+<span class="lineno"> 304 </span>                modifier = Modifier.fillMaxWidth(),
+<span class="lineno"> 305 </span>                color = Color(<span class="error">0xFFFF6B35</span>),
+<span class="lineno"> 306 </span>                trackColor = Color(0xFF444444)
+<span class="lineno"> 307 </span>            )
+<span class="lineno"> 308 </span>
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:306:36</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 303 </span>                progress = operation.progress / 100f,
+<span class="lineno"> 304 </span>                modifier = Modifier.fillMaxWidth(),
+<span class="lineno"> 305 </span>                color = Color(0xFFFF6B35),
+<span class="lineno"> 306 </span>                trackColor = Color(<span
+                            class="error">0xFF444444</span>)
+<span class="lineno"> 307 </span>            )
+<span class="lineno"> 308 </span>
+<span class="lineno"> 309 </span>            Text(
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:331:51</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 328 </span>        onClick = if (isEnabled) onClick else {
+<span class="lineno"> 329 </span>        },
+<span class="lineno"> 330 </span>        colors = CardDefaults.cardColors(
+<span class="lineno"> 331 </span>            containerColor = if (isEnabled) Color(<span
+                            class="error">0xFF1E1E1E</span>) else Color(0xFF111111)
+<span class="lineno"> 332 </span>        ),
+<span class="lineno"> 333 </span>        shape = RoundedCornerShape(12.dp)
+<span class="lineno"> 334 </span>    ) {
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:331:74</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 328 </span>        onClick = if (isEnabled) onClick else {
+<span class="lineno"> 329 </span>        },
+<span class="lineno"> 330 </span>        colors = CardDefaults.cardColors(
+<span class="lineno"> 331 </span>            containerColor = if (isEnabled) Color(0xFF1E1E1E) else Color(<span
+                            class="error">0xFF111111</span>)
+<span class="lineno"> 332 </span>        ),
+<span class="lineno"> 333 </span>        shape = RoundedCornerShape(12.dp)
+<span class="lineno"> 334 </span>    ) {
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:385:27</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 382 </span>            title = &quot;Flash Custom ROM&quot;,
+<span class="lineno"> 383 </span>            description = &quot;Install a custom ROM on your device&quot;,
+<span class="lineno"> 384 </span>            icon = Icons.Default.FlashOn,
+<span class="lineno"> 385 </span>            color = Color(<span class="error">0xFFFF6B35</span>),
+<span class="lineno"> 386 </span>            requiresRoot = true,
+<span class="lineno"> 387 </span>            requiresBootloader = true
+<span class="lineno"> 388 </span>        ),
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:394:27</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 391 </span>            title = &quot;Create NANDroid Backup&quot;,
+<span class="lineno"> 392 </span>            description = &quot;Create a full system backup&quot;,
+<span class="lineno"> 393 </span>            icon = Icons.Default.Backup,
+<span class="lineno"> 394 </span>            color = Color(<span class="error">0xFF4CAF50</span>),
+<span class="lineno"> 395 </span>            requiresRoot = true,
+<span class="lineno"> 396 </span>            requiresRecovery = true
+<span class="lineno"> 397 </span>        ),
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:403:27</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 400 </span>            title = &quot;Restore Backup&quot;,
+<span class="lineno"> 401 </span>            description = &quot;Restore from a previous backup&quot;,
+<span class="lineno"> 402 </span>            icon = Icons.Default.Restore,
+<span class="lineno"> 403 </span>            color = Color(<span class="error">0xFF2196F3</span>),
+<span class="lineno"> 404 </span>            requiresRoot = true,
+<span class="lineno"> 405 </span>            requiresRecovery = true
+<span class="lineno"> 406 </span>        ),
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:412:27</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 409 </span>            title = &quot;Unlock Bootloader&quot;,
+<span class="lineno"> 410 </span>            description = &quot;Unlock device bootloader for modifications&quot;,
+<span class="lineno"> 411 </span>            icon = Icons.Default.LockOpen,
+<span class="lineno"> 412 </span>            color = Color(<span class="error">0xFFFFC107</span>),
+<span class="lineno"> 413 </span>            requiresRoot = false,
+<span class="lineno"> 414 </span>            requiresBootloader = false
+<span class="lineno"> 415 </span>        ),
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:421:27</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 418 </span>            title = &quot;Install Custom Recovery&quot;,
+<span class="lineno"> 419 </span>            description = &quot;Install TWRP or other custom recovery&quot;,
+<span class="lineno"> 420 </span>            icon = Icons.Default.Healing,
+<span class="lineno"> 421 </span>            color = Color(<span class="error">0xFF9C27B0</span>),
+<span class="lineno"> 422 </span>            requiresRoot = true,
+<span class="lineno"> 423 </span>            requiresBootloader = true
+<span class="lineno"> 424 </span>        ),
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:430:27</span><span
+                    class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+                <pre><code><span class="lineno"> 427 </span>            title = &quot;Genesis AI Optimizations&quot;,
+<span class="lineno"> 428 </span>            description = &quot;Apply AI-powered system optimizations&quot;,
+<span class="lineno"> 429 </span>            icon = Icons.Default.Psychology,
+<span class="lineno"> 430 </span>            color = Color(<span class="error">0xFF00E676</span>),
+<span class="lineno"> 431 </span>            requiresRoot = true,
+<span class="lineno"> 432 </span>            requiresSystem = true
+<span class="lineno"> 433 </span>        )
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <details id="UnusedParameter" open="open">
+        <summary class="rule-container"><span class="rule">UnusedParameter: 3 </span><span
+                class="description">Function parameter is unused and should be removed.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/style#unusedparameter">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:364:35</span><span
+                    class="message">Function parameter `deviceModel` is unused.</span>
+                <pre><code><span class="lineno"> 361 </span>
+<span class="lineno"> 362 </span>// Placeholder for ROM repository - would be implemented separately
+<span class="lineno"> 363 </span>class RomRepository {
+<span class="lineno"> 364 </span>    suspend fun getCompatibleRoms(<span
+                            class="error">deviceModel</span>: String): List&lt;AvailableRom&gt; {
+<span class="lineno"> 365 </span>        // Implementation would query ROM repositories
+<span class="lineno"> 366 </span>        return emptyList()
+<span class="lineno"> 367 </span>    }
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:468:30</span><span
+                    class="message">Function parameter `rom` is unused.</span>
+                <pre><code><span class="lineno"> 465 </span>}
+<span class="lineno"> 466 </span>
+<span class="lineno"> 467 </span>@Composable
+<span class="lineno"> 468 </span>private fun AvailableRomCard(<span class="error">rom</span>: dev.aurakai.auraframefx.romtools.AvailableRom) {
+<span class="lineno"> 469 </span>    // Implementation for available ROM card
+<span class="lineno"> 470 </span>}
+<span class="lineno"> 471 </span>
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:473:24</span><span
+                    class="message">Function parameter `backup` is unused.</span>
+                <pre><code><span class="lineno"> 470 </span>}
+<span class="lineno"> 471 </span>
+<span class="lineno"> 472 </span>@Composable
+<span class="lineno"> 473 </span>private fun BackupCard(<span class="error">backup</span>: dev.aurakai.auraframefx.romtools.BackupInfo) {
+<span class="lineno"> 474 </span>    // Implementation for backup card
+<span class="lineno"> 475 </span>}
+<span class="lineno"> 476 </span>
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <details id="UnusedPrivateProperty" open="open">
+        <summary class="rule-container"><span class="rule">UnusedPrivateProperty: 1 </span><span
+                class="description">Property is unused and should be removed.</span></summary>
+        <a href="https://detekt.dev/docs/rules/style#unusedprivateproperty">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/RomToolsManager.kt:29:37</span><span
+                    class="message">Private property `context` is unused.</span>
+                <pre><code><span class="lineno">  26 </span> */
+<span class="lineno">  27 </span>@Singleton
+<span class="lineno">  28 </span>class RomToolsManager @Inject constructor(
+<span class="lineno">  29 </span>    @ApplicationContext private val <span
+                            class="error">context</span>: Context,
+<span class="lineno">  30 </span>    private val bootloaderManager: BootloaderManager,
+<span class="lineno">  31 </span>    private val recoveryManager: RecoveryManager,
+<span class="lineno">  32 </span>    private val systemModificationManager: SystemModificationManager,
+</code></pre>
+            </li>
+        </ul>
+    </details>
+    <details id="WildcardImport" open="open">
+        <summary class="rule-container"><span class="rule">WildcardImport: 5 </span><span
+                class="description">Wildcard imports should be replaced with imports using fully qualified class names. Wildcard imports can lead to naming conflicts. A library update can introduce naming clashes with your classes which results in compilation errors.</span>
+        </summary>
+        <a href="https://detekt.dev/docs/rules/style#wildcardimport">Documentation</a>
+        <ul>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:4:1</span><span
+                    class="message">androidx.compose.animation.* is a wildcard import. Replace it with fully qualified imports.</span>
+                <pre><code><span class="lineno">   1 </span>// File: romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt
+<span class="lineno">   2 </span>package dev.aurakai.auraframefx.romtools.ui
+<span class="lineno">   3 </span>
+<span class="lineno">   4 </span><span class="error">import androidx.compose.animation.*</span>
+<span class="lineno">   5 </span>import androidx.compose.foundation.background
+<span class="lineno">   6 </span>import androidx.compose.foundation.layout.*
+<span class="lineno">   7 </span>import androidx.compose.foundation.lazy.LazyColumn
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:6:1</span><span
+                    class="message">androidx.compose.foundation.layout.* is a wildcard import. Replace it with fully qualified imports.</span>
+                <pre><code><span class="lineno">   3 </span>
+<span class="lineno">   4 </span>import androidx.compose.animation.*
+<span class="lineno">   5 </span>import androidx.compose.foundation.background
+<span class="lineno">   6 </span><span
+                            class="error">import androidx.compose.foundation.layout.*</span>
+<span class="lineno">   7 </span>import androidx.compose.foundation.lazy.LazyColumn
+<span class="lineno">   8 </span>import androidx.compose.foundation.lazy.items
+<span class="lineno">   9 </span>import androidx.compose.foundation.shape.RoundedCornerShape
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:11:1</span><span
+                    class="message">androidx.compose.material.icons.filled.* is a wildcard import. Replace it with fully qualified imports.</span>
+                <pre><code><span class="lineno">   8 </span>import androidx.compose.foundation.lazy.items
+<span class="lineno">   9 </span>import androidx.compose.foundation.shape.RoundedCornerShape
+<span class="lineno">  10 </span>import androidx.compose.material.icons.Icons
+<span class="lineno">  11 </span><span
+                            class="error">import androidx.compose.material.icons.filled.*</span>
+<span class="lineno">  12 </span>import androidx.compose.material3.*
+<span class="lineno">  13 </span>import androidx.compose.runtime.*
+<span class="lineno">  14 </span>import androidx.compose.ui.Alignment
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:12:1</span><span
+                    class="message">androidx.compose.material3.* is a wildcard import. Replace it with fully qualified imports.</span>
+                <pre><code><span class="lineno">   9 </span>import androidx.compose.foundation.shape.RoundedCornerShape
+<span class="lineno">  10 </span>import androidx.compose.material.icons.Icons
+<span class="lineno">  11 </span>import androidx.compose.material.icons.filled.*
+<span class="lineno">  12 </span><span class="error">import androidx.compose.material3.*</span>
+<span class="lineno">  13 </span>import androidx.compose.runtime.*
+<span class="lineno">  14 </span>import androidx.compose.ui.Alignment
+<span class="lineno">  15 </span>import androidx.compose.ui.Modifier
+</code></pre>
+            </li>
+            <li><span class="location">romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/ui/RomToolsScreen.kt:13:1</span><span
+                    class="message">androidx.compose.runtime.* is a wildcard import. Replace it with fully qualified imports.</span>
+                <pre><code><span class="lineno">  10 </span>import androidx.compose.material.icons.Icons
+<span class="lineno">  11 </span>import androidx.compose.material.icons.filled.*
+<span class="lineno">  12 </span>import androidx.compose.material3.*
+<span class="lineno">  13 </span><span class="error">import androidx.compose.runtime.*</span>
+<span class="lineno">  14 </span>import androidx.compose.ui.Alignment
+<span class="lineno">  15 </span>import androidx.compose.ui.Modifier
+<span class="lineno">  16 </span>import androidx.compose.ui.graphics.Color
+</code></pre>
+            </li>
+        </ul>
+    </details>
+</div>
+
+
+generated with <a href="https://detekt.dev/">detekt version 1.23.8</a> on 2025-08-26 01:43:33 UTC.
+
+</body>
+</html>

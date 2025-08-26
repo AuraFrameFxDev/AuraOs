@@ -1,0 +1,7 @@
+C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/romtools.dir
+C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/list_install_components.dir
+C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/install.dir
+C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/install/local.dir
+C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/armeabi-v7a/CMakeFiles/install/strip.dir

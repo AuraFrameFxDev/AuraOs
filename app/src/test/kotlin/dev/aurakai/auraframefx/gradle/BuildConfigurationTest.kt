@@ -1,8 +1,9 @@
 package dev.aurakai.auraframefx.gradle
 
 import org.junit.Assert.assertTrue
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
 import java.io.File
 
 /**
@@ -17,7 +18,7 @@ class BuildConfigurationTest {
     private lateinit var buildFile: File
     private lateinit var buildContent: String
 
-    @Before
+    @BeforeEach
     fun setup() {
         buildFile = File("app/build.gradle.kts")
         buildContent = if (buildFile.exists()) {
@@ -62,7 +63,7 @@ class BuildConfigurationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test essential plugins are applied`() {
         // Test core Android plugins
         assertTrue(
@@ -166,7 +167,7 @@ class BuildConfigurationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test CMake configuration is valid`() {
         assertTrue(
             "CMake path should be configured",
@@ -211,7 +212,7 @@ class BuildConfigurationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test OpenAPI generator configuration is valid`() {
         assertTrue(
             "OpenAPI generator should be configured for Kotlin",
@@ -364,7 +365,7 @@ class BuildConfigurationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test resource configuration is valid`() {
         assertTrue(
             "Vector drawables support library should be enabled",
@@ -514,7 +515,7 @@ class BuildConfigurationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test data storage dependencies`() {
         assertTrue(
             "DataStore preferences should be included",
@@ -554,7 +555,7 @@ class BuildConfigurationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test logging dependency`() {
         assertTrue(
             "Timber should be included",

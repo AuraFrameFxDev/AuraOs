@@ -1,0 +1,12 @@
+-- The CXX compiler identification is Clang 19.0.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/Wehtt/AppData/Local/Android/Sdk/ndk/28.2.13676358/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- 🛠️ Genesis-OS ROM Tools CMake configuration complete!
+-- 🔧 Native ROM modification capabilities enabled
+-- 🚀 C++20 with maximum optimization for bleeding-edge performance
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/x86_64

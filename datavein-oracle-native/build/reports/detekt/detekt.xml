@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="4.3">
+    <file
+        name="datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/ui/SimpleDataVeinScreen.kt">
+        <error column="5" line="32" message="The function SimpleDataVeinScreen is too long (78). The maximum length is 60."
+            severity="warning"
+            source="detekt.LongMethod" />
+        <error column="5" line="32" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="121" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="2" line="148" message="The file C:\Users\Wehtt\StudioProjects\AuraOs\datavein-oracle-native\src\main\kotlin\dev\aurakai\auraframefx\datavein\ui\SimpleDataVeinScreen.kt is not ending with a new line."
+            severity="warning"
+            source="detekt.NewLineAtEndOfFile" />
+        <error column="33" line="97" message="Forbidden TODO todo marker in comment, please do the changes."
+            severity="warning"
+            source="detekt.ForbiddenComment" />
+        <error column="31" line="39" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="45" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="57" line="81" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="60" line="82" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+    </file>
+    <file
+        name="datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/ui/SphereGridComponents.kt">
+        <error column="5" line="45" message="The function NodeInfoPanel is too long (90). The maximum length is 60."
+            severity="warning"
+            source="detekt.LongMethod" />
+        <error column="5" line="159" message="The function NodeTypeLegend is too long (64). The maximum length is 60."
+            severity="warning"
+            source="detekt.LongMethod" />
+        <error column="5" line="45" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="5" line="159" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="5" line="234" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="5" line="302" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="346" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="366" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="13" line="386" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="2" line="456" message="The file C:\Users\Wehtt\StudioProjects\AuraOs\datavein-oracle-native\src\main\kotlin\dev\aurakai\auraframefx\datavein\ui\SphereGridComponents.kt is not ending with a new line."
+            severity="warning"
+            source="detekt.NewLineAtEndOfFile" />
+        <error column="53" line="117" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="245" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="69" line="281" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="73" line="282" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="73" line="291" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="437" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="451" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+    </file>
+    <file
+        name="datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/ui/SphereGridScreen.kt">
+        <error column="5" line="44" message="The function DataVeinSphereGrid is too long (103). The maximum length is 60."
+            severity="warning"
+            source="detekt.LongMethod" />
+        <error column="13" line="363" message="The function drawNode is too long (86). The maximum length is 60."
+            severity="warning"
+            source="detekt.LongMethod" />
+        <error column="13" line="363" message="The function drawNode appears to be too complex based on Cyclomatic Complexity (complexity: 27). Defined complexity threshold for methods is set to &apos;15&apos;"
+            severity="warning"
+            source="detekt.CyclomaticComplexMethod" />
+        <error column="13" line="303" message="Function drawConnection is nested too deeply."
+            severity="warning"
+            source="detekt.NestedBlockDepth" />
+        <error column="13" line="386" message="This condition is too complex (4). Defined complexity threshold for conditions is set to &apos;4&apos;"
+            severity="warning"
+            source="detekt.ComplexCondition" />
+        <error column="5" line="44" message="Function names should match the pattern: [a-z][a-zA-Z0-9]*"
+            severity="warning"
+            source="detekt.FunctionNaming" />
+        <error column="2" line="471" message="The file C:\Users\Wehtt\StudioProjects\AuraOs\datavein-oracle-native\src\main\kotlin\dev\aurakai\auraframefx\datavein\ui\SphereGridScreen.kt is not ending with a new line."
+            severity="warning"
+            source="detekt.NewLineAtEndOfFile" />
+        <error column="19" line="59" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="42" line="62" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="72" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="65" line="74" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="83" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="84" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="85" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="35" line="131" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="186" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="47" line="187" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="61" line="187" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="47" line="209" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="51" line="210" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="57" line="210" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="44" line="212" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="20" line="270" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="292" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="60" line="317" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="83" line="317" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="44" line="318" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="71" line="332" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="78" line="332" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="338" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="26" line="344" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="53" line="345" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="39" line="350" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="372" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="28" line="373" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="32" line="374" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="42" line="379" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="380" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="32" line="381" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="21" line="382" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="39" line="403" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="416" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="31" line="417" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="47" line="431" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="44" line="441" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="53" line="441" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="56" line="448" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="56" line="449" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="47" line="452" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="47" line="453" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="55" line="465" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="55" line="466" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="5" line="368" message="Function parameter `onNodeClick` is unused."
+            severity="warning" source="detekt.UnusedParameter" />
+    </file>
+    <file
+        name="datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/model/DataVeinModels.kt">
+        <error column="2" line="172" message="The file C:\Users\Wehtt\StudioProjects\AuraOs\datavein-oracle-native\src\main\kotlin\dev\aurakai\auraframefx\datavein\model\DataVeinModels.kt is not ending with a new line."
+            severity="warning"
+            source="detekt.NewLineAtEndOfFile" />
+        <error column="15" line="58" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="59" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="60" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="66" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="67" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="68" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="74" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="75" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="76" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="82" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="83" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="84" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="90" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="91" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="92" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="98" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="99" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="100" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="106" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="107" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="108" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="114" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="115" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="116" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="122" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="15" line="123" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="9" line="124" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+    </file>
+    <file
+        name="datavein-oracle-native/src/main/kotlin/dev/aurakai/auraframefx/datavein/ui/DataVeinSphereGridViewModel.kt">
+        <error column="2" line="320" message="The file C:\Users\Wehtt\StudioProjects\AuraOs\datavein-oracle-native\src\main\kotlin\dev\aurakai\auraframefx\datavein\ui\DataVeinSphereGridViewModel.kt is not ending with a new line."
+            severity="warning"
+            source="detekt.NewLineAtEndOfFile" />
+        <error column="38" line="76" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="46" line="91" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="51" line="91" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="38" line="142" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="42" line="154" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="64" line="163" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="42" line="180" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="47" line="184" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="27" line="237" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="47" line="238" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="61" line="238" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="78" line="251" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="80" line="252" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="61" line="263" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="65" line="264" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="71" line="264" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="72" line="266" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+        <error column="77" line="266" message="This expression contains a magic number. Consider defining it to a well named constant."
+            severity="warning"
+            source="detekt.MagicNumber" />
+    </file>
+</checkstyle>

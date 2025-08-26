@@ -1,8 +1,9 @@
 package dev.aurakai.auraframefx.gradle.validation
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.BeforeEach
 import java.io.File
 
 /**
@@ -14,7 +15,7 @@ class TomlStructureTest {
     private lateinit var tomlFile: File
     private lateinit var tomlContent: String
 
-    @Before
+    @BeforeEach
     fun setUp() {
         tomlFile = File("gradle/libs.versions.toml")
         tomlContent = tomlFile.readText()
@@ -115,7 +116,7 @@ class TomlStructureTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test library definitions use proper dictionary syntax`() {
         val libraryLines = tomlContent.lines()
             .filter { it.contains(" = { ") && !it.trim().startsWith("#") }

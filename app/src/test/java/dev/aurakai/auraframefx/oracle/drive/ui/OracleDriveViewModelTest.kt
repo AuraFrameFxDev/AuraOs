@@ -11,9 +11,9 @@ import io.mockk.junit4.MockKRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import org.junit.Rule
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import java.io.IOException
 import java.time.Instant
 import kotlin.time.Duration.Companion.seconds
@@ -61,7 +61,7 @@ class OracleDriveViewModelTest {
         lastUpdated = Instant.now().toEpochMilli()
     )
 
-    @Before
+    @BeforeEach
     fun setUp() {
         MockKAnnotations.init(this)
 
@@ -71,7 +71,7 @@ class OracleDriveViewModelTest {
         viewModel = OracleDriveViewModel(mockService)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `initial load sets loading state and loads files`() = runTest {
         // Given - Initial state
 
@@ -120,7 +120,7 @@ class OracleDriveViewModelTest {
         coVerify(exactly = 2) { mockService.getFiles() } // Once in init, once in refresh
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `error state is set when loading fails`() = runTest {
         // Given
         val error = IOException("Network error")
@@ -155,7 +155,7 @@ class OracleDriveViewModelTest {
         assertThat(viewModel.uiState.value.selectedFile).isEqualTo(testFile)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `consciousness state is updated from service`() = runTest {
         // Given
         val updatedState = testConsciousnessState.copy(

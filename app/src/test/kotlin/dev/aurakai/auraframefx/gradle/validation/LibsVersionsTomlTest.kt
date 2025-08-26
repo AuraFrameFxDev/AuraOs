@@ -1,8 +1,9 @@
 package dev.aurakai.auraframefx.gradle.validation
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.BeforeEach
 import java.io.File
 import java.util.regex.Pattern
 
@@ -17,7 +18,7 @@ class LibsVersionsTomlTest {
     private lateinit var tomlContent: String
     private lateinit var tomlLines: List<String>
 
-    @Before
+    @BeforeEach
     fun setUp() {
         val tomlFile = File("gradle/libs.versions.toml")
         assertTrue("libs.versions.toml should exist", tomlFile.exists())
@@ -25,14 +26,14 @@ class LibsVersionsTomlTest {
         tomlLines = tomlContent.lines()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test TOML file has required main sections`() {
         assertTrue("Should contain [versions] section", tomlContent.contains("[versions]"))
         assertTrue("Should contain [libraries] section", tomlContent.contains("[libraries]"))
         assertTrue("Should contain [plugins] section", tomlContent.contains("[plugins]"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test versions section contains critical dependencies`() {
         val criticalVersions = listOf(
             "agp", "kotlin", "ksp", "hilt", "composeBom",
@@ -47,7 +48,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version format follows semantic versioning pattern`() {
         val versionPattern = Pattern.compile("""(\w+)\s*=\s*"([^"]+)"""")
         val lines = tomlLines.filter { it.contains(" = \"") && !it.trim().startsWith("#") }
@@ -71,7 +72,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test kotlin and ksp versions are compatible`() {
         val kotlinVersion = extractVersion("kotlin")
         val kspVersion = extractVersion("ksp")
@@ -86,7 +87,7 @@ class LibsVersionsTomlTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test compose versions are aligned`() {
         val composeBom = extractVersion("composeBom")
         val composeCompiler = extractVersion("composeCompiler")
@@ -99,7 +100,7 @@ class LibsVersionsTomlTest {
         assertFalse("Compose compiler should not be empty", composeCompiler.isNullOrEmpty())
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test lifecycle versions are consistent`() {
         val lifecycleVersions = listOf(
             "lifecycle", "lifecycleRuntimeCompose", "lifecycleViewmodelCompose"
@@ -113,7 +114,7 @@ class LibsVersionsTomlTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test firebase dependencies use BOM pattern`() {
         val firebaseBomExists = tomlContent.contains("firebaseBom")
         assertTrue("Firebase BOM should be defined", firebaseBomExists)
@@ -131,7 +132,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test all version references are valid`() {
         val versionRefs = tomlLines
             .filter { it.contains("version.ref = ") }
@@ -152,7 +153,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test no duplicate library definitions`() {
         val libraryNames = mutableSetOf<String>()
         val duplicates = mutableListOf<String>()
@@ -172,7 +173,7 @@ class LibsVersionsTomlTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test retrofit and okhttp versions are compatible`() {
         val retrofitVersion = extractVersion("retrofit")
         val okhttpVersion = extractVersion("okhttp")
@@ -185,7 +186,7 @@ class LibsVersionsTomlTest {
         assertTrue("OkHttp should be version 5+", okhttpVersion!!.startsWith("5."))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test testing libraries are properly defined`() {
         val testingLibraries = listOf(
             "junit", "androidxTestExtJunit", "espressoCore", "mockk"
@@ -204,7 +205,7 @@ class LibsVersionsTomlTest {
         assertTrue("Espresso library should be defined", tomlContent.contains("espressoCore"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test hilt versions are aligned`() {
         val hiltVersions = listOf("hilt", "hiltNavigationCompose", "hiltWork")
         val baseHiltVersion = extractVersion("hilt")
@@ -217,7 +218,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test accompanist libraries have migration context`() {
         val accompanistLibraries = tomlLines.filter {
             it.contains("accompanist") && !it.trim().startsWith("#")
@@ -241,7 +242,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test room version consistency`() {
         val roomLibraries = tomlLines.filter {
             it.contains("Room") && it.contains("version.ref")
@@ -255,7 +256,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test androidx libraries use consistent patterns`() {
         val androidxLibraries = tomlLines.filter {
             it.contains("androidx") && it.contains("module = ")
@@ -270,7 +271,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test generative AI library is properly configured`() {
         val generativeAiVersion = extractVersion("generativeai")
         assertNotNull("Generative AI version should be defined", generativeAiVersion)
@@ -293,7 +294,7 @@ class LibsVersionsTomlTest {
         return Regex(pattern).find(tomlContent)?.groupValues?.get(1)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test TOML file has proper bundles section`() {
         assertTrue("Should contain [bundles] section", tomlContent.contains("[bundles]"))
 
@@ -319,7 +320,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test bundle references point to valid libraries`() {
         val bundleSection = extractSection("[bundles]")
         val libraryNames = extractSection("[libraries]")
@@ -370,7 +371,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test serialization library versions are compatible`() {
         val kotlinVersion = extractVersion("kotlin")
         val serializationVersion = extractVersion("kotlinxSerializationJson")
@@ -398,7 +399,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test desugar library is properly configured`() {
         val desugarVersion = extractVersion("desugar-jdk-libs")
 
@@ -418,7 +419,7 @@ class LibsVersionsTomlTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test navigation compose version compatibility`() {
         val navigationVersion = extractVersion("navigationCompose")
         val lifecycleVersion = extractVersion("lifecycle")
@@ -434,7 +435,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test activity compose version compatibility`() {
         val activityComposeVersion = extractVersion("activityCompose")
         extractVersion("composeBom")
@@ -461,7 +462,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test timber version is reasonable`() {
         val timberVersion = extractVersion("timber")
 
@@ -473,7 +474,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test datastore version compatibility`() {
         val datastoreVersion = extractVersion("datastore")
 
@@ -485,7 +486,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test security crypto version is alpha aware`() {
         val securityCryptoVersion = extractVersion("securityCrypto")
 
@@ -498,7 +499,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test work manager version compatibility`() {
         val workManagerVersion = extractVersion("workManager")
         val hiltWorkVersion = extractVersion("hiltWork")
@@ -518,7 +519,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test plugin versions are consistent with dependencies`() {
         val kotlinPluginVersion = extractVersion("kotlin")
         val kspPluginVersion = extractVersion("ksp")
@@ -541,7 +542,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test firebase plugin versions are compatible`() {
         val firebaseCrashlyticsPlugin = extractVersion("firebaseCrashlyticsPlugin")
         val firebasePerfPlugin = extractVersion("firebasePerfPlugin")
@@ -569,7 +570,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test openapi generator plugin version`() {
         val openapiVersion = extractVersion("openapiGeneratorPlugin")
 
@@ -581,7 +582,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test junit version is jupiter not vintage`() {
         val junitVersion = extractVersion("junit")
 
@@ -597,7 +598,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test mockk version is compatible with kotlin`() {
         val mockkVersion = extractVersion("mockk")
 
@@ -609,7 +610,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test espresso version is compatible with android test`() {
         val espressoVersion = extractVersion("espressoCore")
         val androidxTestVersion = extractVersion("androidxTestExtJunit")
@@ -629,7 +630,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test no duplicate bundle entries`() {
         val bundleSection = extractSection("[bundles]")
         val bundleNames = mutableSetOf<String>()
@@ -650,7 +651,7 @@ class LibsVersionsTomlTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version references use consistent quoting`() {
         val versionRefPattern = Pattern.compile("""version\.ref = "([^"]+)"""")
         val inconsistentQuotes = mutableListOf<String>()
@@ -670,7 +671,7 @@ class LibsVersionsTomlTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test library definitions use consistent format`() {
         val librarySection = extractSection("[libraries]")
         val malformedLibraries = mutableListOf<String>()
@@ -697,7 +698,7 @@ class LibsVersionsTomlTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test sections are in correct order`() {
         val foundSections = mutableListOf<String>()
 
@@ -718,7 +719,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version patterns are valid for all entries`() {
         val versionPattern = Pattern.compile("""(\w+)\s*=\s*"([^"]+)"""")
         val invalidVersions = mutableListOf<String>()
@@ -749,7 +750,7 @@ class LibsVersionsTomlTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test compose bundle integrity`() {
         val composeBundleContent = tomlLines.find { it.contains("compose = [") }
 
@@ -772,7 +773,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test firebase bundle integrity`() {
         val firebaseBundleContent = tomlLines.find { it.contains("firebase = [") }
 
@@ -791,7 +792,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test room bundle integrity`() {
         val roomBundleContent = tomlLines.find { it.contains("room = [") }
 
@@ -814,7 +815,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test testing bundle integrity`() {
         val testingBundles = tomlLines.filter { it.contains("testing") && it.contains(" = [") }
 
@@ -833,7 +834,7 @@ class LibsVersionsTomlTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test no circular dependencies in bundles`() {
         val bundleSection = extractSection("[bundles]")
         val bundleNames = mutableSetOf<String>()

@@ -1,13 +1,12 @@
 package dev.aurakai.auraframefx.gradle
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
-import org.junit.After
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.AfterEach
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import java.io.File
-import java.util.Properties
 
 /**
  * Comprehensive unit tests for validating Android Gradle build script configurations.
@@ -23,7 +22,7 @@ class BuildScriptsValidationTest {
     private lateinit var buildGradleContent: String
     private lateinit var projectDir: File
 
-    @Before
+    @BeforeEach
     fun setUp() {
         projectDir = File(".")
         val buildGradleFile = File(projectDir, "app/build.gradle.kts")
@@ -61,7 +60,7 @@ class BuildScriptsValidationTest {
         }
     }
 
-    @After
+    @AfterEach
     fun tearDown() {
         // Clean up any test artifacts if needed
     }
@@ -153,7 +152,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test application id is correct`() {
         assertTrue(
             "applicationId should match project package",
@@ -170,7 +169,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test multidex is enabled`() {
         assertTrue(
             "MultiDex should be enabled for large applications",
@@ -178,7 +177,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test custom test runner is configured`() {
         assertTrue(
             "Custom Hilt test runner should be configured",
@@ -188,7 +187,7 @@ class BuildScriptsValidationTest {
 
     // === BUILD FEATURES TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test required build features are enabled`() {
         assertTrue(
             "buildConfig should be enabled",
@@ -268,7 +267,7 @@ class BuildScriptsValidationTest {
         assertTrue("JNI libs configuration should exist", buildGradleContent.contains("jniLibs {"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test meta-inf exclusions are configured`() {
         val metaInfExclusions = listOf(
             "\"/META-INF/{AL2.0,LGPL2.1}\"",
@@ -285,7 +284,7 @@ class BuildScriptsValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test jni debug symbols are preserved`() {
         assertTrue(
             "Debug symbols should be kept for crash reporting",
@@ -295,7 +294,7 @@ class BuildScriptsValidationTest {
 
     // === EXTERNAL NATIVE BUILD TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test cmake configuration is present`() {
         assertTrue(
             "CMake external build should be configured",
@@ -313,7 +312,7 @@ class BuildScriptsValidationTest {
 
     // === LINT CONFIGURATION TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test lint configuration is comprehensive`() {
         assertTrue("Lint block should exist", buildGradleContent.contains("lint {"))
         assertTrue(
@@ -394,7 +393,7 @@ class BuildScriptsValidationTest {
 
     // === SOURCE SETS TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test source sets configuration`() {
         assertTrue(
             "Main source set should be configured",
@@ -408,7 +407,7 @@ class BuildScriptsValidationTest {
 
     // === TASK DEPENDENCIES TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test preBuild task dependencies`() {
         assertTrue(
             "preBuild task should be configured",
@@ -422,7 +421,7 @@ class BuildScriptsValidationTest {
 
     // === DEPENDENCIES VALIDATION TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test core dependencies are present`() {
         val coreDependencies = listOf(
             "coreLibraryDesugaring(libs.desugar.jdk.libs)",
@@ -438,7 +437,7 @@ class BuildScriptsValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test compose bom is used`() {
         assertTrue(
             "Compose BOM should be used",
@@ -454,7 +453,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test compose dependencies are comprehensive`() {
         val composeDeps = listOf(
             "implementation(libs.compose.ui)",
@@ -475,7 +474,7 @@ class BuildScriptsValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test hilt dependencies are complete`() {
         val hiltDeps = listOf(
             "implementation(libs.hilt.android)",
@@ -493,7 +492,7 @@ class BuildScriptsValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test room dependencies use bundles`() {
         assertTrue(
             "Room bundle should be used",
@@ -517,7 +516,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test network dependencies are present`() {
         val networkDeps = listOf(
             "implementation(libs.retrofit)",
@@ -534,7 +533,7 @@ class BuildScriptsValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test testing dependencies use bundles`() {
         assertTrue(
             "Unit testing bundle should be used",
@@ -546,7 +545,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test lifecycle dependencies use bundles`() {
         assertTrue(
             "Lifecycle bundle should be used",
@@ -556,7 +555,7 @@ class BuildScriptsValidationTest {
 
     // === CONFIGURATION CONSISTENCY TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test no duplicate dependencies`() {
         val dependencies = buildGradleContent
             .lines()
@@ -583,7 +582,7 @@ class BuildScriptsValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test comments indicate moved configurations`() {
         assertTrue(
             "Should have comment about moved NDK ABI filters",
@@ -610,7 +609,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version catalog references are consistent`() {
         val libsReferences = buildGradleContent
             .lines()
@@ -629,7 +628,7 @@ class BuildScriptsValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test no hardcoded paths in configuration`() {
         val hardcodedPathPatterns = listOf(
             "/home/",
@@ -647,7 +646,7 @@ class BuildScriptsValidationTest {
 
     // === PERFORMANCE AND OPTIMIZATION TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test optimization settings are appropriate`() {
         assertTrue(
             "Release minification should be enabled",
@@ -659,7 +658,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test debug-only dependencies are properly scoped`() {
         val debugDeps = buildGradleContent
             .lines()
@@ -680,7 +679,7 @@ class BuildScriptsValidationTest {
 
     // === SECURITY TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test security dependencies are included`() {
         assertTrue(
             "Security crypto should be included",
@@ -694,7 +693,7 @@ class BuildScriptsValidationTest {
 
     // === INTEGRATION TESTS ===
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test build script structure is valid kotlin dsl`() {
         // Test basic Kotlin DSL structure
         assertTrue("Should use Kotlin DSL syntax", buildGradleContent.contains("android {"))
@@ -709,7 +708,7 @@ class BuildScriptsValidationTest {
         assertEquals("Braces should be balanced", openBraces, closeBraces)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test all required sections are present in correct order`() {
         val expectedSections = listOf(
             "plugins {",

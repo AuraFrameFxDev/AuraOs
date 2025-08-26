@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -26,23 +26,25 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_24
-        targetCompatibility = JavaVersion.VERSION_24
-    }
-
     buildFeatures {
         compose = true
         buildConfig = true
+        viewBinding = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    // Configure CMake for native code
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "4.1.0"
+        }
     }
+
+    ndkVersion = "29.0.13599879"
 }
 
 dependencies {
-    // Core project dependency - use api to expose dependencies to dependent modules
+    // Core project dependency
     api(project(":app"))
 
     // AndroidX Core
@@ -51,31 +53,13 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     // Compose BOM
-
-    // Enable ViewBinding for legacy views if needed
-    viewBinding = true
-
-    // Enable data binding if needed
-    // dataBinding = true
-    implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.material3)
-    implementation(libs.compose.animation)
-
-    // Configure CMake for native code
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.29.2" // Latest stable CMake version
-        }
-    }
-
-    ndkVersion = "26.2.11394342" // Latest stable NDK version
-    implementation(libs.compose.foundation)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.material3)
 
     // Navigation
-    implementation(libs.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
 
     // Hilt
     implementation(libs.hilt.android)
@@ -83,12 +67,12 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
 
     // Debug tools
-    debugImplementation(libs.compose.ui.tooling)
-    debugImplementation(libs.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 }

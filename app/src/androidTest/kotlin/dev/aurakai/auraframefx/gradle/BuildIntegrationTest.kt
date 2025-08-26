@@ -5,7 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.fail
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 
 /**
@@ -17,7 +17,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class BuildIntegrationTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testApplicationIdIsCorrect() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("dev.aurakai.auraframefx", context.packageName)
@@ -52,7 +52,7 @@ class BuildIntegrationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testVectorDrawablesSupportIsEnabled() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         // This test verifies that vector drawables can be used
@@ -62,7 +62,7 @@ class BuildIntegrationTest {
         // Vector drawable support would be verified by the successful app startup
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testMultiDexIsWorking() {
         // If the app starts successfully with multiDexEnabled = true,
         // it indicates MultiDex is working correctly
@@ -81,7 +81,7 @@ class BuildIntegrationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testHiltIsProperlyConfigured() {
         // This test verifies that Hilt test runner is working
         val context = InstrumentationRegistry.getInstrumentation().targetContext
@@ -164,7 +164,7 @@ class BuildIntegrationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testSecurityCryptoIsAvailable() {
         // Verify that Security Crypto dependencies are properly included
         try {
@@ -175,7 +175,7 @@ class BuildIntegrationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testWorkManagerIsAvailable() {
         // Verify that WorkManager dependencies are properly included
         try {
@@ -186,7 +186,7 @@ class BuildIntegrationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testMaterial3IsAvailable() {
         // Verify that Material 3 dependencies are properly included
         try {
@@ -197,7 +197,7 @@ class BuildIntegrationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testNavigationComposeIsAvailable() {
         // Verify that Navigation Compose is available
         try {
@@ -219,7 +219,7 @@ class BuildIntegrationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testTimberIsAvailable() {
         // Verify that Timber is available
         try {

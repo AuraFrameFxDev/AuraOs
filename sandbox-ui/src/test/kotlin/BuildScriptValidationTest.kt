@@ -1,19 +1,16 @@
 package dev.aurakai.auraframefx.sandbox.ui
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
-import org.junit.After
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.AfterEach
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
+import org.junit.jupiter.api.AfterEach
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.io.path.writeText
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.TimeUnit
-import java.security.MessageDigest
-import kotlin.random.Random
 
 /**
  * Unit tests for build script validation
@@ -29,7 +26,7 @@ class BuildScriptValidationTest {
     private lateinit var buildFile: File
     private lateinit var gradleRunner: GradleRunner
 
-    @Before
+    @BeforeEach
     fun setup() {
         testProjectDir = Files.createTempDirectory("gradle-test")
         buildFile = testProjectDir.resolve("build.gradle.kts").toFile()
@@ -110,12 +107,12 @@ class BuildScriptValidationTest {
             .withGradleVersion("8.4")
     }
 
-    @After
+    @AfterEach
     fun cleanup() {
         testProjectDir.toFile().deleteRecursively()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate Android library plugin configuration`() {
         val buildScript = createBasicBuildScript()
         buildFile.writeText(buildScript)
@@ -130,7 +127,7 @@ class BuildScriptValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate namespace configuration`() {
         val buildScript = createBasicBuildScript()
         buildFile.writeText(buildScript)
@@ -157,7 +154,7 @@ class BuildScriptValidationTest {
         assertTrue("Should set targetSdk = 36", buildScript.contains("targetSdk = 36"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate Java version configuration`() {
         val buildScript = createBasicBuildScript()
         buildFile.writeText(buildScript)
@@ -172,7 +169,7 @@ class BuildScriptValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate complete build script with Compose configuration`() {
         val buildScript = createCompleteBuildScript()
         buildFile.writeText(buildScript)
@@ -191,7 +188,7 @@ class BuildScriptValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate Hilt configuration`() {
         val buildScript = createCompleteBuildScript()
         buildFile.writeText(buildScript)
@@ -201,7 +198,7 @@ class BuildScriptValidationTest {
         assertTrue("Should have parcelize plugin", buildScript.contains("kotlin-parcelize"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate NDK configuration`() {
         val buildScript = createCompleteBuildScript()
         buildFile.writeText(buildScript)
@@ -215,7 +212,7 @@ class BuildScriptValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate packaging configuration`() {
         val buildScript = createCompleteBuildScript()
         buildFile.writeText(buildScript)
@@ -239,7 +236,7 @@ class BuildScriptValidationTest {
         assertTrue("Should include proguard files", buildScript.contains("proguardFiles"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate dependencies configuration`() {
         val buildScript = createCompleteBuildScript()
         buildFile.writeText(buildScript)
@@ -256,7 +253,7 @@ class BuildScriptValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should handle invalid build script gracefully`() {
         val invalidBuildScript = """
             plugins {
@@ -280,7 +277,7 @@ class BuildScriptValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate test configuration`() {
         val buildScript = createBasicBuildScript()
         buildFile.writeText(buildScript)
@@ -317,7 +314,7 @@ class BuildScriptValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate libs catalog integration`() {
         val buildScript = createCompleteBuildScript()
         buildFile.writeText(buildScript)
@@ -332,7 +329,7 @@ class BuildScriptValidationTest {
         assertTrue("Build script should use version catalog syntax", buildScript.contains("libs."))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with concurrent execution`() {
         val buildScript = createBasicBuildScript()
         buildFile.writeText(buildScript)
@@ -365,7 +362,7 @@ class BuildScriptValidationTest {
             results.any { it })
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with multiple task executions to ensure script integrity`() {
         val buildScript = createCompleteBuildScript()
         buildFile.writeText(buildScript)
@@ -386,7 +383,7 @@ class BuildScriptValidationTest {
         assertTrue("Memory usage should be reasonable", memoryAfter < 500_000_000) // 500MB limit
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should handle gradle runner exceptions gracefully`() {
         val buildScript = createBasicBuildScript()
         buildFile.writeText(buildScript)
@@ -406,7 +403,7 @@ class BuildScriptValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate task execution timeout handling`() {
         val buildScript = createCompleteBuildScript()
         buildFile.writeText(buildScript)
@@ -422,7 +419,7 @@ class BuildScriptValidationTest {
         assertTrue("Build should succeed", result.output.contains("BUILD SUCCESSFUL"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate concurrent execution thread safety`() {
         val buildScript = createBasicBuildScript()
         buildFile.writeText(buildScript)
@@ -451,7 +448,7 @@ class BuildScriptValidationTest {
         assertTrue("Most concurrent builds should succeed", results.values.count { it } >= 3)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate createBasicBuildScript helper method`() {
         val basicScript = createBasicBuildScript()
 
@@ -558,7 +555,7 @@ class BuildScriptValidationTest {
         assertTrue("Should contain special characters", unicodeScript.contains("buildConfigField"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with extremely large content`() {
         val baseScript = createBasicBuildScript()
         val largeCommentSection = StringBuilder()
@@ -586,7 +583,7 @@ class BuildScriptValidationTest {
         assertTrue("File size should be substantial", largeScript.length > 50000)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with all supported Kotlin DSL features`() {
         val kotlinDslScript = """
             plugins {
@@ -651,7 +648,7 @@ class BuildScriptValidationTest {
         assertTrue("Should have staging build type", kotlinDslScript.contains("staging"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with dependency version conflicts resolution`() {
         val conflictingDepsScript = """
             plugins {
@@ -692,7 +689,7 @@ class BuildScriptValidationTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with custom repository configurations`() {
         val customRepoScript = """
             plugins {
@@ -727,7 +724,7 @@ class BuildScriptValidationTest {
         assertTrue("Should have Maven repository", customRepoScript.contains("maven {"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with advanced ProGuard configurations`() {
         val proguardScript = """
             plugins {
@@ -773,7 +770,7 @@ class BuildScriptValidationTest {
         assertTrue("Should have test coverage", proguardScript.contains("isTestCoverageEnabled"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with multi-module project setup`() {
         // Create additional module directories
         Files.createDirectories(testProjectDir.resolve("feature-module/src/main/kotlin"))
@@ -838,7 +835,7 @@ class BuildScriptValidationTest {
         assertTrue("Should have project dependencies", multiModuleScript.contains("project("))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with advanced testing configurations`() {
         val advancedTestingScript = """
             plugins {
@@ -915,7 +912,7 @@ class BuildScriptValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate build script with Compose BOM and version catalog edge cases`() {
         val bomAndCatalogScript = """
             plugins {
@@ -976,7 +973,7 @@ class BuildScriptValidationTest {
         assertTrue("Should have exclusions", bomAndCatalogScript.contains("exclude"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `should validate actual build script file exists and is parseable`() {
         // Test the actual build.gradle.kts file from the project if it exists
         val actualBuildFile = testProjectDir.resolve("../../../build.gradle.kts").toFile()

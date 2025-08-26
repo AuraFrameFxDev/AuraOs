@@ -1,8 +1,8 @@
 package dev.aurakai.auraframefx.gradle.validation
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import java.io.File
 
 /**
@@ -14,7 +14,7 @@ class DependencyCompatibilityTest {
     private lateinit var tomlContent: String
     private val versionMap = mutableMapOf<String, String>()
 
-    @Before
+    @BeforeEach
     fun setUp() {
         val tomlFile = File("gradle/libs.versions.toml")
         tomlContent = tomlFile.readText()
@@ -35,7 +35,7 @@ class DependencyCompatibilityTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test AGP and Kotlin compatibility matrix`() {
         val agpVersion = versionMap["agp"]
         val kotlinVersion = versionMap["kotlin"]
@@ -61,7 +61,7 @@ class DependencyCompatibilityTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test Firebase BOM version is recent`() {
         val firebaseBomVersion = versionMap["firebaseBomVersion"]
         assertNotNull("Firebase BOM version should be defined", firebaseBomVersion)
@@ -74,7 +74,7 @@ class DependencyCompatibilityTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test Compose BOM is compatible with Kotlin version`() {
         val composeBom = versionMap["composeBom"]
         val kotlinVersion = versionMap["kotlin"]
@@ -91,7 +91,7 @@ class DependencyCompatibilityTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test WorkManager and Lifecycle versions compatibility`() {
         val workManager = versionMap["workManager"]
         val lifecycle = versionMap["lifecycle"]
@@ -107,7 +107,7 @@ class DependencyCompatibilityTest {
         assertTrue("Lifecycle should be version 2.7+", lifecycleMajor >= 2)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test testing framework versions are current`() {
         val junitVersion = versionMap["junit"]
         val mockkVersion = versionMap["mockk"]
@@ -123,7 +123,7 @@ class DependencyCompatibilityTest {
         assertTrue("Espresso should be 3.5+", espressoVersion!!.compareTo("3.5") >= 0)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test KSP version matches Kotlin version`() {
         val kotlinVersion = versionMap["kotlin"]
         val kspVersion = versionMap["ksp"]

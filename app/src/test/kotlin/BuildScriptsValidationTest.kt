@@ -1,9 +1,10 @@
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
-import org.junit.After
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.AfterEach
 import io.mockk.*
-import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import java.io.File
 import java.util.Properties
 
@@ -19,19 +20,19 @@ class BuildScriptsValidationTest {
     private lateinit var buildFile: File
     private lateinit var gradleProperties: Properties
 
-    @Before
+    @BeforeEach
     fun setup() {
         buildFile = File("app/build.gradle.kts")
         gradleProperties = Properties()
     }
 
-    @After
+    @AfterEach
     fun teardown() {
         clearAllMocks()
     }
 
     // Build Script Structure Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `build script file exists and is readable`() {
         assertTrue("Build script should exist", buildFile.exists())
         assertTrue("Build script should be readable", buildFile.canRead())
@@ -101,7 +102,7 @@ class BuildScriptsValidationTest {
         assertTrue("Should enable viewBinding", content.contains("viewBinding = true"))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `defaultConfig has proper application settings`() {
         val content = buildFile.readText()
 
@@ -121,7 +122,7 @@ class BuildScriptsValidationTest {
     }
 
     // NDK Configuration Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `ndk configuration is properly set`() {
         val content = buildFile.readText()
 
@@ -131,7 +132,7 @@ class BuildScriptsValidationTest {
         assertTrue("Should specify NDK version", content.contains("version = \"27.0.12077973\""))
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `packaging configuration excludes unwanted files`() {
         val content = buildFile.readText()
 
@@ -191,7 +192,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `kotlin compiler options are properly configured`() {
         val content = buildFile.readText()
 
@@ -211,7 +212,7 @@ class BuildScriptsValidationTest {
     }
 
     // External Build Configuration Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `cmake configuration is valid`() {
         val content = buildFile.readText()
 
@@ -296,7 +297,7 @@ class BuildScriptsValidationTest {
     }
 
     // KSP Configuration Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `ksp room schema location is configured`() {
         val content = buildFile.readText()
 
@@ -374,7 +375,7 @@ class BuildScriptsValidationTest {
     }
 
     // Core Dependencies Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `core android dependencies are included`() {
         val content = buildFile.readText()
 
@@ -392,7 +393,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `lifecycle dependencies are included`() {
         val content = buildFile.readText()
 
@@ -448,7 +449,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `dagger hilt dependencies are complete`() {
         val content = buildFile.readText()
 
@@ -488,7 +489,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `firebase dependencies are included`() {
         val content = buildFile.readText()
 
@@ -522,7 +523,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `network dependencies are configured`() {
         val content = buildFile.readText()
 
@@ -567,7 +568,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `android testing dependencies are complete`() {
         val content = buildFile.readText()
 
@@ -601,7 +602,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `debug dependencies are configured`() {
         val content = buildFile.readText()
 
@@ -695,7 +696,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `plugin order is correct for hilt and ksp`() {
         val content = buildFile.readText()
 
@@ -727,7 +728,7 @@ class BuildScriptsValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `proguard configuration is present for release`() {
         val content = buildFile.readText()
 
@@ -753,7 +754,7 @@ class BuildScriptsValidationTest {
     }
 
     // Additional Dependency Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `ui and utility dependencies are configured`() {
         val content = buildFile.readText()
 
@@ -788,7 +789,7 @@ class BuildScriptsValidationTest {
     }
 
     // Build Features Validation Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `required build features are enabled`() {
         val content = buildFile.readText()
 
@@ -844,7 +845,7 @@ class BuildScriptsValidationTest {
     }
 
     // External Library Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `external libraries are properly included`() {
         val content = buildFile.readText()
 
@@ -855,7 +856,7 @@ class BuildScriptsValidationTest {
     }
 
     // Failure Condition Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun `build script contains no obvious syntax errors`() {
         val content = buildFile.readText()
 

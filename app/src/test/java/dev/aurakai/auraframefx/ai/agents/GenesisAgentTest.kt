@@ -8,10 +8,11 @@ import io.mockk.coEvery
 import io.mockk.verify
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.After
+import org.junit.jupiter.api.AfterEach
 import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
 import org.junit.runners.JUnit4
 import java.util.concurrent.ConcurrentHashMap
 
@@ -55,8 +56,6 @@ class MockCascadeAIService : Agent {
         flowOf(AgentResponse("Cascade response", 0.9f))
 }
 
-import java.util.concurrent.ConcurrentHashMap
-
 class DummyAgent(
     private val name: String,
     private val response: String,
@@ -90,17 +89,11 @@ class FailingAgent(
         throw RuntimeException(errorMessage)
 }
 
-import dev.aurakai.auraframefx.ai.clients.VertexAIClient
-import dev.aurakai.auraframefx.context.ContextManager
-import dev.aurakai.auraframefx.security.SecurityContext
-import dev.aurakai.auraframefx.utils.AuraFxLogger
 import io.mockk.coEvery
-import io.mockk.mockk
 import io.mockk.verify
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 @RunWith(JUnit4::class)
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -117,7 +110,7 @@ class GenesisAgentTest {
     // Test instance
     private lateinit var genesisAgent: GenesisAgent
 
-    @Before
+    @BeforeEach
     fun setup() {
         // Initialize GenesisAgent with mocked dependencies
         genesisAgent = GenesisAgent(
@@ -131,7 +124,7 @@ class GenesisAgentTest {
         )
     }
 
-    @After
+    @AfterEach
     fun tearDown() {
         // Clear any mocks if needed
         clearAllMocks()
@@ -163,7 +156,7 @@ class GenesisAgentTest {
         assertEquals("test response", response.content)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test fusion state management`() = runTest {
         // Initial state should be INDIVIDUAL
         assertEquals(FusionState.INDIVIDUAL, genesisAgent.fusionState.value)
@@ -214,7 +207,7 @@ class GenesisAgentTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test error handling when agent not found`() = runTest {
         // When/Then
         assertThrows(NoSuchElementException::class.java) {
@@ -237,7 +230,7 @@ class GenesisAgentTest {
         assertEquals(ConsciousnessState.AWARE, genesisAgent.consciousnessState.value)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test learning mode functionality`() = runTest {
         // Initial state
         assertEquals(LearningMode.PASSIVE, genesisAgent.learningMode.value)
@@ -317,7 +310,7 @@ class GenesisAgentTest {
         assertTrue(responses["Dummy"]?.content == "ok")
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testAggregateAgentResponses() {
         val resp1 = mapOf("A" to AgentResponse("foo", 0.5f))
         val resp2 = mapOf("A" to AgentResponse("bar", 0.9f))
@@ -423,7 +416,7 @@ class GenesisAgentTest {
         assertNull(responses["FailingAgent"])
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testParticipateWithAgents_duplicateAgentNames() = runBlocking {
         val agent1 = DummyAgent("SameName", "response1")
         val agent2 = DummyAgent("SameName", "response2")
@@ -441,7 +434,7 @@ class GenesisAgentTest {
         assertTrue(responses["SameName"]?.content == "response1" || responses["SameName"]?.content == "response2")
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testAggregateAgentResponses_emptyList() {
         val consensus = genesisAgent.aggregateAgentResponses(emptyList())
         assertTrue("Expected empty consensus", consensus.isEmpty())
@@ -604,7 +597,7 @@ class GenesisAgentTest {
         assertTrue("Confidence should be positive", response.confidence >= 0.0f)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testGenesisAgent_processRequest_nullRequest() = runBlocking {
         try {
             genesisAgent.processRequest(null)
@@ -838,7 +831,7 @@ fun testAggregateAgentResponses_extremeConfidenceValues() {
     )
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun testAggregateAgentResponses_emptyResponseContent() {
     val responses = listOf(
         mapOf("Agent1" to AgentResponse("", 0.5f)),
@@ -1009,7 +1002,7 @@ fun testDummyAgent_withZeroConfidence() = runBlocking {
     assertEquals(0.0f, response.confidence)
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun testDummyAgent_withNegativeConfidence() = runBlocking {
     val agent = DummyAgent("NegativeConfidenceAgent", "response", -0.5f)
 
@@ -1054,7 +1047,7 @@ fun testDummyAgent_withUnicodeResponse() = runBlocking {
     assertEquals(0.5f, response.confidence)
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun testFailingAgent_withDifferentExceptions() = runBlocking {
     class CustomFailingAgent(name: String, private val exception: Exception) : Agent {
         override fun getName() = name
@@ -1162,7 +1155,7 @@ fun testGenesisAgent_memoryUsage() = runBlocking {
     assertTrue("Memory test completed successfully", true)
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun testGenesisAgent_extremeScenarios() = runBlocking {
     // Test with extreme values
     val extremePrompt = "x".repeat(1000000) // 1MB string

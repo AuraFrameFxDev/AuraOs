@@ -1,8 +1,8 @@
 package dev.aurakai.auraframefx.gradle.validation
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import java.io.File
 
 /**
@@ -12,7 +12,7 @@ class SecurityAndBestPracticesTest {
 
     private lateinit var tomlContent: String
 
-    @Before
+    @BeforeEach
     fun setUp() {
         val tomlFile = File("gradle/libs.versions.toml")
         tomlContent = tomlFile.readText()
@@ -36,7 +36,7 @@ class SecurityAndBestPracticesTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test beta versions are minimal and documented`() {
         val betaVersions = tomlContent.lines()
             .filter { it.contains("-beta", ignoreCase = true) }
@@ -61,7 +61,7 @@ class SecurityAndBestPracticesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test security-sensitive dependencies are recent`() {
         val securitySensitive = mapOf(
             "androidxSecurityCrypto" to "1.1.0",
@@ -93,7 +93,7 @@ class SecurityAndBestPracticesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test BOM usage for Google dependencies`() {
         // Firebase should use BOM
         assertTrue(
@@ -145,7 +145,7 @@ class SecurityAndBestPracticesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version catalog follows naming conventions`() {
         val versionLines = tomlContent.lines()
             .filter { it.contains(" = \"") && !it.trim().startsWith("#") }
@@ -191,7 +191,7 @@ class SecurityAndBestPracticesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test material design versions are consistent`() {
         val material3Version = tomlContent.lines()
             .find { it.contains("material3 = ") }

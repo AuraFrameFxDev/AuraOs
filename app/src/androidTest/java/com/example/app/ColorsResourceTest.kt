@@ -9,8 +9,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import kotlin.math.abs
 import kotlin.math.max
@@ -38,7 +38,7 @@ class ColorsResourceTest {
     private lateinit var context: Context
     private lateinit var resources: Resources
 
-    @Before
+    @BeforeEach
     fun setUp() {
         context = ApplicationProvider.getApplicationContext()
         resources = context.resources
@@ -63,7 +63,7 @@ class ColorsResourceTest {
         assertEquals("Neon purple should be #E000FF", 0xFFE000FF.toInt(), color)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testNeonBlueColorExists() {
         val colorResId = resources.getIdentifier("neon_blue", "color", context.packageName)
         assertTrue("Neon blue color resource should exist", colorResId != 0)
@@ -82,7 +82,7 @@ class ColorsResourceTest {
         assertEquals("Neon teal transparent should be #3300FFCC", 0x3300FFCC.toInt(), color)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testBlackColorExists() {
         val colorResId = resources.getIdentifier("black", "color", context.packageName)
         assertTrue("Black color resource should exist", colorResId != 0)
@@ -91,7 +91,7 @@ class ColorsResourceTest {
         assertEquals("Black should be #000000", 0xFF000000.toInt(), color)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testWhiteColorExists() {
         val colorResId = resources.getIdentifier("white", "color", context.packageName)
         assertTrue("White color resource should exist", colorResId != 0)
@@ -100,7 +100,7 @@ class ColorsResourceTest {
         assertEquals("White should be #FFFFFF", 0xFFFFFFFF.toInt(), color)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testTransparentColorExists() {
         val colorResId = resources.getIdentifier("transparent", "color", context.packageName)
         assertTrue("Transparent color resource should exist", colorResId != 0)
@@ -110,7 +110,7 @@ class ColorsResourceTest {
     }
 
     // Light Theme Color Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun testLightThemeColorsExist() {
         val lightColors = listOf(
             "light_primary",
@@ -212,7 +212,7 @@ class ColorsResourceTest {
         assertEquals("Neon teal transparent should have alpha 0x33", 0x33, alpha)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testColorComponentValues() {
         val colorNames = listOf("neon_teal", "neon_purple", "neon_blue", "black", "white")
 
@@ -235,7 +235,7 @@ class ColorsResourceTest {
     }
 
     // Accessibility Tests - Color Contrast
-    @Test
+    @org.junit.jupiter.api.Test
     fun testLightPrimaryOnPrimaryContrast() {
         val primaryResId = resources.getIdentifier("light_primary", "color", context.packageName)
         val onPrimaryResId =
@@ -272,7 +272,7 @@ class ColorsResourceTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testLightSurfaceOnSurfaceContrast() {
         val surfaceResId = resources.getIdentifier("light_surface", "color", context.packageName)
         val onSurfaceResId =
@@ -290,7 +290,7 @@ class ColorsResourceTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testDarkPrimaryOnPrimaryContrast() {
         val primaryResId = resources.getIdentifier("dark_primary", "color", context.packageName)
         val onPrimaryResId =
@@ -327,14 +327,14 @@ class ColorsResourceTest {
     }
 
     // Error/Failure Conditions
-    @Test
+    @org.junit.jupiter.api.Test
     fun testInvalidColorResourceHandling() {
         val invalidColorResId =
             resources.getIdentifier("non_existent_color", "color", context.packageName)
         assertEquals("Invalid color resource should return 0", 0, invalidColorResId)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testEmptyColorNameHandling() {
         val emptyColorResId = resources.getIdentifier("", "color", context.packageName)
         assertEquals("Empty color name should return 0", 0, emptyColorResId)
@@ -365,7 +365,7 @@ class ColorsResourceTest {
     }
 
     // Neon Color Characteristics Tests
-    @Test
+    @org.junit.jupiter.api.Test
     fun testNeonColorCharacteristics() {
         // Test neon teal has high green and blue components
         val neonTealResId = resources.getIdentifier("neon_teal", "color", context.packageName)
@@ -431,7 +431,7 @@ class ColorsResourceTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testOnColorConsistency() {
         val colorPairs = listOf(
             "light_primary" to "light_on_primary",
@@ -565,7 +565,7 @@ class ColorsResourceTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testMaterial3CompatibilityColors() {
         val compatibilityColors = listOf("onPrimary")
 

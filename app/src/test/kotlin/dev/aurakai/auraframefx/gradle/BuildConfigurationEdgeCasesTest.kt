@@ -1,8 +1,8 @@
 package dev.aurakai.auraframefx.gradle
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import java.io.File
 
 /**
@@ -14,7 +14,7 @@ class BuildConfigurationEdgeCasesTest {
 
     private lateinit var buildContent: String
 
-    @Before
+    @BeforeEach
     fun setup() {
         val buildFile = File("app/build.gradle.kts")
         buildContent = if (buildFile.exists()) {
@@ -84,7 +84,7 @@ class BuildConfigurationEdgeCasesTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test no conflicting dependency declarations`() {
         // Look for potential duplicate dependencies
         val implementationPattern = Regex("implementation\\(libs\\.[a-zA-Z0-9\\.]+\\)")
@@ -97,7 +97,7 @@ class BuildConfigurationEdgeCasesTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test CMake version is valid`() {
         val cmakeVersionPattern = Regex("version\\s*=\\s*\"([0-9\\.]+)\"")
         val cmakeVersion = cmakeVersionPattern.find(buildContent)?.groupValues?.get(1)
@@ -118,7 +118,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test NDK version format is valid`() {
         val ndkVersionPattern = Regex("ndkVersion\\s*=\\s*\"([^\"]+)\"")
         val ndkVersion = ndkVersionPattern.find(buildContent)?.groupValues?.get(1)
@@ -146,7 +146,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test proguard files exist or are standard`() {
         if (buildContent.contains("proguard-rules.pro")) {
             // This is a custom proguard file that should exist
@@ -164,7 +164,7 @@ class BuildConfigurationEdgeCasesTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test no deprecated API usage`() {
         // Check for some known deprecated patterns
         val deprecatedPatterns = listOf(
@@ -182,7 +182,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test Kotlin compiler arguments are valid`() {
         if (buildContent.contains("freeCompilerArgs")) {
             // Check for valid Kotlin compiler arguments
@@ -203,7 +203,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test build configuration syntax is valid Kotlin`() {
         // Basic syntax checks
         assertFalse(
@@ -224,7 +224,7 @@ class BuildConfigurationEdgeCasesTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test build tools version is compatible`() {
         // Check for buildToolsVersion if present
         Regex(
@@ -260,7 +260,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test version name and code consistency`() {
         val versionNamePattern = Regex(
             "versionName\s*=\s*"([^"]+)"")
@@ -283,7 +283,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test namespace configuration is valid`() {
         Regex(
             "namespace\s*=\s*"([^"]+)"")
@@ -298,7 +298,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test build types are properly configured`() {
         if (buildContent.contains("buildTypes")) {
             // Check for debug and release build types
@@ -339,7 +339,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test resource configuration is valid`() {
         // Check for resource shrinking in release builds
         if (buildContent.contains("shrinkResources")) {
@@ -359,7 +359,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test test instrumentation runner configuration`() {
         Regex(
             "testInstrumentationRunner\s*=\s*"([^"]+)"")
@@ -425,7 +425,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test Java compatibility versions are consistent`() {
         val sourceCompatPattern = Regex("sourceCompatibility\s*=\s*JavaVersion\.VERSION_(\d+)")
         val targetCompatPattern = Regex("targetCompatibility\s*=\s*JavaVersion\.VERSION_(\d+)")
@@ -450,7 +450,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test multiDex configuration is valid`() {
         if (buildContent.contains("multiDexEnabled")) {
             assertTrue(
@@ -479,7 +479,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test vector drawables configuration`() {
         if (buildContent.contains("vectorDrawables")) {
             assertTrue(
@@ -497,7 +497,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test plugin application order is correct`() {
         if (buildContent.contains("plugins {")) {
             val pluginLines = buildContent.lines().filter { line ->
@@ -527,7 +527,7 @@ class BuildConfigurationEdgeCasesTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test build configuration handles malformed content gracefully`() {
         // Test that our regex patterns don't crash on malformed content
         val malformedContent = "invalid { content with } unmatched braces and \"quotes"
@@ -551,7 +551,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test empty build file is handled gracefully`() {
         val emptyContent = ""
 
@@ -568,7 +568,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test build file content parsing performance`() {
         // Test that parsing large content is reasonably fast
         val largeContent = buildContent + "\n" + "// ".repeat(10000) + "large comment block"
@@ -592,7 +592,7 @@ class BuildConfigurationEdgeCasesTest {
         ) // 5 seconds max
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test build file path resolution robustness`() {
         // Test with different possible build file locations
         val possiblePaths = listOf(
@@ -626,7 +626,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test configuration security - no hardcoded secrets`() {
         // Check for patterns that might indicate hardcoded secrets
         val suspiciousPatterns = listOf(
@@ -651,7 +651,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test KSP configuration is valid`() {
         if (buildContent.contains("ksp {")) {
             assertTrue(
@@ -675,7 +675,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test OpenAPI generator configuration is valid`() {
         if (buildContent.contains("openApiGenerate")) {
             assertTrue(
@@ -714,7 +714,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test Kotlin compiler options are valid`() {
         if (buildContent.contains("compilerOptions")) {
             assertTrue(
@@ -732,7 +732,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test build features configuration is valid`() {
         if (buildContent.contains("buildFeatures")) {
             assertTrue(
@@ -753,7 +753,7 @@ class BuildConfigurationEdgeCasesTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test source sets configuration is valid`() {
         if (buildContent.contains("sourceSets")) {
             assertTrue(

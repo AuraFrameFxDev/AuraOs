@@ -1,9 +1,10 @@
 package dev.aurakai.auraframefx.ui.theme
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.Assert.*
-import org.junit.Before
-import org.junit.After
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.AfterEach
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.StringReader
@@ -25,7 +26,7 @@ class ThemeXmlValidationTest {
     private lateinit var themeXml: String
     private lateinit var document: Document
 
-    @Before
+    @BeforeEach
     fun setUp() {
         // Theme XML content based on the actual file content
         themeXml = """
@@ -50,7 +51,7 @@ class ThemeXmlValidationTest {
         document = builder.parse(ByteArrayInputStream(themeXml.toByteArray()))
     }
 
-    @After
+    @AfterEach
     fun tearDown() {
         // Clean up resources if needed
     }
@@ -185,7 +186,7 @@ class ThemeXmlValidationTest {
         assertTrue("Status bar color should be configured", statusBarColorFound)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testThemeHasNoDuplicateItemNames() {
         val itemElements = document.getElementsByTagName("item")
         val itemNames = mutableListOf<String>()
@@ -440,7 +441,7 @@ class ThemeXmlValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testThemeSupportsDarkModeConfiguration() {
         val styleElements = document.getElementsByTagName("style")
         val themeStyle = styleElements.item(0) as Element
@@ -547,7 +548,7 @@ class ThemeXmlValidationTest {
         )
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testThemeCompatibilityWithMaterial3() {
         val itemElements = document.getElementsByTagName("item")
         val materialColors = listOf("colorPrimary", "colorSecondary", "colorAccent")

@@ -14,10 +14,10 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.Rule
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -41,7 +41,7 @@ class OracleDriveControlViewModelTest {
     private lateinit var mockErrorObserver: Observer<String>
     private lateinit var mockLoadingObserver: Observer<Boolean>
 
-    @Before
+    @BeforeEach
     fun setup() {
         Dispatchers.setMain(testDispatcher)
 
@@ -58,7 +58,7 @@ class OracleDriveControlViewModelTest {
         viewModel.isLoading.observeForever(mockLoadingObserver)
     }
 
-    @After
+    @AfterEach
     fun tearDown() {
         Dispatchers.resetMain()
         viewModel.driveState.removeObserver(mockStateObserver)
@@ -67,7 +67,7 @@ class OracleDriveControlViewModelTest {
         clearAllMocks()
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `initial state should be idle`() {
         val initialState = viewModel.driveState.value
         assertEquals(DriveState.IDLE, initialState)
@@ -101,7 +101,7 @@ class OracleDriveControlViewModelTest {
         verify { mockStateObserver.onChanged(DriveState.ERROR) }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `stopDrive should update state to idle when successful`() = runTest {
         coEvery { mockRepository.startDrive(any()) } returns Result.success(Unit)
         viewModel.startDrive()
@@ -169,7 +169,7 @@ class OracleDriveControlViewModelTest {
         coVerify { mockRepository.updateSpeed(speed) }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `updateSpeed should handle negative values gracefully`() = runTest {
         val invalidSpeed = -10.0
 
@@ -228,7 +228,7 @@ class OracleDriveControlViewModelTest {
         verify { mockNetworkManager.isConnected() }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `isNetworkAvailable should return false when network unavailable`() {
         every { mockNetworkManager.isConnected() } returns false
 
@@ -365,7 +365,7 @@ enum class Direction {
     FORWARD, REVERSE
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `updateSpeed should accept zero speed value`() = runTest {
     val zeroSpeed = 0.0
     coEvery { mockRepository.updateSpeed(zeroSpeed) } returns Result.success(Unit)
@@ -427,7 +427,7 @@ fun `changeDirection should not be allowed during emergency stop state`() = runT
     coVerify(exactly = 0) { mockRepository.changeDirection(any()) }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `startDrive should not be allowed during emergency stop state`() = runTest {
     // First trigger emergency stop
     coEvery { mockRepository.emergencyStop() } returns Result.success(Unit)
@@ -462,7 +462,7 @@ fun `resumeDrive should not be allowed when not paused`() = runTest {
     coVerify(exactly = 0) { mockRepository.resumeDrive() }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `updateSpeed should handle repository timeout gracefully`() = runTest {
     val speed = 25.0
     coEvery { mockRepository.updateSpeed(speed) } returns Result.failure(
@@ -490,7 +490,7 @@ fun `startDrive should handle IOException gracefully`() = runTest {
     verify { mockLoadingObserver.onChanged(false) }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `viewModel should handle multiple rapid state changes`() = runTest {
     coEvery { mockRepository.startDrive(any()) } returns Result.success(Unit)
     coEvery { mockRepository.pauseDrive() } returns Result.success(Unit)
@@ -523,7 +523,7 @@ fun `multiple emergency stops should be handled gracefully`() = runTest {
     coVerify(atLeast = 1) { mockRepository.emergencyStop() }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `network state changes should not affect ongoing operations`() = runTest {
     coEvery { mockRepository.startDrive(any()) } returns Result.success(Unit)
     every { mockNetworkManager.isConnected() } returns true
@@ -623,7 +623,7 @@ fun `loading state should remain consistent during overlapping operations`() = r
     verify { mockLoadingObserver.onChanged(false) }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `observer removal should not cause memory leaks`() = runTest {
     val additionalStateObserver: Observer<DriveState> = mockk(relaxed = true)
     val additionalErrorObserver: Observer<String> = mockk(relaxed = true)
@@ -743,7 +743,7 @@ fun `error recovery should allow normal operations after reset`() = runTest {
     verify { mockStateObserver.onChanged(DriveState.DRIVING) }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `pauseDrive should handle repository failure gracefully`() = runTest {
     // Start driving first
     coEvery { mockRepository.startDrive(any()) } returns Result.success(Unit)
@@ -761,7 +761,7 @@ fun `pauseDrive should handle repository failure gracefully`() = runTest {
     verify { mockStateObserver.onChanged(DriveState.ERROR) }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `resumeDrive should handle repository failure gracefully`() = runTest {
     // Start and pause first
     coEvery { mockRepository.startDrive(any()) } returns Result.success(Unit)
@@ -782,7 +782,7 @@ fun `resumeDrive should handle repository failure gracefully`() = runTest {
     verify { mockStateObserver.onChanged(DriveState.ERROR) }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `stopDrive should be allowed from any state except emergency stop`() = runTest {
     coEvery { mockRepository.stopDrive() } returns Result.success(Unit)
 
@@ -805,7 +805,7 @@ fun `speed boundary validation should handle maximum allowed speed`() = runTest 
     coVerify { mockRepository.updateSpeed(maxAllowedSpeed) }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `speed boundary validation should reject speed above maximum`() = runTest {
     val excessiveSpeed = 1000.1
 
@@ -838,7 +838,7 @@ fun `viewModel should handle null exception messages gracefully`() = runTest {
     verify { mockStateObserver.onChanged(DriveState.ERROR) }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `direction change should validate state transitions properly`() = runTest {
     // Start driving
     coEvery { mockRepository.startDrive(any()) } returns Result.success(Unit)
@@ -940,7 +940,7 @@ fun `reset should work from any state`() = runTest {
     }
 }
 
-@Test
+@org.junit.jupiter.api.Test
 fun `coroutine cancellation should be handled gracefully`() = runTest {
     coEvery { mockRepository.startDrive(any()) } coAnswers {
         kotlinx.coroutines.delay(10000) // Long delay to test cancellation

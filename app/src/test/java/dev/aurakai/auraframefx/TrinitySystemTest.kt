@@ -3,14 +3,14 @@ package dev.aurakai.auraframefx
 import dev.aurakai.auraframefx.model.AiRequest
 import dev.aurakai.auraframefx.security.SecurityContext
 import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 /**
  * Basic Trinity system integration tests
  */
 class TrinitySystemTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testAiRequestModel() {
         val request = AiRequest(
             query = "Test query",
@@ -23,7 +23,7 @@ class TrinitySystemTest {
         assertEquals("context", request.context["test"])
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun testSecurityContextValidation() {
         val securityContext = SecurityContext()
 

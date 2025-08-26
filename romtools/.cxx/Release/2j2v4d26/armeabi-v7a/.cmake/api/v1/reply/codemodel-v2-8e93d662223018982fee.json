@@ -1,0 +1,51 @@
+{
+  "configurations": [
+    {
+      "directories": [
+        {
+          "build": ".",
+          "hasInstallRule": true,
+          "jsonFile": "directory-.-Release-16452549aa2e89e3611b.json",
+          "minimumCMakeVersion": {
+            "string": "3.10.0"
+          },
+          "projectIndex": 0,
+          "source": ".",
+          "targetIndexes": [
+            0
+          ]
+        }
+      ],
+      "name": "Release",
+      "projects": [
+        {
+          "directoryIndexes": [
+            0
+          ],
+          "name": "romtools",
+          "targetIndexes": [
+            0
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "directoryIndex": 0,
+          "id": "romtools::@6890427a1f51a3e7e1df",
+          "jsonFile": "target-romtools-Release-fada5bfb781f218ced16.json",
+          "name": "romtools",
+          "projectIndex": 0
+        }
+      ]
+    }
+  ],
+  "kind": "codemodel",
+  "paths": {
+    "build": "C:/Users/Wehtt/StudioProjects/AuraOs/romtools/.cxx/Release/2j2v4d26/armeabi-v7a",
+    "source": "C:/Users/Wehtt/StudioProjects/AuraOs/romtools/src/main/cpp"
+  },
+  "version": {
+    "major": 2,
+    "minor": 3
+  }
+}

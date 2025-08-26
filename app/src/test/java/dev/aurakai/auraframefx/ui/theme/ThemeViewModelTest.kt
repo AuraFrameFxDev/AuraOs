@@ -3,8 +3,9 @@ package dev.aurakai.auraframefx.ui.theme
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
 
 @ExperimentalCoroutinesApi
 class ThemeViewModelTest {
@@ -12,19 +13,19 @@ class ThemeViewModelTest {
     private lateinit var viewModel: ThemeViewModel
     private lateinit var themeService: ThemeService
 
-    @Before
+    @BeforeEach
     fun setup() {
         themeService = ThemeService()
         viewModel = ThemeViewModel(themeService)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test set theme command`() = runTest {
         viewModel.processThemeCommand("set theme to dark")
         assertThat(viewModel.theme.value).isEqualTo(Theme.DARK)
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `test set color command`() = runTest {
         viewModel.processThemeCommand("set color to red")
         assertThat(viewModel.color.value).isEqualTo(Color.RED)
