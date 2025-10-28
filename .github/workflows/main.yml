@@ -41,7 +41,7 @@ jobs:
         run: ./gradlew assembleRelease --no-configuration-cache --info
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: App-Builds
           path: |
